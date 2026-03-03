@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c7vbghd57m1x5" path="res://Sprites/Meat Tiles.png" id="3_64gg3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yc8q5"]
-bounce = 1.0
+bounce = 0.43
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xgtoh"]
 texture = ExtResource("3_64gg3")

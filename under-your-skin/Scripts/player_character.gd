@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var fling_power: float = 80.0
 @export var air_resistance: float = 0.0002
 @export var max_drag_distance: float = 100.0
-@export var air_jumps_max: int = 1
+@export var air_jumps_max: int = 2
 var air_jumps_count: int = 2 #Dummy Val, Replaced when intialized
 
 @onready var tilemap_layer: TileMapLayer = get_tree().get_first_node_in_group("ground")
@@ -48,36 +48,51 @@ func _input(event: InputEvent):
 					#Decrease Jump Count
 					air_jumps_count -= 1
 
-
-var was_on_floor: bool = false
-
 func _physics_process(delta: float):
-	# BOUNCE FIRST - before gravity/friction
-	if is_on_floor() and not was_on_floor:
-		var bounce_value = get_tile_bounce()
-		if bounce_value > 0.0:
-			velocity.y = -velocity.y * bounce_value
-			velocity.x *= bounce_value
-
-	was_on_floor = is_on_floor()
-
-	#Apply Gravity
+	#Apply Gravity/Reset Jumps
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
 		air_jumps_count = air_jumps_max
 
-	# Friction/ Air resistance - MUCH GENTLER
+	# Friction/ Air resistance
 	if is_on_floor():
 		current_friction = get_tile_friction()
-		var friction_strength = 800.0 * current_friction
+		var friction_strength = 3000.0 * current_friction
 		velocity.x = move_toward(velocity.x, 0.0, friction_strength * delta)
 	velocity *= (1.0 - air_resistance)
-
+	
+	#For Bounce
+	var pre_move_velocity := velocity
+	#Godot Built in Larper, Applies Velocity
 	move_and_slide()
+	#Applies Bounce
+	apply_bounce(pre_move_velocity)
+	
+#Bounce Function
+func apply_bounce(pre_move_velocity: Vector2) -> void:
+	var collided := false
+
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		var normal := collision.get_normal()
+
+		# Get bounce value for where we hit
+		var bounce_value := get_collision_tile_bounce(collision.get_position())
+
+		if bounce_value > 0.0:
+			var current_speed = velocity.length()
+			if current_speed > 50.0 or pre_move_velocity.length() > 100.0:
+				velocity = pre_move_velocity.bounce(normal) * bounce_value
+				collided = true
+				break
+
+	# If we bounced, move once more with the new velocity so it takes effect immediately
+	if collided:
+		move_and_slide()
 
 #Helper Functions: Gets Tile Values
-#Ngl these were vibe coded hope they work well
+#Ngl these were vibe coded af hope they work well
 func get_tile_friction() -> float:
 	if tilemap_layer == null:
 		return 1.0
@@ -107,5 +122,20 @@ func get_tile_bounce() -> float:
 			var phys_material = tilemap_layer.tile_set.get_physics_layer_physics_material(0)
 			if phys_material:
 				print("Bounce: ", phys_material.bounce)
+				return phys_material.bounce
+	return 0.0
+
+#Gets Tile Colliding With
+func get_collision_tile_bounce(coll_pos: Vector2) -> float:
+	if tilemap_layer == null:
+		return 0.0
+	
+	var tile_coords = tilemap_layer.local_to_map(tilemap_layer.to_local(coll_pos))
+	var tile_data = tilemap_layer.get_cell_tile_data(tile_coords)
+	
+	if tile_data:
+		if tilemap_layer.tile_set.get_physics_layers_count() > 0:
+			var phys_material = tilemap_layer.tile_set.get_physics_layer_physics_material(0)
+			if phys_material:
 				return phys_material.bounce
 	return 0.0
