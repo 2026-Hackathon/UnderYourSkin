@@ -1,11 +1,11 @@
 [gd_scene format=4 uid="uid://osbvn7lonyr7"]
 
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://player_character.gd" id="1_wjk0x"]
-[ext_resource type="Texture2D" uid="uid://djsy2lkjr5grp" path="res://Sprites/icon.svg" id="2_64gg3"]
+[ext_resource type="Texture2D" uid="uid://bx40asspwehi7" path="res://Sprites/TempPlayerSprite.png" id="2_64gg3"]
 [ext_resource type="Texture2D" uid="uid://c7vbghd57m1x5" path="res://Sprites/Meat Tiles.png" id="3_64gg3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u0k2b"]
-radius = 63.03174
+radius = 12.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yc8q5"]
 bounce = 0.85
@@ -155,6 +155,9 @@ sources/1 = SubResource("TileSetAtlasSource_xgtoh")
 [node name="PlayerCharacter" type="CharacterBody2D" parent="." unique_id=1782905367]
 position = Vector2(720, 142)
 script = ExtResource("1_wjk0x")
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter" unique_id=1157114998]
+zoom = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerCharacter" unique_id=1485890410]
 texture = ExtResource("2_64gg3")
