@@ -4,8 +4,10 @@ extends CharacterBody2D
 @export var fling_power: float = 80.0
 @export var air_resistance: float = 0.0002
 @export var max_drag_distance: float = 100.0
-@export var air_jumps_max: int = 2
-var air_jumps_count: int = 2 #Dummy Val, Replaced when intialized
+
+#Jumps kinda buggy if velocity = 0 before jumping get an extra jump effectivley
+@export var max_jumps: int = 2
+var jump_count: int = 2 #Dummy Val, Replaced when intialized
 
 @onready var tilemap_layer: TileMapLayer = get_tree().get_first_node_in_group("ground")
 
@@ -18,17 +20,17 @@ var current_friction: float = 1.0
 #Initilaize Player Size Needed so when scale is changed player remains Visible
 func _ready():
 	body_scale_original = scale  
-	air_jumps_count = air_jumps_max
-#Key Input
+	jump_count = max_jumps
+
+# Key Input
 func _input(event: InputEvent):
-	#If Input Is Mouse
+	#If Input Is Mouse, crashes if not here
 	if event is InputEventMouseButton:
-		
 		#LeftMouse Events
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			
 			#On Press Get Starting Position
-			if event.pressed  and air_jumps_count > 0:
+			if event.pressed  and jump_count > 0:
 				drag_start = get_global_mouse_position()
 				is_dragging = true
 				#Increase Player Size for Visual Cue
@@ -46,15 +48,12 @@ func _input(event: InputEvent):
 					#On release Size back to Normal
 					scale = body_scale_original
 					#Decrease Jump Count
-					air_jumps_count -= 1
+					jump_count -= 1
 
 func _physics_process(delta: float):
 	#Apply Gravity/Reset Jumps
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	else:
-		air_jumps_count = air_jumps_max
-
 	# Friction/ Air resistance
 	if is_on_floor():
 		current_friction = get_tile_friction()
@@ -62,17 +61,21 @@ func _physics_process(delta: float):
 		velocity.x = move_toward(velocity.x, 0.0, friction_strength * delta)
 	velocity *= (1.0 - air_resistance)
 	
-	#For Bounce
+	#For Bounce, stores previous velocity so it functions properly
 	var pre_move_velocity := velocity
+	
 	#Godot Built in Larper, Applies Velocity
 	move_and_slide()
+	#Resets max Jumps, should prevent buggy jump behaviour causing an extra jump
+	if is_on_floor():
+		jump_count = max_jumps
 	#Applies Bounce
 	apply_bounce(pre_move_velocity)
-	
-#Bounce Function
+#Bounce Function, vibecoded
 func apply_bounce(pre_move_velocity: Vector2) -> void:
 	var collided := false
-
+	
+	#Kinda inefficient, may slow game on low end devices but fuck em
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var normal := collision.get_normal()
@@ -87,7 +90,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 				collided = true
 				break
 
-	# If we bounced, move once more with the new velocity so it takes effect immediately
+	# If should Bounce, applies second move
 	if collided:
 		move_and_slide()
 
@@ -124,7 +127,6 @@ func get_tile_bounce() -> float:
 				print("Bounce: ", phys_material.bounce)
 				return phys_material.bounce
 	return 0.0
-
 #Gets Tile Colliding With
 func get_collision_tile_bounce(coll_pos: Vector2) -> float:
 	if tilemap_layer == null:
