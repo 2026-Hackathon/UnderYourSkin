@@ -86,7 +86,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 		if bounce_value > 0.0:
 			# FIXED: Check pre_move velocity AND collision normal direction
 			var speed_into_surface = -pre_move_velocity.dot(normal)
-			if speed_into_surface > 20.0:  # Moving INTO surface
+			if speed_into_surface > 30.0:  # Moving INTO surface
 				velocity = pre_move_velocity.bounce(normal) * bounce_value
 				print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface)
 
