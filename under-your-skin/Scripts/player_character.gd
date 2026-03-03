@@ -84,11 +84,11 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 		var bounce_value := get_collision_tile_bounce(collision.get_position())
 
 		if bounce_value > 0.0:
-			var current_speed = velocity.length()
-			if current_speed > 50.0 or pre_move_velocity.length() > 100.0:
+			# FIXED: Check pre_move velocity AND collision normal direction
+			var speed_into_surface = -pre_move_velocity.dot(normal)
+			if speed_into_surface > 20.0:  # Moving INTO surface
 				velocity = pre_move_velocity.bounce(normal) * bounce_value
-				collided = true
-				break
+				print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface)
 
 	# If should Bounce, applies second move
 	if collided:
