@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_wjk0x"]
 [ext_resource type="Texture2D" uid="uid://bx40asspwehi7" path="res://Sprites/TempPlayerSprite.png" id="2_64gg3"]
 [ext_resource type="Texture2D" uid="uid://c7vbghd57m1x5" path="res://Sprites/Meat Tiles.png" id="3_64gg3"]
+[ext_resource type="Texture2D" uid="uid://bspaoa2imoidb" path="res://TempJumpUIbg.png" id="4_yc8q5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yc8q5"]
 bounce = 0.43
@@ -164,9 +165,43 @@ script = ExtResource("1_wjk0x")
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter" unique_id=1157114998]
 zoom = Vector2(2, 2)
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerCharacter" unique_id=1485890410]
+[node name="Player Sprite" type="Sprite2D" parent="PlayerCharacter" unique_id=1485890410]
 texture = ExtResource("2_64gg3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacter" unique_id=660656790]
 shape = SubResource("CircleShape2D_u0k2b")
 debug_color = Color(0.96465665, 0, 0.49433035, 0.41960785)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1783819305]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=614389142]
+offset_right = 250.0
+offset_bottom = 50.0
+
+[node name="JumpUIbg" type="NinePatchRect" parent="CanvasLayer/CenterContainer" unique_id=249943798]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+texture = ExtResource("4_yc8q5")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="JumpUIbgborder" type="MarginContainer" parent="CanvasLayer/CenterContainer/JumpUIbg" unique_id=1280277301]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer/JumpUIbg/JumpUIbgborder" unique_id=2122331783]
+layout_mode = 2
+text = "Air Jumps Remaining: "
+fit_content = true
+tab_size = 5
+vertical_alignment = 1
