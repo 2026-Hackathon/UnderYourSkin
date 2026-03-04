@@ -4,6 +4,13 @@ extends CharacterBody2D
 @export var fling_power: float = 80.0
 @export var air_resistance: float = 0.0002
 @export var max_drag_distance: float = 100.0
+@export var normal_time_scale: float = 1
+@export var bullet_time_scale: float = 0.2
+@export var time_ramp_speed: float = 3.0      # How fast it ramps back (0.5=slow, 1.5=fast)
+
+var bullet_time_active: bool = false
+var current_time_scale: float = 1.0
+@export var momentum_conserve: float = 0.8
 
 #Jumps kinda buggy if velocity = 0 before jumping get an extra jump effectivley
 @export var max_jumps: int = 2
@@ -14,7 +21,7 @@ var jump_count: int = 2 #Dummy Val, Replaced when intialized
 var is_dragging: bool = false
 var drag_start: Vector2
 var body_scale_original: Vector2
-var current_friction: float = 1.0
+var current_friction: float = 2.0
 
 #Initilaize some Vals
 #Initilaize Player Size Needed so when scale is changed player remains Visible
@@ -35,6 +42,12 @@ func _input(event: InputEvent):
 				is_dragging = true
 				#Increase Player Size for Visual Cue
 				scale = body_scale_original * 1.1
+				
+				#Bullet Time Active
+				bullet_time_active = true
+				current_time_scale = bullet_time_scale
+				Engine.time_scale = current_time_scale
+				
 			#On Release
 			else:
 				#If Dragging should always true here
@@ -42,15 +55,27 @@ func _input(event: InputEvent):
 				if is_dragging:
 					var drag_end = get_global_mouse_position()
 					var drag_vec = (drag_end - drag_start).limit_length(max_drag_distance)
-					velocity = -drag_vec.normalized() * drag_vec.length() / 10.0 * fling_power
+					
+					velocity = (velocity*momentum_conserve)-drag_vec.normalized() * drag_vec.length() / 10.0 * fling_power
 					#End Drag
 					is_dragging = false
 					#On release Size back to Normal
 					scale = body_scale_original
 					#Decrease Jump Count
 					jump_count -= 1
+					
+					#End Bullet Time
+					bullet_time_active = false
+					
 
 func _physics_process(delta: float):
+	#Bullet Time
+	if bullet_time_active:
+		current_time_scale = lerp(current_time_scale, normal_time_scale, time_ramp_speed * Engine.time_scale * delta)
+		Engine.time_scale = current_time_scale
+	else:
+		Engine.time_scale = normal_time_scale
+	
 	#Apply Gravity/Reset Jumps
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -68,6 +93,7 @@ func _physics_process(delta: float):
 	move_and_slide()
 	#Resets max Jumps, should prevent buggy jump behaviour causing an extra jump
 	if is_on_floor():
+		bullet_time_active = false
 		jump_count = max_jumps
 	#Applies Bounce
 	apply_bounce(pre_move_velocity)
