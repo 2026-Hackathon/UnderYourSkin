@@ -10,7 +10,7 @@ extends CharacterBody2D
 
 var bullet_time_active: bool = false
 var current_time_scale: float = 1.0
-@export var momentum_conserve: float = 0.8
+@export var momentum_conserve: float = 0.2
 
 #Jumps kinda buggy if velocity = 0 before jumping get an extra jump effectivley
 @export var max_jumps: int = 2
