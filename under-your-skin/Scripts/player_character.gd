@@ -1,52 +1,69 @@
 extends CharacterBody2D
 
+#Physics Vars
 @export var gravity: float = 980.0
 @export var fling_power: float = 80.0
 @export var air_resistance: float = 0.0002
 @export var max_drag_distance: float = 100.0
-@export var normal_time_scale: float = 1
-@export var bullet_time_scale: float = 0.2
-@export var time_ramp_speed: float = 3.0      # How fast it ramps back (0.5=slow, 1.5=fast)
+@export var momentum_conserve: float = 0.2 #Howmuch Velocity to be conserved between jumps
+#Drag Vars
+var is_dragging: bool = false
+var drag_start: Vector2
+var current_friction: float = 2.0
 
-var bullet_time_active: bool = false
-var current_time_scale: float = 1.0
-@export var momentum_conserve: float = 0.2
 
 #Jumps kinda buggy if velocity = 0 before jumping get an extra jump effectivley
 @export var max_jumps: int = 2
 var jump_count: int = 2 #Dummy Val, Replaced when intialized
 
+#Bullet Time Vars
+@export var normal_time_scale: float = 1
+@export var bullet_time_scale: float = 0.2
+@export var time_ramp_speed: float = 3.0   
+var bullet_time_active: bool = false
+var current_time_scale: float = 1.0
+
+
+#Grabs Tilemap on Start of Scene
 @onready var tilemap_layer: TileMapLayer = get_tree().get_first_node_in_group("ground")
 
-var is_dragging: bool = false
-var drag_start: Vector2
-var body_scale_original: Vector2
-var current_friction: float = 2.0
+#Visual Vars
+#Get the sprite
+@onready var sprite: Sprite2D = get_node("Player Sprite")
+var original_scale: Vector2
+
+@export var squash_amount: float = 1.3     # How much to stretch/squash (1.3 = 30%)
+@export var squash_return_speed: float = 8.0  # How fast it snaps back
+@export var squash_rotation: bool = true   # Rotate sprite toward drag direction
+var target_scale: Vector2 = Vector2.ONE
 
 #Initilaize some Vals
 #Initilaize Player Size Needed so when scale is changed player remains Visible
 func _ready():
-	body_scale_original = scale  
+	original_scale = sprite.scale  
 	jump_count = max_jumps
 
+
+
+#General Physics Functions Below
 # Key Input
 func _input(event: InputEvent):
 	#If Input Is Mouse, crashes if not here
 	if event is InputEventMouseButton:
 		#LeftMouse Events
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			
+		if event.button_index == MOUSE_BUTTON_LEFT:	
 			#On Press Get Starting Position
 			if event.pressed  and jump_count > 0:
 				drag_start = get_global_mouse_position()
 				is_dragging = true
-				#Increase Player Size for Visual Cue
-				scale = body_scale_original * 1.1
 				
 				#Bullet Time Active
 				bullet_time_active = true
 				current_time_scale = bullet_time_scale
 				Engine.time_scale = current_time_scale
+				
+				#Increase Player Size for Visual Cue
+				scale = original_scale * 1.1
 				
 			#On Release
 			else:
@@ -57,24 +74,36 @@ func _input(event: InputEvent):
 					var drag_vec = (drag_end - drag_start).limit_length(max_drag_distance)
 					
 					velocity = (velocity*momentum_conserve)-drag_vec.normalized() * drag_vec.length() / 10.0 * fling_power
-					#End Drag
-					is_dragging = false
-					#On release Size back to Normal
-					scale = body_scale_original
 					#Decrease Jump Count
 					jump_count -= 1
+					#End Drag
+					is_dragging = false
 					
 					#End Bullet Time
 					bullet_time_active = false
 					
-
+					
+					#On release Size back to Normal
+					scale = original_scale
 func _physics_process(delta: float):
 	#Bullet Time
 	if bullet_time_active:
+		#Lerps Time, back to normal
+		#rate Depends on bullet Time
 		current_time_scale = lerp(current_time_scale, normal_time_scale, time_ramp_speed * Engine.time_scale * delta)
-		Engine.time_scale = current_time_scale
 	else:
-		Engine.time_scale = normal_time_scale
+		current_time_scale = lerp(current_time_scale, normal_time_scale, 50.0 * time_ramp_speed * Engine.time_scale * delta)
+	Engine.time_scale = current_time_scale
+	
+	# Squash/ stretch
+	if is_dragging:
+		squash_and_stretch()
+	
+	# SMOOTHLY APPLY target_scale to sprite
+	if sprite:
+		sprite.scale = sprite.scale.lerp(target_scale, squash_return_speed * delta)
+	
+	
 	
 	#Apply Gravity/Reset Jumps
 	if not is_on_floor():
@@ -93,6 +122,7 @@ func _physics_process(delta: float):
 	move_and_slide()
 	#Resets max Jumps, should prevent buggy jump behaviour causing an extra jump
 	if is_on_floor():
+		#If you touch the Floor Bullet Time turns off
 		bullet_time_active = false
 		jump_count = max_jumps
 	#Applies Bounce
@@ -119,6 +149,31 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 	# If should Bounce, applies second move
 	if collided:
 		move_and_slide()
+
+
+#Visual Functions
+func squash_and_stretch():
+	if not sprite or not is_dragging:
+		return
+	
+	var drag_end = get_global_mouse_position()
+	var drag_vec = drag_end - drag_start
+	var drag_dir = drag_vec.normalized()
+	
+	# Stretch OPPOSITE drag direction (compress before launch)
+	var stretch_dir = -drag_dir
+	
+	# Base squash/stretch amounts
+	var squash_factor = 0.85  # How much to squash perpendicular
+	var stretch_factor = 1.25 # How much to stretch in drag direction
+	
+	# Calculate scale based on drag direction
+	target_scale.x = lerp(squash_factor, stretch_factor, abs(stretch_dir.x))
+	target_scale.y = lerp(squash_factor, stretch_factor, abs(stretch_dir.y))
+	
+	# Optional: slight rotation toward drag
+	if squash_rotation:
+		sprite.rotation = drag_dir.angle() * 0.3  # Much smaller rotation
 
 #Helper Functions: Gets Tile Values
 #Ngl these were vibe coded af hope they work well

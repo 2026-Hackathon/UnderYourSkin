@@ -149,7 +149,7 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_yc8q5")
 sources/1 = SubResource("TileSetAtlasSource_xgtoh")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u0k2b"]
-radius = 12.0
+radius = 11.0
 
 [node name="Node2D" type="Node2D" unique_id=1339972396]
 
@@ -167,9 +167,11 @@ max_drag_distance = 101.0
 zoom = Vector2(2, 2)
 
 [node name="Player Sprite" type="Sprite2D" parent="PlayerCharacter" unique_id=1485890410]
+position = Vector2(0, -3)
 texture = ExtResource("3_yc8q5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacter" unique_id=660656790]
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_u0k2b")
 debug_color = Color(0.96465665, 0, 0.49433035, 0.41960785)
 
