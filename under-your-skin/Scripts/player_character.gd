@@ -29,13 +29,13 @@ var current_time_scale: float = 1.0
 
 #Visual Vars
 #Get the sprite
-@onready var sprite: Sprite2D = get_node("Player Sprite")
+@onready var back_sprite: Sprite2D = get_node("BackSprite")
 var original_scale: Vector2
 
 #Initilaize some Vals
 #Initilaize Player Size Needed so when scale is changed player remains Visible
 func _ready():
-	original_scale = sprite.scale  
+	original_scale = back_sprite.scale  
 	jump_count = max_jumps
 
 

@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_wjk0x"]
 [ext_resource type="Texture2D" uid="uid://c7vbghd57m1x5" path="res://Sprites/Meat Tiles.png" id="3_64gg3"]
-[ext_resource type="Texture2D" uid="uid://bqvllvkp8vp3g" path="res://Sprites/PlayerSprite.png" id="3_yc8q5"]
+[ext_resource type="Texture2D" uid="uid://bcahjmfat7uqi" path="res://Sprites/Player/Player Back.png" id="3_xgtoh"]
+[ext_resource type="Texture2D" uid="uid://cjsrrhnkci7v8" path="res://Sprites/Player/Player Organs.png" id="4_usju5"]
 [ext_resource type="Texture2D" uid="uid://bspaoa2imoidb" path="res://TempJumpUIbg.png" id="4_yc8q5"]
+[ext_resource type="Texture2D" uid="uid://dfhap0slx6y6q" path="res://Sprites/Player/Player Eyes.png" id="5_usju5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yc8q5"]
 bounce = 0.43
@@ -165,13 +167,24 @@ max_drag_distance = 101.0
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter" unique_id=1157114998]
 zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 30.0
 
-[node name="Player Sprite" type="Sprite2D" parent="PlayerCharacter" unique_id=1485890410]
-position = Vector2(0, -3)
-texture = ExtResource("3_yc8q5")
+[node name="BackSprite" type="Sprite2D" parent="PlayerCharacter" unique_id=1485890410]
+position = Vector2(4, -3)
+texture = ExtResource("3_xgtoh")
+
+[node name="JumpCountSprite" type="Sprite2D" parent="PlayerCharacter/BackSprite" unique_id=2060461035]
+position = Vector2(0, -1)
+texture = ExtResource("4_usju5")
+
+[node name="EyeSprite" type="Sprite2D" parent="PlayerCharacter/BackSprite" unique_id=2132555065]
+position = Vector2(4, -5)
+texture = ExtResource("5_usju5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacter" unique_id=660656790]
-position = Vector2(1, 0)
+visible = false
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_u0k2b")
 debug_color = Color(0.96465665, 0, 0.49433035, 0.41960785)
 
