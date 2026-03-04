@@ -32,11 +32,6 @@ var current_time_scale: float = 1.0
 @onready var sprite: Sprite2D = get_node("Player Sprite")
 var original_scale: Vector2
 
-@export var squash_amount: float = 1.3     # How much to stretch/squash (1.3 = 30%)
-@export var squash_return_speed: float = 8.0  # How fast it snaps back
-@export var squash_rotation: bool = true   # Rotate sprite toward drag direction
-var target_scale: Vector2 = Vector2.ONE
-
 #Initilaize some Vals
 #Initilaize Player Size Needed so when scale is changed player remains Visible
 func _ready():
@@ -85,24 +80,16 @@ func _input(event: InputEvent):
 					
 					#On release Size back to Normal
 					scale = original_scale
+					
 func _physics_process(delta: float):
 	#Bullet Time
 	if bullet_time_active:
 		#Lerps Time, back to normal
 		#rate Depends on bullet Time
-		current_time_scale = lerp(current_time_scale, normal_time_scale, time_ramp_speed * Engine.time_scale * delta)
+		current_time_scale = move_toward(current_time_scale, normal_time_scale, time_ramp_speed * Engine.time_scale * delta)
 	else:
-		current_time_scale = lerp(current_time_scale, normal_time_scale, 50.0 * time_ramp_speed * Engine.time_scale * delta)
+		current_time_scale = move_toward(current_time_scale, normal_time_scale, 50.0 * time_ramp_speed * Engine.time_scale * delta)
 	Engine.time_scale = current_time_scale
-	
-	# Squash/ stretch
-	if is_dragging:
-		squash_and_stretch()
-	
-	# SMOOTHLY APPLY target_scale to sprite
-	if sprite:
-		sprite.scale = sprite.scale.lerp(target_scale, squash_return_speed * delta)
-	
 	
 	
 	#Apply Gravity/Reset Jumps
@@ -127,6 +114,7 @@ func _physics_process(delta: float):
 		jump_count = max_jumps
 	#Applies Bounce
 	apply_bounce(pre_move_velocity)
+	
 #Bounce Function, vibecoded
 func apply_bounce(pre_move_velocity: Vector2) -> void:
 	var collided := false
@@ -149,31 +137,6 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 	# If should Bounce, applies second move
 	if collided:
 		move_and_slide()
-
-
-#Visual Functions
-func squash_and_stretch():
-	if not sprite or not is_dragging:
-		return
-	
-	var drag_end = get_global_mouse_position()
-	var drag_vec = drag_end - drag_start
-	var drag_dir = drag_vec.normalized()
-	
-	# Stretch OPPOSITE drag direction (compress before launch)
-	var stretch_dir = -drag_dir
-	
-	# Base squash/stretch amounts
-	var squash_factor = 0.85  # How much to squash perpendicular
-	var stretch_factor = 1.25 # How much to stretch in drag direction
-	
-	# Calculate scale based on drag direction
-	target_scale.x = lerp(squash_factor, stretch_factor, abs(stretch_dir.x))
-	target_scale.y = lerp(squash_factor, stretch_factor, abs(stretch_dir.y))
-	
-	# Optional: slight rotation toward drag
-	if squash_rotation:
-		sprite.rotation = drag_dir.angle() * 0.3  # Much smaller rotation
 
 #Helper Functions: Gets Tile Values
 #Ngl these were vibe coded af hope they work well
