@@ -123,7 +123,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var normal := collision.get_normal()
-
+		
 		# Get bounce value for where we hit
 		var bounce_value := get_collision_tile_bounce(collision.get_position())
 
@@ -158,32 +158,23 @@ func get_tile_friction() -> float:
 				print("Friction: ", phys_material.friction)
 				return phys_material.friction
 	return 1.0
-func get_tile_bounce() -> float:
-	if tilemap_layer == null:
-		return 0.0
-	
-	var foot_pos = global_position + Vector2(0, 20)
-	var tile_coords = tilemap_layer.local_to_map(tilemap_layer.to_local(foot_pos))
-	var tile_data = tilemap_layer.get_cell_tile_data(tile_coords)
-	
-	if tile_data:
-		if tilemap_layer.tile_set.get_physics_layers_count() > 0:
-			var phys_material = tilemap_layer.tile_set.get_physics_layer_physics_material(0)
-			if phys_material:
-				print("Bounce: ", phys_material.bounce)
-				return phys_material.bounce
-	return 0.0
 #Gets Tile Colliding With
 func get_collision_tile_bounce(coll_pos: Vector2) -> float:
 	if tilemap_layer == null:
 		return 0.0
 	
-	var tile_coords = tilemap_layer.local_to_map(tilemap_layer.to_local(coll_pos))
-	var tile_data = tilemap_layer.get_cell_tile_data(tile_coords)
+	# Try 3 nearby positions
+	var offsets = [Vector2.ZERO, Vector2(-8, 0), Vector2(0, -8)]
 	
-	if tile_data:
-		if tilemap_layer.tile_set.get_physics_layers_count() > 0:
-			var phys_material = tilemap_layer.tile_set.get_physics_layer_physics_material(0)
-			if phys_material:
-				return phys_material.bounce
+	for offset in offsets:
+		var sample_pos = coll_pos + offset
+		var tile_coords = tilemap_layer.local_to_map(tilemap_layer.to_local(sample_pos))
+		var tile_data = tilemap_layer.get_cell_tile_data(tile_coords)
+		
+		if tile_data:
+			if tilemap_layer.tile_set.get_physics_layers_count() > 0:
+				var phys_material = tilemap_layer.tile_set.get_physics_layer_physics_material(0)
+				if phys_material:
+					return phys_material.bounce
+	
 	return 0.0
