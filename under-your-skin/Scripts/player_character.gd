@@ -38,8 +38,6 @@ func _ready():
 	original_scale = scale  
 	jump_count = max_jumps
 
-
-
 #General Physics Functions Below
 # Key Input
 func _input(event: InputEvent):
@@ -80,7 +78,6 @@ func _input(event: InputEvent):
 					
 					#On release Size back to Normal
 					scale = original_scale
-					
 func _physics_process(delta: float):
 	#Bullet Time
 	if bullet_time_active:
@@ -130,7 +127,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 		#if bounce_value > 0.0:
 			# FIXED: Check pre_move velocity AND collision normal direction
 		var speed_into_surface = -pre_move_velocity.dot(normal)
-		if abs(speed_into_surface) > 30.0:  # Moving INTO surface
+		if abs(speed_into_surface) > 40.0:  # Moving INTO surface
 				velocity = pre_move_velocity.bounce(normal) * bounce_value
 				
 				collided = true
