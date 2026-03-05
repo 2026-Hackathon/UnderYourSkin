@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var air_resistance: float = 0.002
 @export var max_drag_distance: float = 100.0
 @export var momentum_conserve: float = 0.2 #Howmuch Velocity to be conserved between jumps
+@export var bounce_val: float = 0.5
+
 #Drag Vars
 var is_dragging: bool = false
 var drag_start: Vector2
@@ -123,18 +125,14 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var normal := collision.get_normal()
-
-		# Get bounce value for where we hit
-		var bounce_value := get_collision_tile_bounce(collision.get_position())
-
+		
 		#if bounce_value > 0.0:
 			# FIXED: Check pre_move velocity AND collision normal direction
 		var speed_into_surface = -pre_move_velocity.dot(normal)
 		if abs(speed_into_surface) > 30.0:  # Moving INTO surface
-				velocity = pre_move_velocity.bounce(normal) * bounce_value
+				velocity = pre_move_velocity.bounce(normal) * bounce_val
 				
 				collided = true
-				print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface, "Bounce:", bounce_value)
 
 	# If should Bounce, applies second move
 	if collided:
@@ -187,3 +185,17 @@ func get_collision_tile_bounce(coll_pos: Vector2) -> float:
 			if phys_material:
 				return phys_material.bounce
 	return 0.0
+func get_tile_custom_data(coll_pos: Vector2, data_layer_name: String) -> Variant:
+	if tilemap_layer == null:
+		return 0
+	
+	var tile_coords = tilemap_layer.local_to_map(tilemap_layer.to_local(coll_pos))
+	var tile_data = tilemap_layer.get_cell_tile_data(tile_coords)
+	
+	if tile_data:
+		# Get custom data by LAYER NAME
+		var layer_id = tilemap_layer.tile_set.get_custom_data_layer_by_name(data_layer_name)
+		if layer_id >= 0:
+			return tile_data.get_custom_data(layer_id)
+	
+	return 0
