@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjsrrhnkci7v8"
-path="res://.godot/imported/Player Organs.png-8b9a0a32edc2bdae5d313af6cccc6bc3.ctex"
+uid="uid://dlt283a5xm1co"
+path="res://.godot/imported/PlayerSpriteSheet.png-6be34070581dadf846ff801e33267784.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Player/Player Organs.png"
-dest_files=["res://.godot/imported/Player Organs.png-8b9a0a32edc2bdae5d313af6cccc6bc3.ctex"]
+source_file="res://Sprites/Player/PlayerSpriteSheet.png"
+dest_files=["res://.godot/imported/PlayerSpriteSheet.png-6be34070581dadf846ff801e33267784.ctex"]
 
 [params]
 

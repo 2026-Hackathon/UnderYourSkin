@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 #Physics Vars
-@export var gravity: float = 980.0
-@export var fling_power: float = 80.0
-@export var air_resistance: float = 0.0002
+@export var gravity: float = 800.0
+@export var fling_power: float = 60.0
+@export var air_resistance: float = 0.002
 @export var max_drag_distance: float = 100.0
 @export var momentum_conserve: float = 0.2 #Howmuch Velocity to be conserved between jumps
 #Drag Vars
@@ -29,13 +29,13 @@ var current_time_scale: float = 1.0
 
 #Visual Vars
 #Get the sprite
-@onready var back_sprite: Sprite2D = get_node("BackSprite")
+@onready var sprite: Sprite2D = get_node("PlayerSprite")
 var original_scale: Vector2
 
 #Initilaize some Vals
 #Initilaize Player Size Needed so when scale is changed player remains Visible
 func _ready():
-	original_scale = back_sprite.scale  
+	original_scale = scale  
 	jump_count = max_jumps
 
 
@@ -105,7 +105,7 @@ func _physics_process(delta: float):
 	#For Bounce, stores previous velocity so it functions properly
 	var pre_move_velocity := velocity
 	
-	#Godot Built in Larper, Applies Velocity
+	#Godot Built in Lerper, Applies Velocity
 	move_and_slide()
 	#Resets max Jumps, should prevent buggy jump behaviour causing an extra jump
 	if is_on_floor():
@@ -127,12 +127,14 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 		# Get bounce value for where we hit
 		var bounce_value := get_collision_tile_bounce(collision.get_position())
 
-		if bounce_value > 0.0:
+		#if bounce_value > 0.0:
 			# FIXED: Check pre_move velocity AND collision normal direction
-			var speed_into_surface = -pre_move_velocity.dot(normal)
-			if speed_into_surface > 30.0:  # Moving INTO surface
+		var speed_into_surface = -pre_move_velocity.dot(normal)
+		if abs(speed_into_surface) > 30.0:  # Moving INTO surface
 				velocity = pre_move_velocity.bounce(normal) * bounce_value
-				print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface)
+				
+				collided = true
+				print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface, "Bounce:", bounce_value)
 
 	# If should Bounce, applies second move
 	if collided:
