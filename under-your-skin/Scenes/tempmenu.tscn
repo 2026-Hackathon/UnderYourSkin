@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://fivajboqxxo7"]
 
-[ext_resource type="Texture2D" uid="uid://dl3kvucfhv12n" path="res://Sprites/Menu/menu bg 1.png" id="1_bxi4n"]
-[ext_resource type="Script" uid="uid://d5svlyrqymyl" path="res://Scripts/tempmenu.gd" id="1_fajru"]
+[ext_resource type="Script" uid="uid://d5svlyrqymyl" path="res://Scripts/tempmenu.gd" id="1_j1yrb"]
+[ext_resource type="Texture2D" uid="uid://dl3kvucfhv12n" path="res://Sprites/Menu/menu bg 1.png" id="2_dkpds"]
 
 [node name="Control" type="Control" unique_id=2073366076]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fajru")
+script = ExtResource("1_j1yrb")
 
 [node name="bgimage" type="TextureRect" parent="." unique_id=2026089450]
 layout_mode = 1
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_bxi4n")
+texture = ExtResource("2_dkpds")
 stretch_mode = 6
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1710377552]
