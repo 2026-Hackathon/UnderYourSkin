@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bspaoa2imoidb"
-path="res://.godot/imported/TempJumpUIbg.png-414cb6756d96622f5076a6cf949fa6a7.ctex"
+uid="uid://c7vbghd57m1x5"
+path="res://.godot/imported/Meat Tiles.png-481042b0cccb99f9376cf7708cb2dae6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TempJumpUIbg.png"
-dest_files=["res://.godot/imported/TempJumpUIbg.png-414cb6756d96622f5076a6cf949fa6a7.ctex"]
+source_file="res://Sprites/TileMaps/Meat Tiles.png"
+dest_files=["res://.godot/imported/Meat Tiles.png-481042b0cccb99f9376cf7708cb2dae6.ctex"]
 
 [params]
 

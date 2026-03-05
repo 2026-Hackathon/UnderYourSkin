@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx40asspwehi7"
-path="res://.godot/imported/TempPlayerSprite.png-e224323d99b3dc06521e57b1f65da84c.ctex"
+uid="uid://bspaoa2imoidb"
+path="res://.godot/imported/TempJumpUIbg.png-1da06b1704015b0f890054f0a204602a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/TempPlayerSprite.png"
-dest_files=["res://.godot/imported/TempPlayerSprite.png-e224323d99b3dc06521e57b1f65da84c.ctex"]
+source_file="res://Sprites/TempJumpUIbg.png"
+dest_files=["res://.godot/imported/TempJumpUIbg.png-1da06b1704015b0f890054f0a204602a.ctex"]
 
 [params]
 
