@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var air_resistance: float = 0.002
 @export var max_drag_distance: float = 100.0
 @export var momentum_conserve: float = 0.2 #Howmuch Velocity to be conserved between jumps
+@export var max_speed: float = 100
+
 #Drag Vars
 var is_dragging: bool = false
 var drag_start: Vector2
@@ -31,6 +33,8 @@ var current_time_scale: float = 1.0
 #Get the sprite
 @onready var sprite: Sprite2D = get_node("PlayerSprite")
 @onready var animation_player = get_node("AnimationPlayer")
+
+@export var max_deform_scale: Vector2 = Vector2.ONE
 var original_scale: Vector2
 
 #Initilaize some Vals
@@ -112,6 +116,8 @@ func _physics_process(delta: float):
 	
 	# Update current state AFTER moving
 	was_on_floor = is_on_floor()
+	if not animation_player.is_playing():
+		sprite.scale = lerp(original_scale, original_scale*max_deform_scale, velocity.length() / max_speed)
 	if not was_on_floor_prev and was_on_floor and pre_move_velocity.y > 50.0:
 		animation_player.speed_scale = clamp(500 /pre_move_velocity.length(), 0,10)
 		animation_player.play("hit_floor")
