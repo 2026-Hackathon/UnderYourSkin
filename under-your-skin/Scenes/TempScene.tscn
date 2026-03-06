@@ -269,7 +269,7 @@ floor_constant_speed = true
 platform_wall_layers = 1
 script = ExtResource("1_wjk0x")
 max_drag_distance = 101.0
-max_deform_scale = Vector2(0.95, 1)
+max_deform_scale = Vector2(0.98, 0.98)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter" unique_id=1157114998]
 zoom = Vector2(3, 3)

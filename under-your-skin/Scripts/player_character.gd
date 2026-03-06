@@ -114,10 +114,15 @@ func _physics_process(delta: float):
 	#Godot Built in Lerper, Applies Velocity
 	move_and_slide()
 	
-	# Update current state AFTER moving
+	
+	
+	#Squashes Based on Velocity
 	was_on_floor = is_on_floor()
 	if not animation_player.is_playing():
-		sprite.scale = lerp(original_scale, original_scale*max_deform_scale, velocity.length() / max_speed)
+		sprite.scale.y = lerp(original_scale.y , max_deform_scale.y , delta * velocity.x)
+		sprite.scale.x = lerp(original_scale.x , max_deform_scale.x , delta * velocity.y)
+		
+	# Animation Player
 	if not was_on_floor_prev and was_on_floor and pre_move_velocity.y > 50.0:
 		animation_player.speed_scale = clamp(500 /pre_move_velocity.length(), 0,10)
 		animation_player.play("hit_floor")
