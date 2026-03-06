@@ -30,6 +30,7 @@ var current_time_scale: float = 1.0
 #Visual Vars
 #Get the sprite
 @onready var sprite: Sprite2D = get_node("PlayerSprite")
+@onready var animation_player = get_node("AnimationPlayer")
 var original_scale: Vector2
 
 #Initilaize some Vals
@@ -79,6 +80,10 @@ func _input(event: InputEvent):
 					#On release Size back to Normal
 					scale = original_scale
 func _physics_process(delta: float):
+	var was_on_floor: bool = false
+	var was_on_floor_prev = was_on_floor
+	was_on_floor = is_on_floor()
+	
 	#Bullet Time
 	if bullet_time_active:
 		#Lerps Time, back to normal
@@ -104,6 +109,14 @@ func _physics_process(delta: float):
 	
 	#Godot Built in Lerper, Applies Velocity
 	move_and_slide()
+	
+	# Update current state AFTER moving
+	was_on_floor = is_on_floor()
+	if not was_on_floor_prev and was_on_floor and pre_move_velocity.y > 50.0:
+		animation_player.speed_scale = clamp(500 /pre_move_velocity.length(), 0,10)
+		animation_player.play("hit_floor")
+			
+	
 	#Resets max Jumps, should prevent buggy jump behaviour causing an extra jump
 	if is_on_floor():
 		#If you touch the Floor Bullet Time turns off
@@ -123,7 +136,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 		
 		# Get bounce value for where we hit
 		var bounce_value := get_collision_tile_bounce(collision.get_position())
-
+		
 		#if bounce_value > 0.0:
 			# FIXED: Check pre_move velocity AND collision normal direction
 		var speed_into_surface = -pre_move_velocity.dot(normal)
