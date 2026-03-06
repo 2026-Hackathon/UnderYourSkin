@@ -219,6 +219,35 @@ tracks/1/keys = {
 "values": [Vector2(7.6293945e-06, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_swl0q"]
+resource_name = "hit_cieling"
+length = 0.2
+step = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCharacter/PlayerSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1012, 0.13),
+"transitions": PackedFloat32Array(1, 0.99999845, 0.22531268, 2.297397),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.7499983, 0.3125), Vector2(1, 1), Vector2(0.62499917, 1.2499995)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCharacter/PlayerSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1036),
+"transitions": PackedFloat32Array(1, 2.639016, 0.21763767),
+"update": 0,
+"values": [Vector2(7.6293945e-06, 0), Vector2(2.0980833e-05, -9), Vector2(7.6293945e-06, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_rxen8"]
 resource_name = "hit_floor"
 length = 0.26666668
@@ -250,6 +279,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_swl0q"]
 _data = {
 &"RESET": SubResource("Animation_u5sq5"),
+&"hit_cieling": SubResource("Animation_swl0q"),
 &"hit_floor": SubResource("Animation_rxen8")
 }
 
