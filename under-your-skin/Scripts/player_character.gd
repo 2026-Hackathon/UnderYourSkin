@@ -119,8 +119,8 @@ func _physics_process(delta: float):
 	#Squashes Based on Velocity
 	was_on_floor = is_on_floor()
 	if not animation_player.is_playing():
-		sprite.scale.y = lerp(original_scale.y , max_deform_scale.y , delta * velocity.x)
-		sprite.scale.x = lerp(original_scale.x , max_deform_scale.x , delta * velocity.y)
+		sprite.scale.y = lerp(original_scale.y , max_deform_scale.y , abs(delta * velocity.x))
+		sprite.scale.x = lerp(original_scale.x , max_deform_scale.x , abs(delta * velocity.y))
 	
 	
 	# Animation Player
