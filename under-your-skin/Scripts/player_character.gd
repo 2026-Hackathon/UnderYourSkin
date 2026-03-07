@@ -54,6 +54,8 @@ func _ready():
 	original_scale = scale  
 	jump_count = max_jumps
 
+
+
 #General Physics Functions Below
 # Key Input
 func _input(event: InputEvent):
