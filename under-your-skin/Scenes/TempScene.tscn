@@ -795,6 +795,13 @@ texture = ExtResource("3_yc8q5")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
+[node name="Eyes" type="Node2D" parent="PlayerCharacter" unique_id=1030753241]
+
+[node name="EyeSprite" type="Sprite2D" parent="PlayerCharacter/Eyes" unique_id=1656045257]
+texture = ExtResource("3_yc8q5")
+region_enabled = true
+region_rect = Rect2(24, 4, 6, 4)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacter" unique_id=665484837]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_swl0q")

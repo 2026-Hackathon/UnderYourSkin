@@ -36,6 +36,17 @@ var current_time_scale: float = 1.0
 @export var max_deform_scale: Vector2 = Vector2.ONE
 var original_scale: Vector2
 
+
+#Eyes
+
+@onready var eyes: Node2D = $Eyes
+
+@export var eye_max_offset: float = 3   # how far eyes can move from center (pixels)
+@export var eye_follow_speed: float = 10.0  # how fast eyes catch up to target
+
+var eye_target_offset: Vector2 = Vector2.ZERO
+var eye_current_offset: Vector2 = Vector2.ZERO
+
 #Initilaize some Vals
 #Initilaize Player Size Needed so when scale is changed player remains Visible
 func _ready():
@@ -148,6 +159,22 @@ func _physics_process(delta: float):
 		jump_count = max_jumps
 	#Applies Bounce
 	apply_bounce(pre_move_velocity)
+
+func _process(delta: float) -> void:
+	# 1. Direction from player to mouse (no rotation)
+	var mouse_pos = get_global_mouse_position()
+	var to_mouse = mouse_pos - global_position
+	
+	if to_mouse == Vector2.ZERO:
+		eye_target_offset = Vector2.ZERO
+	else:
+		var dir = to_mouse.normalized()
+		eye_target_offset = dir * eye_max_offset  # stays in a circle around center
+	
+	# 2. Smooth lagging eyes (like smooth camera)
+	eye_current_offset = eye_current_offset.lerp(eye_target_offset, eye_follow_speed * delta)
+	eyes.position = eye_current_offset
+	
 	
 #Bounce Function, vibecoded
 func apply_bounce(pre_move_velocity: Vector2) -> void:
