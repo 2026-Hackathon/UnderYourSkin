@@ -117,6 +117,7 @@ func _physics_process(delta: float):
 	
 	#Squashes Based on Velocity
 	#abs needed otherwise squash bad
+	#Change max_deform to change this
 	if not animation_player.is_playing():
 		sprite.scale.y = lerp(original_scale.y , max_deform_scale.y , abs(delta * velocity.x))
 		sprite.scale.x = lerp(original_scale.x , max_deform_scale.x , abs(delta * velocity.y))
