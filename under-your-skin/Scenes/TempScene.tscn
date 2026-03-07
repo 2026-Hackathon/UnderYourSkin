@@ -378,7 +378,7 @@ centered = false
 [node name="Fog2" type="Parallax2D" parent="BackGround/FogLayers" unique_id=145891917]
 scroll_scale = Vector2(0.4, 0.4)
 repeat_size = Vector2(500, 369)
-autoscroll = Vector2(-3, -3)
+autoscroll = Vector2(-10, -5)
 repeat_times = 5
 
 [node name="Fog Dither" type="Sprite2D" parent="BackGround/FogLayers/Fog2" unique_id=1807871862]
@@ -392,7 +392,7 @@ centered = false
 [node name="Fog" type="Parallax2D" parent="BackGround/FogLayers" unique_id=2093446567]
 scroll_scale = Vector2(0.3, 0.3)
 repeat_size = Vector2(500, 369)
-autoscroll = Vector2(3, 3)
+autoscroll = Vector2(6, 15)
 repeat_times = 5
 
 [node name="Fog Dither" type="Sprite2D" parent="BackGround/FogLayers/Fog" unique_id=527984324]
