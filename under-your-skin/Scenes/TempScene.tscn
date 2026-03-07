@@ -792,7 +792,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="Organs" type="Sprite2D" parent="PlayerCharacter/PlayerSprite" unique_id=1897880372]
-position = Vector2(0, 3)
 texture = ExtResource("3_yc8q5")
 region_enabled = true
 region_rect = Rect2(6, 22, 4, 4)
