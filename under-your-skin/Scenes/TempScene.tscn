@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dytdlt0lf8p7k" path="res://Sprites/TileMaps/TilesetPlan.png" id="2_swl0q"]
 [ext_resource type="Texture2D" uid="uid://dlt283a5xm1co" path="res://Sprites/Player/PlayerSpriteSheet.png" id="3_yc8q5"]
 [ext_resource type="Texture2D" uid="uid://bspaoa2imoidb" path="res://Sprites/TempJumpUIbg.png" id="4_yc8q5"]
-[ext_resource type="Script" uid="uid://ihh1w4i3jcot" path="res://Scenes/PlayerOrgans2.gd" id="5_swl0q"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yc8q5"]
 bounce = 0.6
@@ -791,7 +790,6 @@ texture = ExtResource("3_yc8q5")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-<<<<<<< Updated upstream
 [node name="Eyes" type="Node2D" parent="PlayerCharacter" unique_id=1030753241]
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter/Eyes" unique_id=1157114998]
@@ -803,13 +801,6 @@ position_smoothing_speed = 30.0
 texture = ExtResource("3_yc8q5")
 region_enabled = true
 region_rect = Rect2(24, 4, 6, 4)
-=======
-[node name="PlayerOrgans" type="Sprite2D" parent="PlayerCharacter/PlayerSprite" unique_id=1382511458]
-texture = ExtResource("3_yc8q5")
-region_enabled = true
-region_rect = Rect2(6, 22, 4, 4)
-script = ExtResource("5_swl0q")
->>>>>>> Stashed changes
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacter" unique_id=665484837]
 root_node = NodePath("../..")
