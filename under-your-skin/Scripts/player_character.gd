@@ -176,6 +176,12 @@ func _process(delta: float) -> void:
 		var dir = to_mouse.normalized() * -1
 		#off set around player
 		eye_target_offset = dir * eye_max_offset  # stays in a circle around center
+		
+		#flips eyes depending on where mouse is
+		if dir.x < 0:
+			eyes.get_node("Camera2D/EyeSprite").flip_h = true 
+		else:
+			eyes.get_node("Camera2D/EyeSprite").flip_h = false
 	
 	# smooth lag done using lerp
 	eye_current_offset = eye_current_offset.lerp(eye_target_offset, eye_follow_speed * delta)
