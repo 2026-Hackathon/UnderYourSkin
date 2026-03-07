@@ -250,7 +250,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_rxen8"]
 resource_name = "hit_floor"
-length = 0.26666668
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -278,7 +278,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_8vk26"]
 resource_name = "hit_wall_left"
-length = 0.4
+length = 0.2
 step = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -287,10 +287,10 @@ tracks/0/path = NodePath("PlayerCharacter/PlayerSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.081591055, 0.1986649, 0.25923786),
-"transitions": PackedFloat32Array(1, 1.0717734, 1, 3.1383367),
+"times": PackedFloat32Array(0, 0.081591055, 0.1953449),
+"transitions": PackedFloat32Array(1, 1.0717734, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.375, 1.5625), Vector2(1, 1), Vector2(1.3125, 0.4375)]
+"values": [Vector2(1, 1), Vector2(0.375, 1.5625), Vector2(1.0625, 0.6875)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -299,15 +299,15 @@ tracks/1/path = NodePath("PlayerCharacter/PlayerSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(-0.0052280687, 0, 0.094847016, 0.17824812),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.094847016, 0.17289302),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(7.6293945e-06, 0), Vector2(-0.24245927, 0), Vector2(-6.9999924, 0), Vector2(7.6293945e-06, 0)]
+"values": [Vector2(7.6293945e-06, 0), Vector2(-6.9999924, 0), Vector2(7.6293945e-06, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_alasw"]
 resource_name = "hit_wall_right"
-length = 0.4
+length = 0.2
 step = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -316,10 +316,10 @@ tracks/0/path = NodePath("PlayerCharacter/PlayerSprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.089224055, 0.1986649, 0.25923786),
-"transitions": PackedFloat32Array(1, 1, 1, 3.1383367),
+"times": PackedFloat32Array(0, 0.04941002, 0.124624774, 0.19288376),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.35984802, 1.750001), Vector2(1, 1), Vector2(1.3125, 0.4375)]
+"values": [Vector2(1, 1), Vector2(0.35984802, 1.750001), Vector2(1, 1), Vector2(1.0625, 0.62499976)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -328,10 +328,10 @@ tracks/1/path = NodePath("PlayerCharacter/PlayerSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(-0.0052280687, 0, 0.0001, 0.094167754, 0.17824812),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(-0.0052280687, 0, 0.054353718, 0.12050612),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(7.6293945e-06, 0), Vector2(-0.24245927, 0), Vector2(6.9999723, 0), Vector2(5.9999723, 0), Vector2(7.6293945e-06, 0)]
+"values": [Vector2(7.6293945e-06, 0), Vector2(7.6293945e-06, 0), Vector2(5.9999723, 0), Vector2(7.6293945e-06, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_swl0q"]
@@ -378,6 +378,7 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_swl0q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacter" unique_id=660656790]
+visible = false
 shape = SubResource("CircleShape2D_u0k2b")
 debug_color = Color(0.96465665, 0, 0.49433035, 0.41960785)
 

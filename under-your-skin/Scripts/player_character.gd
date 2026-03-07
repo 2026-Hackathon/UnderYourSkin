@@ -6,7 +6,6 @@ extends CharacterBody2D
 @export var air_resistance: float = 0.002
 @export var max_drag_distance: float = 100.0
 @export var momentum_conserve: float = 0.2 #Howmuch Velocity to be conserved between jumps
-@export var max_speed: float = 100
 
 #Drag Vars
 var is_dragging: bool = false
@@ -113,25 +112,34 @@ func _physics_process(delta: float):
 	
 	#Godot Built in Lerper, Applies Velocity
 	move_and_slide()
-	
+	was_on_floor = is_on_floor()
 	
 	
 	#Squashes Based on Velocity
-	was_on_floor = is_on_floor()
+	#abs needed otherwise squash bad
 	if not animation_player.is_playing():
 		sprite.scale.y = lerp(original_scale.y , max_deform_scale.y , abs(delta * velocity.x))
 		sprite.scale.x = lerp(original_scale.x , max_deform_scale.x , abs(delta * velocity.y))
 	
 	
 	# Animation Player
+	#Detects where collision is then plays corresponding anim
+	#Anim played relative to velocity before collision
+	#Adjust Values if they feel off
+	#Landing condition kinda bullshit but works.
 	if not was_on_floor_prev and was_on_floor and pre_move_velocity.y > 50.0:
 		animation_player.speed_scale = clamp(500 /pre_move_velocity.length(), 0,10)
 		animation_player.play("hit_floor")
-	if is_on_ceiling():
-		animation_player.speed_scale = clamp(500 /pre_move_velocity.length(), 0,10)
+	if is_on_ceiling() and pre_move_velocity.y < -50.0:
+		animation_player.speed_scale = clamp(pre_move_velocity.length()/500, 1,10)
 		animation_player.play("hit_cieling")
-			
-	
+	if is_on_wall():
+		if pre_move_velocity.x < -50:
+			animation_player.speed_scale = clamp(pre_move_velocity.length()/250, 1.5,8)
+			animation_player.play("hit_wall_left")
+		elif pre_move_velocity.x > 50:
+			animation_player.speed_scale = clamp(pre_move_velocity.length()/250, 1.5,8)
+			animation_player.play("hit_wall_right")
 	#Resets max Jumps, should prevent buggy jump behaviour causing an extra jump
 	if is_on_floor():
 		#If you touch the Floor Bullet Time turns off
@@ -155,7 +163,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 		#if bounce_value > 0.0:
 			# FIXED: Check pre_move velocity AND collision normal direction
 		var speed_into_surface = -pre_move_velocity.dot(normal)
-		if abs(speed_into_surface) > 40.0:  # Moving INTO surface
+		if abs(speed_into_surface) > 50.0:  # Moving INTO surface
 				velocity = pre_move_velocity.bounce(normal) * bounce_value
 				
 				collided = true
