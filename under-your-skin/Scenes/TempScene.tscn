@@ -775,18 +775,13 @@ texture = SubResource("CompressedTexture2D_rxen8")
 centered = false
 
 [node name="PlayerCharacter" type="CharacterBody2D" parent="." unique_id=1782905367]
-position = Vector2(726, 695)
+position = Vector2(960, -1213)
 slide_on_ceiling = false
 floor_constant_speed = true
 platform_wall_layers = 1
 script = ExtResource("1_wjk0x")
 max_drag_distance = 101.0
 max_deform_scale = Vector2(0.98, 0.98)
-
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter" unique_id=1157114998]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-position_smoothing_speed = 30.0
 
 [node name="PlayerSprite" type="Sprite2D" parent="PlayerCharacter" unique_id=1485890410]
 texture_filter = 3
@@ -797,7 +792,12 @@ region_rect = Rect2(0, 0, 16, 16)
 
 [node name="Eyes" type="Node2D" parent="PlayerCharacter" unique_id=1030753241]
 
-[node name="EyeSprite" type="Sprite2D" parent="PlayerCharacter/Eyes" unique_id=1656045257]
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter/Eyes" unique_id=1157114998]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 30.0
+
+[node name="EyeSprite" type="Sprite2D" parent="PlayerCharacter/Eyes/Camera2D" unique_id=1656045257]
 texture = ExtResource("3_yc8q5")
 region_enabled = true
 region_rect = Rect2(24, 4, 6, 4)

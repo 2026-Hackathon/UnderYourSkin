@@ -43,6 +43,7 @@ var original_scale: Vector2
 
 @export var eye_max_offset: float = 3   # how far eyes can move from center (pixels)
 @export var eye_follow_speed: float = 10.0  # how fast eyes catch up to target
+@export var eye_player_lag: float = 5.0
 
 var eye_target_offset: Vector2 = Vector2.ZERO
 var eye_current_offset: Vector2 = Vector2.ZERO
@@ -160,19 +161,25 @@ func _physics_process(delta: float):
 	#Applies Bounce
 	apply_bounce(pre_move_velocity)
 
+
+#This is entirely to make eyes worl
 func _process(delta: float) -> void:
-	# 1. Direction from player to mouse (no rotation)
+	# Get mouse pos
 	var mouse_pos = get_global_mouse_position()
 	var to_mouse = mouse_pos - global_position
 	
+	#if 0 here to prezent bugs, cause normalize freaks out
 	if to_mouse == Vector2.ZERO:
 		eye_target_offset = Vector2.ZERO
 	else:
-		var dir = to_mouse.normalized()
+		#-1 to be replaced with future options var
+		var dir = to_mouse.normalized() * -1
+		#off set around player
 		eye_target_offset = dir * eye_max_offset  # stays in a circle around center
 	
-	# 2. Smooth lagging eyes (like smooth camera)
+	# smooth lag done using lerp
 	eye_current_offset = eye_current_offset.lerp(eye_target_offset, eye_follow_speed * delta)
+	#apply offset, also changes camera pov cause childed
 	eyes.position = eye_current_offset
 	
 	
