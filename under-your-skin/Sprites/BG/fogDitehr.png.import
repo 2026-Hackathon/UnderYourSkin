@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2yloufjntm6o"
-path="res://.godot/imported/BoneBG.png-935ff6b9024264157b9917b6800a7208.ctex"
+uid="uid://bmup3v43id8wx"
+path="res://.godot/imported/fogDitehr.png-73ddb7d7f6269ab4c3c303a9c8790fc0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BoneBG.png"
-dest_files=["res://.godot/imported/BoneBG.png-935ff6b9024264157b9917b6800a7208.ctex"]
+source_file="res://Sprites/BG/fogDitehr.png"
+dest_files=["res://.godot/imported/fogDitehr.png-73ddb7d7f6269ab4c3c303a9c8790fc0.ctex"]
 
 [params]
 
