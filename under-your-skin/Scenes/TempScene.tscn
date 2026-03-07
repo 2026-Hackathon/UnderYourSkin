@@ -378,7 +378,7 @@ scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(20, 0)
 repeat_size = Vector2(500, 369)
 autoscroll = Vector2(-3, -3)
-repeat_times = 2
+repeat_times = 3
 
 [node name="Fog Dither" type="Sprite2D" parent="Backgrounds/Fog2" unique_id=1807871862]
 modulate = Color(0.20062938, 0.114673205, 0.17871004, 0.57254905)
@@ -391,7 +391,7 @@ texture = SubResource("CompressedTexture2D_rxen8")
 scroll_scale = Vector2(0.3, 0.3)
 repeat_size = Vector2(500, 369)
 autoscroll = Vector2(3, 3)
-repeat_times = 2
+repeat_times = 3
 
 [node name="Fog Dither" type="Sprite2D" parent="Backgrounds/Fog" unique_id=527984324]
 modulate = Color(0.40392157, 0.30588236, 0.25490198, 0.36078432)
