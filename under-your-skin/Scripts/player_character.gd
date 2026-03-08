@@ -73,7 +73,7 @@ func _input(event: InputEvent):
 				
 				#Increase Player Size for Visual Cue
 				scale = original_scale * 1.1
-				
+				animation_player.play("organs_On_Jump")
 			#On Release
 			else:
 				#If Dragging should always true here
@@ -94,6 +94,7 @@ func _input(event: InputEvent):
 					
 					#On release Size back to Normal
 					scale = original_scale
+					animation_player.play("RESET")
 func _physics_process(delta: float):
 	var was_on_floor: bool = false
 	var was_on_floor_prev = was_on_floor

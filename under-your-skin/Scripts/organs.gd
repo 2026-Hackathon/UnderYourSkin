@@ -13,22 +13,6 @@ var is_dragging: bool = false
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _input(event: InputEvent):
-	if event is InputEventMouseButton:
-		#LeftMouse Events
-		if event.button_index == MOUSE_BUTTON_LEFT:	
-			#On Press Get Starting Position
-			if event.pressed  and playernode.jump_count > 0:
-				scale = scale * 1.2
-				playernode.animation_player.play("organs_On_Jump")
-			#On Release
-			else:
-				#If Dragging should always true here
-				#but here for Validation otherwise
-				if playernode.is_dragging:
-					playernode.animation_player.play("RESET")
-					scale = scale / 1.2
-				
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	#checks if jump count = 0 and whetehr the animation has already played for this jump

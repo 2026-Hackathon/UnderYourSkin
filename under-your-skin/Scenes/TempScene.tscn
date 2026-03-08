@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://tpwgdhxaktjt" path="res://Sprites/TileMaps/TilesetInfection.png" id="3_u5xdt"]
 [ext_resource type="Texture2D" uid="uid://dlt283a5xm1co" path="res://Sprites/Player/PlayerSpriteSheet.png" id="3_yc8q5"]
 [ext_resource type="Texture2D" uid="uid://bspaoa2imoidb" path="res://Sprites/TempJumpUIbg.png" id="4_yc8q5"]
-[ext_resource type="Script" path="res://Scenes/organs.gd" id="6_8vk26"]
+[ext_resource type="Script" uid="uid://bs72roy2hewsw" path="res://Scenes/organs.gd" id="6_8vk26"]
 [ext_resource type="Texture2D" uid="uid://ctdkmrjnck5cd" path="res://Sprites/BG/DitheredBoneBG.png" id="6_alasw"]
 [ext_resource type="Texture2D" uid="uid://c5xuq6ou16vjl" path="res://Sprites/BG/DitherFog2.jpg" id="7_u5xdt"]
 [ext_resource type="Texture2D" uid="uid://dxuy8k7tjbe11" path="res://Sprites/BG/DitherFog1.jpg" id="8_kh015"]
