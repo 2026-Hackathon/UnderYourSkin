@@ -3,6 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#Hides the other menus upin start
 	$OptionMenu.hide()
 	$BackButtonContainer.hide()
 
@@ -13,15 +14,18 @@ func _process(_delta: float) -> void:
 
 
 func _on_playbutton_pressed() -> void:
+	#play button opens level scene
 	get_tree().change_scene_to_file("res://Scenes/TempScene.tscn")
 
 
 func _on_option_button_pressed() -> void:
+	#hides main menu components and shows option menu components
 	$MainMenu.hide()
 	$OptionMenu.show()
 	$BackButtonContainer.show()
 
 func _on_back_button_pressed() -> void:
+	#hides option menu components and shows main menu componenets
 	$OptionMenu.hide()
 	$BackButtonContainer.hide()
 	$MainMenu.show()
@@ -30,8 +34,9 @@ func _on_back_button_pressed() -> void:
 func _on_movement_control_button_pressed() -> void:
 		#-1 = Drag back, 1 = Drag Forward
 	Globals.MovementDirection = Globals.MovementDirection*-1
+	#update text
 	if Globals.MovementDirection == 1:
-		$OptionMenu/VBoxContainer/MovementControlButton.text = "Movement Control: Drag Forward"
+		$OptionMenu/OptionMenuPadding/OptionList/MovementControlButton.text = "Movement Control: Drag Forward"
 	else:
-		$OptionMenu/VBoxContainer/MovementControlButton.text = "Movement Control: Drag Back"
+		$OptionMenu/OptionMenuPadding/OptionList/MovementControlButton.text = "Movement Control: Drag Back"
 		

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://fivajboqxxo7"]
 
 [ext_resource type="Script" uid="uid://d5svlyrqymyl" path="res://Scripts/tempmenu.gd" id="1_j1yrb"]
-[ext_resource type="Texture2D" uid="uid://duy3emodhhlet" path="res://Sprites/Menu/BG.png" id="2_j1yrb"]
+[ext_resource type="Texture2D" uid="uid://grmb5nitjqqi" path="res://Sprites/Menu/menubg playerstaringwistfully.png" id="2_j1yrb"]
 
 [node name="Control" type="Control" unique_id=2073366076]
 layout_mode = 3
@@ -16,45 +16,50 @@ script = ExtResource("1_j1yrb")
 texture_filter = 1
 texture_repeat = 3
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.193
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.85
-offset_left = -317.336
-offset_top = -129.0
-offset_right = 673.0
-offset_bottom = 400.2
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
+scale = Vector2(2.1, 2.1)
 texture = ExtResource("2_j1yrb")
 expand_mode = 1
 stretch_mode = 2
 
+[node name="TitlePadding" type="MarginContainer" parent="." unique_id=2090473612]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+
+[node name="GameNameTxt" type="Label" parent="TitlePadding" unique_id=1955860956]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Under Your Skin"
+
 [node name="MainMenu" type="CenterContainer" parent="." unique_id=1710377552]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.027
-anchor_top = -0.025
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 31.104
-offset_top = 16.2
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 400.0
+offset_bottom = 370.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=255515792]
+[node name="MainMenuPadding" type="MarginContainer" parent="MainMenu" unique_id=584979113]
+layout_mode = 2
+theme_override_constants/margin_left = 280
+theme_override_constants/margin_top = 170
+
+[node name="MainMenuList" type="VBoxContainer" parent="MainMenu/MainMenuPadding" unique_id=255515792]
 custom_minimum_size = Vector2(100, 360)
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="PlayButton" type="Button" parent="MainMenu/VBoxContainer" unique_id=1151890302]
+[node name="PlayButton" type="Button" parent="MainMenu/MainMenuPadding/MainMenuList" unique_id=1151890302]
 custom_minimum_size = Vector2(400, 175)
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = "Play "
 
-[node name="OptionButton" type="Button" parent="MainMenu/VBoxContainer" unique_id=1999114720]
+[node name="OptionButton" type="Button" parent="MainMenu/MainMenuPadding/MainMenuList" unique_id=1999114720]
 custom_minimum_size = Vector2(400, 175)
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
@@ -62,18 +67,20 @@ text = "Option "
 
 [node name="OptionMenu" type="CenterContainer" parent="." unique_id=1936842561]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 833.0
+offset_bottom = 360.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionMenu" unique_id=1181670064]
+[node name="OptionMenuPadding" type="MarginContainer" parent="OptionMenu" unique_id=1002535357]
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 180
+
+[node name="OptionList" type="VBoxContainer" parent="OptionMenu/OptionMenuPadding" unique_id=1181670064]
 custom_minimum_size = Vector2(100, 360)
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="MovementControlButton" type="Button" parent="OptionMenu/VBoxContainer" unique_id=846897533]
+[node name="MovementControlButton" type="Button" parent="OptionMenu/OptionMenuPadding/OptionList" unique_id=846897533]
 layout_mode = 2
 theme_override_font_sizes/font_size = 55
 text = "Movement controls: Drag away"
@@ -88,8 +95,8 @@ anchor_bottom = 1.0
 offset_top = -200.0
 offset_right = 873.0
 grow_vertical = 0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="BackButton" type="Button" parent="BackButtonContainer" unique_id=1085069793]
 custom_minimum_size = Vector2(400, 200)
@@ -100,7 +107,7 @@ theme_override_font_sizes/font_size = 60
 text = "Back
 "
 
-[connection signal="pressed" from="MainMenu/VBoxContainer/PlayButton" to="." method="_on_playbutton_pressed"]
-[connection signal="pressed" from="MainMenu/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
-[connection signal="pressed" from="OptionMenu/VBoxContainer/MovementControlButton" to="." method="_on_movement_control_button_pressed"]
+[connection signal="pressed" from="MainMenu/MainMenuPadding/MainMenuList/PlayButton" to="." method="_on_playbutton_pressed"]
+[connection signal="pressed" from="MainMenu/MainMenuPadding/MainMenuList/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="OptionMenu/OptionMenuPadding/OptionList/MovementControlButton" to="." method="_on_movement_control_button_pressed"]
 [connection signal="pressed" from="BackButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
