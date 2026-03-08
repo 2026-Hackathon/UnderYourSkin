@@ -7,11 +7,6 @@ var animation_expansion: float = 5
 #for drag enlarg
 var is_dragging: bool = false
 
-#Follow at Offset
-@export var follow_offset: Vector2 = Vector2 (0.1, 0.1) 
-@export var follow_speed: float = 10.0                
-var current_offset: Vector2 = Vector2.ZERO
-
 #gets playercharacter node
 @onready var playernode = get_node("../..")#
 # Called when the node enters the scene tree for the first time.
@@ -35,19 +30,13 @@ func _input(event: InputEvent):
 					scale = scale / 1.2
 				
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	#Offset Code at top to hopefully avoid bugs
-	var target_pos = follow_offset
-	current_offset = current_offset.lerp(target_pos, follow_speed * delta)
-	position = current_offset
-	
-	
-	
+func _process(_delta: float) -> void:
 	#checks if jump count = 0 and whetehr the animation has already played for this jump
 	if playernode.jump_count == 0 and used_double_jump == false :
 		#sets so that animation wont repeat
 		used_double_jump = true
-		print("Explode synapses!")
+		#Debug
+		#print("Explode synapses!")
 		hide()
 	#explode animation
 		#creates a tween

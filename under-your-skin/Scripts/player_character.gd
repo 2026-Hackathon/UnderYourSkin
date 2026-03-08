@@ -203,12 +203,12 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 				velocity = pre_move_velocity.bounce(normal) * bounce_value
 				
 				collided = true
-				#Debug
-				print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface, "Bounce:", bounce_value)
+				#Uncomment for Debug
+				#print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface, "Bounce:", bounce_value)
 	# If should Bounce, applies second move
 	if collided:
 		move_and_slide()
-#Gets custom friction value using the below abstract function
+#Gets friction value using the below abstract function
 func get_tile_friction() -> float:
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
