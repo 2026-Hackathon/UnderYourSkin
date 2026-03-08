@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baw1axa3xd4oj"
-path="res://.godot/imported/Bone Tiles Temp.png-e9a8e0205adeeebdac05ca56c8c17095.ctex"
+uid="uid://dxuy8k7tjbe11"
+path="res://.godot/imported/DitherFog1.jpg-35f6cfc2d6cc8bbc3eceadb2d4e14325.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/TileMaps/Bone Tiles Temp.png"
-dest_files=["res://.godot/imported/Bone Tiles Temp.png-e9a8e0205adeeebdac05ca56c8c17095.ctex"]
+source_file="res://Sprites/BG/DitherFog1.jpg"
+dest_files=["res://.godot/imported/DitherFog1.jpg-35f6cfc2d6cc8bbc3eceadb2d4e14325.ctex"]
 
 [params]
 

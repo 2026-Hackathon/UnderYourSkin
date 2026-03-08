@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5xuq6ou16vjl"
-path="res://.godot/imported/Fog Seamless.jpg-8fd2abd97883835419af59c9dd31be0e.ctex"
+uid="uid://ctdkmrjnck5cd"
+path="res://.godot/imported/DitheredBoneBG.png-16c04fa58135df498f854f90c79542cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BG/Fog Seamless.jpg"
-dest_files=["res://.godot/imported/Fog Seamless.jpg-8fd2abd97883835419af59c9dd31be0e.ctex"]
+source_file="res://Sprites/BG/DitheredBoneBG.png"
+dest_files=["res://.godot/imported/DitheredBoneBG.png-16c04fa58135df498f854f90c79542cc.ctex"]
 
 [params]
 
