@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://grmb5nitjqqi"
-path="res://.godot/imported/menubg playerstaringwistfully.png-33f261d12ebc70bbdad8aa2f32019af9.ctex"
+uid="uid://c5purthp7nsb1"
+path="res://.godot/imported/PauseSpriteWithShading.png-754a04b5094dbde20661cde6659dd740.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Menu/menubg playerstaringwistfully.png"
-dest_files=["res://.godot/imported/menubg playerstaringwistfully.png-33f261d12ebc70bbdad8aa2f32019af9.ctex"]
+source_file="res://Sprites/Menu/PauseSpriteWithShading.png"
+dest_files=["res://.godot/imported/PauseSpriteWithShading.png-754a04b5094dbde20661cde6659dd740.ctex"]
 
 [params]
 

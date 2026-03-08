@@ -22,8 +22,7 @@ var jump_count: int = 2 #Dummy Val, Replaced when intialized
 @export var bullet_time_scale: float = 0.2
 @export var time_ramp_speed: float = 3.0   
 var bullet_time_active: bool = false
-var current_time_scale: float = 1.0
-
+#dELETED INITIALISATIO NOF CURRENT TIME SCALE -> var current_time_scale: float = 1.0
 
 #Grabs Tilemap on Start of Scene
 @onready var tilemap_layer: TileMapLayer = get_tree().get_first_node_in_group("ground")
@@ -68,8 +67,8 @@ func _input(event: InputEvent):
 				
 				#Bullet Time Active
 				bullet_time_active = true
-				current_time_scale = bullet_time_scale
-				Engine.time_scale = current_time_scale
+				Globals.current_time_scale = bullet_time_scale
+				Engine.time_scale = Globals.current_time_scale
 				
 				#Increase Player Size for Visual Cue
 				scale = original_scale * 1.1
@@ -104,10 +103,10 @@ func _physics_process(delta: float):
 	if bullet_time_active:
 		#Lerps Time, back to normal
 		#rate Depends on bullet Time
-		current_time_scale = move_toward(current_time_scale, normal_time_scale, time_ramp_speed * Engine.time_scale * delta)
+		Globals.current_time_scale = move_toward(Globals.current_time_scale, normal_time_scale, time_ramp_speed * Engine.time_scale * delta)
 	else:
-		current_time_scale = move_toward(current_time_scale, normal_time_scale, 50.0 * time_ramp_speed * Engine.time_scale * delta)
-	Engine.time_scale = current_time_scale
+		Globals.current_time_scale = move_toward(Globals.current_time_scale, normal_time_scale, 50.0 * time_ramp_speed * Engine.time_scale * delta)
+	Engine.time_scale = Globals.current_time_scale
 	
 	
 	#Apply Gravity/Reset Jumps

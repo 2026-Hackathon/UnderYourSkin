@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://ctdkmrjnck5cd" path="res://Sprites/BG/DitheredBoneBG.png" id="6_alasw"]
 [ext_resource type="Texture2D" uid="uid://c5xuq6ou16vjl" path="res://Sprites/BG/DitherFog2.jpg" id="7_u5xdt"]
 [ext_resource type="Texture2D" uid="uid://dxuy8k7tjbe11" path="res://Sprites/BG/DitherFog1.jpg" id="8_kh015"]
+[ext_resource type="Script" uid="uid://cihgxlwei5n0t" path="res://Scripts/playing_ui.gd" id="10_7oryk"]
+[ext_resource type="Texture2D" uid="uid://c5purthp7nsb1" path="res://Sprites/Menu/PauseSpriteWithShading.png" id="10_kh015"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -1651,3 +1653,33 @@ z_index = -7
 position = Vector2(299, 348)
 texture = ExtResource("8_kh015")
 centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1660022204]
+
+[node name="Playing UI" type="Control" parent="CanvasLayer" unique_id=2081258909]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_7oryk")
+
+[node name="PauseButtonPadding" type="MarginContainer" parent="CanvasLayer/Playing UI" unique_id=886507884]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="PauseButton" type="Button" parent="CanvasLayer/Playing UI/PauseButtonPadding" unique_id=1044363461]
+z_index = 2
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="PauseSprite" type="Sprite2D" parent="CanvasLayer/Playing UI/PauseButtonPadding/PauseButton" unique_id=1796358249]
+z_index = 5
+scale = Vector2(5, 5)
+texture = ExtResource("10_kh015")
+offset = Vector2(8, 8)
+
+[connection signal="pressed" from="CanvasLayer/Playing UI/PauseButtonPadding/PauseButton" to="CanvasLayer/Playing UI" method="_on_pause_button_pressed"]
