@@ -36,7 +36,9 @@ func _on_movement_control_button_pressed() -> void:
 	Globals.MovementDirection = Globals.MovementDirection*-1
 	#update text
 	if Globals.MovementDirection == 1:
-		$OptionMenu/OptionMenuPadding/OptionList/MovementControlButton.text = "Movement Control: Drag Forward"
+		$OptionMenu/OptionMenuPadding/OptionList/MovementControlButton.text = "Movement Control:
+			Drag Forward"
 	else:
-		$OptionMenu/OptionMenuPadding/OptionList/MovementControlButton.text = "Movement Control: Drag Back"
+		$OptionMenu/OptionMenuPadding/OptionList/MovementControlButton.text = "Movement Control:
+			Drag Back"
 		

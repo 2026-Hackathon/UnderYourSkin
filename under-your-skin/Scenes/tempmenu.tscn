@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://fivajboqxxo7"]
 
 [ext_resource type="Script" uid="uid://d5svlyrqymyl" path="res://Scripts/tempmenu.gd" id="1_j1yrb"]
-[ext_resource type="Texture2D" uid="uid://grmb5nitjqqi" path="res://Sprites/Menu/menubg playerstaringwistfully.png" id="2_j1yrb"]
+[ext_resource type="Texture2D" uid="uid://k7pek1tap2rd" path="res://menubg playerstaringwistfully full.png" id="2_j1yrb"]
 
 [node name="Control" type="Control" unique_id=2073366076]
 layout_mode = 3
@@ -21,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.1, 2.1)
+scale = Vector2(2, 2)
 texture = ExtResource("2_j1yrb")
 expand_mode = 1
 stretch_mode = 2
@@ -45,8 +45,8 @@ offset_bottom = 370.0
 
 [node name="MainMenuPadding" type="MarginContainer" parent="MainMenu" unique_id=584979113]
 layout_mode = 2
-theme_override_constants/margin_left = 280
-theme_override_constants/margin_top = 170
+theme_override_constants/margin_left = 230
+theme_override_constants/margin_top = 150
 
 [node name="MainMenuList" type="VBoxContainer" parent="MainMenu/MainMenuPadding" unique_id=255515792]
 custom_minimum_size = Vector2(100, 360)
@@ -72,8 +72,8 @@ offset_bottom = 360.0
 
 [node name="OptionMenuPadding" type="MarginContainer" parent="OptionMenu" unique_id=1002535357]
 layout_mode = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_top = 180
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 150
 
 [node name="OptionList" type="VBoxContainer" parent="OptionMenu/OptionMenuPadding" unique_id=1181670064]
 custom_minimum_size = Vector2(100, 360)
@@ -83,7 +83,8 @@ theme_override_constants/separation = 20
 [node name="MovementControlButton" type="Button" parent="OptionMenu/OptionMenuPadding/OptionList" unique_id=846897533]
 layout_mode = 2
 theme_override_font_sizes/font_size = 55
-text = "Movement controls: Drag away"
+text = "Movement Control:
+Drag Back"
 alignment = 0
 
 [node name="BackButtonContainer" type="MarginContainer" parent="." unique_id=1413420514]
