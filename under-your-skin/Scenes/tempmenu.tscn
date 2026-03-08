@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://fivajboqxxo7"]
 
 [ext_resource type="Script" uid="uid://d5svlyrqymyl" path="res://Scripts/tempmenu.gd" id="1_j1yrb"]
-[ext_resource type="Texture2D" uid="uid://dl3kvucfhv12n" path="res://Sprites/Menu/menu bg 1.png" id="2_dkpds"]
+[ext_resource type="Texture2D" uid="uid://duy3emodhhlet" path="res://Sprites/Menu/BG.png" id="2_j1yrb"]
 
 [node name="Control" type="Control" unique_id=2073366076]
 layout_mode = 3
@@ -13,20 +13,33 @@ grow_vertical = 2
 script = ExtResource("1_j1yrb")
 
 [node name="bgimage" type="TextureRect" parent="." unique_id=2026089450]
+texture_filter = 1
+texture_repeat = 3
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = 0.193
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.85
+offset_left = -317.336
+offset_top = -129.0
+offset_right = 673.0
+offset_bottom = 400.2
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_dkpds")
-stretch_mode = 6
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_j1yrb")
+expand_mode = 1
+stretch_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1710377552]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = -0.027
+anchor_top = -0.025
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 31.104
+offset_top = 16.2
 grow_horizontal = 2
 grow_vertical = 2
 
