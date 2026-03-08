@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h00ufg7kehgb"
-path="res://.godot/imported/dithered-image.jpg-5f88a29fa0c6f3a0eba76f481f30b846.ctex"
+uid="uid://ctdkmrjnck5cd"
+path="res://.godot/imported/dithered-image.png-d306b6174bbb72090ec2e3ae0a07fa0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BG/dithered-image.jpg"
-dest_files=["res://.godot/imported/dithered-image.jpg-5f88a29fa0c6f3a0eba76f481f30b846.ctex"]
+source_file="res://Sprites/BG/dithered-image.png"
+dest_files=["res://.godot/imported/dithered-image.png-d306b6174bbb72090ec2e3ae0a07fa0a.ctex"]
 
 [params]
 
