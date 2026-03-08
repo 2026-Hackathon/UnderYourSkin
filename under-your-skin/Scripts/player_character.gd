@@ -189,66 +189,50 @@ func _process(delta: float) -> void:
 	eyes.position = eye_current_offset
 	
 	
-#Bounce Function, vibecoded
 func apply_bounce(pre_move_velocity: Vector2) -> void:
 	var collided := false
-	
-	#Kinda inefficient, may slow game on low end devices but fuck em
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var normal := collision.get_normal()
 		
 		# Get bounce value for where we hit
-		var bounce_value := get_collision_tile_bounce(collision.get_position())
-		
-		#if bounce_value > 0.0:
-			# FIXED: Check pre_move velocity AND collision normal direction
-		var speed_into_surface = -pre_move_velocity.dot(normal)
-		if abs(speed_into_surface) > 50.0:  # Moving INTO surface
+		var bounce_value := get_data_val_at(collision.get_position(), "BounceValue") as float		
+		if bounce_value != null:
+			var speed_into_surface = -pre_move_velocity.dot(normal)
+			if abs(speed_into_surface) > 50.0:  # Moving INTO surface
 				velocity = pre_move_velocity.bounce(normal) * bounce_value
 				
 				collided = true
+				#Debug
 				print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface, "Bounce:", bounce_value)
-
 	# If should Bounce, applies second move
 	if collided:
 		move_and_slide()
-
-#Helper Functions: Gets Tile Values
-#Ngl these were vibe coded af hope they work well
+#Gets custom friction value using the below abstract function
 func get_tile_friction() -> float:
-	if tilemap_layer == null:
-		return 1.0
-	
-	var foot_pos = global_position + Vector2(0, 20)
-	var tile_coords = tilemap_layer.local_to_map(tilemap_layer.to_local(foot_pos))
-	var tile_data = tilemap_layer.get_cell_tile_data(tile_coords)
-	
-	if tile_data:
-		# FIXED: Use correct TileSet method
-		if tilemap_layer.tile_set.get_physics_layers_count() > 0:
-			var phys_material = tilemap_layer.tile_set.get_physics_layer_physics_material(0)
-			if phys_material:
-				print("Friction: ", phys_material.friction)
-				return phys_material.friction
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		var friction_val := get_data_val_at(collision.get_position(), "Friction") as float
+		if friction_val != null:
+			return friction_val
 	return 1.0
-#Gets Tile Colliding With
-func get_collision_tile_bounce(coll_pos: Vector2) -> float:
+
+#Custom data grabber, give collision pos + Data identifier
+# If no tile, or no custom data, returns "default".
+func get_data_val_at(coll_pos: Vector2, data_to_get):
 	if tilemap_layer == null:
-		return 0.0
-	
-	# Try 3 nearby positions
+		return null
+	# Try 3 nearby positions to catch the tile
 	var offsets = [Vector2.ZERO, Vector2(-8, 0), Vector2(0, -8)]
 	
 	for offset in offsets:
 		var sample_pos = coll_pos + offset
 		var tile_coords = tilemap_layer.local_to_map(tilemap_layer.to_local(sample_pos))
-		var tile_data = tilemap_layer.get_cell_tile_data(tile_coords)
+		var tile_data := tilemap_layer.get_cell_tile_data(tile_coords)
 		
 		if tile_data:
-			if tilemap_layer.tile_set.get_physics_layers_count() > 0:
-				var phys_material = tilemap_layer.tile_set.get_physics_layer_physics_material(0)
-				if phys_material:
-					return phys_material.bounce
+			var custom_data_value : Variant = tile_data.get_custom_data(data_to_get)
+			if custom_data_value != null:
+				return custom_data_value
 	
-	return 0.0
+	return null
