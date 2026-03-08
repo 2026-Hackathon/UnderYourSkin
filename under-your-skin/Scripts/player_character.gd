@@ -196,7 +196,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 		var normal := collision.get_normal()
 		
 		# Get bounce value for where we hit
-		var bounce_value := get_data_val_at(collision.get_position(), "BounceValue") as float		
+		var bounce_value : Variant = get_data_val_at(collision.get_position(), "BounceValue")	
 		if bounce_value != null:
 			var speed_into_surface = -pre_move_velocity.dot(normal)
 			if abs(speed_into_surface) > 50.0:  # Moving INTO surface
@@ -212,7 +212,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 func get_tile_friction() -> float:
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
-		var friction_val := get_data_val_at(collision.get_position(), "Friction") as float
+		var friction_val : Variant = get_data_val_at(collision.get_position(), "Friction") 
 		if friction_val != null:
 			return friction_val
 	return 1.0
