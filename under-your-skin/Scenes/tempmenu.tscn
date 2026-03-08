@@ -31,7 +31,7 @@ texture = ExtResource("2_j1yrb")
 expand_mode = 1
 stretch_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1710377552]
+[node name="MainMenu" type="CenterContainer" parent="." unique_id=1710377552]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.027
@@ -43,15 +43,64 @@ offset_top = 16.2
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=255515792]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=255515792]
 custom_minimum_size = Vector2(100, 360)
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1151890302]
+[node name="PlayButton" type="Button" parent="MainMenu/VBoxContainer" unique_id=1151890302]
 custom_minimum_size = Vector2(400, 175)
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = "Play "
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="OptionButton" type="Button" parent="MainMenu/VBoxContainer" unique_id=1999114720]
+custom_minimum_size = Vector2(400, 175)
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Option "
+
+[node name="OptionMenu" type="CenterContainer" parent="." unique_id=1936842561]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionMenu" unique_id=1181670064]
+custom_minimum_size = Vector2(100, 360)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MovementControlButton" type="Button" parent="OptionMenu/VBoxContainer" unique_id=846897533]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "Movement controls: Drag away"
+alignment = 0
+
+[node name="BackButtonContainer" type="MarginContainer" parent="." unique_id=1413420514]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+offset_right = 873.0
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BackButton" type="Button" parent="BackButtonContainer" unique_id=1085069793]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 60
+text = "Back
+"
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/PlayButton" to="." method="_on_playbutton_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="OptionMenu/VBoxContainer/MovementControlButton" to="." method="_on_movement_control_button_pressed"]
+[connection signal="pressed" from="BackButtonContainer/BackButton" to="." method="_on_back_button_pressed"]

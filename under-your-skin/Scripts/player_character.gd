@@ -80,7 +80,7 @@ func _input(event: InputEvent):
 				#but here for Validation otherwise
 				if is_dragging:
 					var drag_end = get_global_mouse_position()
-					var drag_vec = (drag_end - drag_start).limit_length(max_drag_distance)
+					var drag_vec = (drag_end - drag_start).limit_length(max_drag_distance) * -Globals.MovementDirection
 					
 					velocity = (velocity*momentum_conserve)-drag_vec.normalized() * drag_vec.length() / 10.0 * fling_power
 					#Decrease Jump Count
@@ -173,7 +173,7 @@ func _process(delta: float) -> void:
 		eye_target_offset = Vector2.ZERO
 	else:
 		#-1 to be replaced with future options var
-		var dir = to_mouse.normalized() * -1
+		var dir = to_mouse.normalized() * Globals.MovementDirection
 		#off set around player
 		eye_target_offset = dir * eye_max_offset  # stays in a circle around center
 		
