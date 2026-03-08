@@ -52,7 +52,7 @@ var eye_current_offset: Vector2 = Vector2.ZERO
 #Initilaize Player Size Needed so when scale is changed player remains Visible
 func _ready():
 	original_scale = scale  
-	jump_count = 0
+	jump_count = max_jumps
 
 #General Physics Functions Below
 # Key Input
