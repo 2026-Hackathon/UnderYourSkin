@@ -51,14 +51,14 @@ var eye_current_offset: Vector2 = Vector2.ZERO
 
 var player_pos
 func _process(delta: float) -> void:
-	
-	#Eye Code Copy Pasted From Player
-	if player_in_range:
-		player_pos = player.global_position
-	else:
-		player_pos = get_global_mouse_position()
+	if not Globals.is_frozen:
+		#Eye Code Copy Pasted From Player
+		if player_in_range:
+			player_pos = player.global_position
+		else:
+			player_pos = get_global_mouse_position()
 	var to_player = player_pos - global_position
-	
+		
 	#if 0 here to prezent bugs, cause normalize freaks out
 	if to_player == Vector2.ZERO:
 		eye_target_offset = Vector2.ZERO
@@ -92,13 +92,14 @@ func _process(delta: float) -> void:
 		speech_bubble.hide_text()
 		current_line_index = 0 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton \
-	and event.button_index == MOUSE_BUTTON_LEFT \
-	and event.is_pressed():
-		if player_in_range:
-			# Advance text / show text on click
-			_show_next_line()
+func _input(event: InputEvent) -> void:
+	if not Globals.is_frozen:
+		if event is InputEventMouseButton \
+		and event.button_index == MOUSE_BUTTON_LEFT \
+		and event.is_pressed():
+			if player_in_range:
+				# Advance text / show text on click
+				_show_next_line()
 
 func _show_next_line() -> void:
 	if lines.is_empty():
