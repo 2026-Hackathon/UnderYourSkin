@@ -15,7 +15,15 @@ extends Node2D
 var player_in_range := false
 var current_line_index := 0
 
+
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+
 func _ready() -> void:
+	
+	# start idle animation
+	if anim_player.has_animation("idle"):
+		anim_player.play("idle")
+		
 	exclaim.visible = false
 	talk_area.body_entered.connect(_on_body_entered)
 	talk_area.body_exited.connect(_on_body_exited)
@@ -23,12 +31,12 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if body == player:
 		player_in_range = true
-		exclaim.visible = true
+		exclaim.show_with_fade()
 
 func _on_body_exited(body: Node) -> void:
 	if body == player:
 		player_in_range = false
-		exclaim.visible = false
+		exclaim.hide_with_fade()
 		speech_bubble.hide_text()
 		current_line_index = 0
 
