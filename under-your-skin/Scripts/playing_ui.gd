@@ -15,6 +15,7 @@ func _process(_delta: float) -> void:
 func _on_pause_button_pressed() -> void:
 	#freeze the gameplay
 	Globals.is_frozen = not Globals.is_frozen
+	#un/freeze explosion animation
 	#CODE BELOW: 1. Finds whether frozen or not 2. Update all things [organ animation, pausebuttonsprite, pausescreen bg)
 	var organnode = get_node("/root/Node2D/PlayerCharacter/PlayerSprite/Organs")    
 	var pausebuttonspritenode = get_node("PauseButtonPadding/PauseButton/PauseSprite")
