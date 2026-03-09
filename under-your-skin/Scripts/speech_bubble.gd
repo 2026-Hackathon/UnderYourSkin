@@ -17,7 +17,7 @@ func hide_text() -> void:
 	is_showing = false
 	visible = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !visible:
 		return
 	# Stick above NPC
