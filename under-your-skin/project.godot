@@ -31,6 +31,7 @@ project/assembly_name="UnderYourSkin"
 [global_group]
 
 ground="All Colliding Tiles In this Group"
+player="Player Group"
 
 [physics]
 
