@@ -30,7 +30,7 @@ func _on_body_exited(body: Node) -> void:
 		player_in_range = false
 		exclaim.visible = false
 		speech_bubble.hide_text()
-
+		current_line_index = 0
 
 @onready var eyes: Node2D = $Eyes
 
@@ -82,6 +82,7 @@ func _process(delta: float) -> void:
 		player_in_range = false
 		exclaim.visible = false
 		speech_bubble.hide_text()
+		current_line_index = 0 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
@@ -94,8 +95,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func _show_next_line() -> void:
 	if lines.is_empty():
 		return
-	
-	# simple cycling dialogue
+
+	# Hide exclamation as soon as they start talking
+	exclaim.visible = false
+
 	var text := lines[current_line_index]
 	speech_bubble.show_text(text)
 	current_line_index = (current_line_index + 1) % lines.size()
