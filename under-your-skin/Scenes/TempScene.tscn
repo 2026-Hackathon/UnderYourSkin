@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://baw1axa3xd4oj" path="res://Sprites/TileMaps/BoneTiles.png" id="1_usju5"]
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_wjk0x"]
-[ext_resource type="Script" uid="uid://bow0jl5m863xs" path="res://Scripts/organs.gd" id="3_5g3cw"]
+[ext_resource type="Script" uid="uid://c6wlpuwr2s5d8" path="res://Scripts/organs.gd" id="3_5g3cw"]
 [ext_resource type="Texture2D" uid="uid://tpwgdhxaktjt" path="res://Sprites/TileMaps/TilesetInfection.png" id="3_u5xdt"]
 [ext_resource type="Texture2D" uid="uid://dlt283a5xm1co" path="res://Sprites/Player/PlayerSpriteSheet.png" id="3_yc8q5"]
 [ext_resource type="Texture2D" uid="uid://gnvuq8r8tb4j" path="res://Sprites/TileMaps/Houses.png" id="4_kh015"]
@@ -13,9 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://c5purthp7nsb1" path="res://Sprites/Menu/PauseSpriteWithShading.png" id="10_kh015"]
 [ext_resource type="Script" uid="uid://308ltx5i65p0" path="res://Scripts/npc.gd" id="12_5g3cw"]
 [ext_resource type="Texture2D" uid="uid://b3obs7ky2tqse" path="res://Sprites/NPC/NPCSprites.png" id="12_6yf3a"]
+[ext_resource type="Texture2D" uid="uid://5p2iff7sgtqs" path="res://Sprites/BG/black.png" id="12_wx42t"]
 [ext_resource type="Texture2D" uid="uid://bi823xeglxma1" path="res://Sprites/NPC/NPCCanTalk.png" id="14_1atgb"]
-[ext_resource type="Script" uid="uid://ds101cmk7pi4i" path="res://Scripts/exclaim.gd" id="15_1atgb"]
-[ext_resource type="Script" uid="uid://dafm3cdq3lyux" path="res://Scripts/speech_bubble.gd" id="15_wx42t"]
+[ext_resource type="Script" path="res://Scripts/exclaim.gd" id="15_1atgb"]
+[ext_resource type="Script" path="res://Scripts/speech_bubble.gd" id="15_wx42t"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -1734,6 +1735,31 @@ z_index = 5
 scale = Vector2(5, 5)
 texture = ExtResource("10_kh015")
 offset = Vector2(8, 8)
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer/Playing UI" unique_id=2109070562]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseScreenBgContainer" type="MarginContainer" parent="CanvasLayer/Playing UI/PauseMenu" unique_id=791942764]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 556.0
+offset_top = 304.0
+offset_right = 556.0
+offset_bottom = 304.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseScreenBg" type="Sprite2D" parent="CanvasLayer/Playing UI/PauseMenu/PauseScreenBgContainer" unique_id=1257411839]
+visible = false
+modulate = Color(1, 1, 1, 0.49803922)
+scale = Vector2(6, 6)
+texture = ExtResource("12_wx42t")
 
 [node name="NPCs" type="Node" parent="." unique_id=1930867017]
 
