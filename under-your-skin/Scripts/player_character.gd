@@ -111,7 +111,7 @@ func _physics_process(delta: float):
 			Globals.current_time_scale = move_toward(Globals.current_time_scale, normal_time_scale, time_ramp_speed * Engine.time_scale * delta)
 		else:
 			Globals.current_time_scale = move_toward(Globals.current_time_scale, normal_time_scale, 50.0 * time_ramp_speed * Engine.time_scale * delta)
-			Engine.time_scale = Globals.current_time_scale
+		Engine.time_scale = Globals.current_time_scale
 	
 	
 	#Apply Gravity/Reset Jumps
