@@ -4,9 +4,6 @@ var used_double_jump: bool = false
 var animation_time: float = 0.3
 var animation_expansion: float = 5
 
-#for drag enlarg
-var is_dragging: bool = false
-
 #gets playercharacter node
 @onready var playernode = get_node("../..")#
 # Called when the node enters the scene tree for the first time.

@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dxuy8k7tjbe11" path="res://Sprites/BG/DitherFog1.jpg" id="8_kh015"]
 [ext_resource type="Script" uid="uid://cihgxlwei5n0t" path="res://Scripts/playing_ui.gd" id="10_7oryk"]
 [ext_resource type="Texture2D" uid="uid://c5purthp7nsb1" path="res://Sprites/Menu/PauseSpriteWithShading.png" id="10_kh015"]
+[ext_resource type="Script" uid="uid://308ltx5i65p0" path="res://Scenes/npc.gd" id="12_5g3cw"]
+[ext_resource type="Texture2D" uid="uid://b3obs7ky2tqse" path="res://Sprites/NPC/NPCSprites.png" id="12_6yf3a"]
+[ext_resource type="Texture2D" uid="uid://bi823xeglxma1" path="res://Sprites/NPC/NPCCanTalk.png" id="14_1atgb"]
+[ext_resource type="Script" uid="uid://dafm3cdq3lyux" path="res://Scripts/speech_bubble.gd" id="15_wx42t"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -1539,9 +1543,11 @@ custom_data_layer_2/type = 3
 sources/0 = SubResource("TileSetAtlasSource_i7mkn")
 sources/2 = SubResource("TileSetAtlasSource_7oryk")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6qut"]
+
 [node name="Node2D" type="Node2D" unique_id=1339972396]
 
-[node name="PlayerCharacter" type="CharacterBody2D" parent="." unique_id=1782905367]
+[node name="PlayerCharacter" type="CharacterBody2D" parent="." unique_id=1782905367 groups=["player"]]
 position = Vector2(-135, 552)
 slide_on_ceiling = false
 floor_constant_speed = true
@@ -1681,5 +1687,45 @@ z_index = 5
 scale = Vector2(5, 5)
 texture = ExtResource("10_kh015")
 offset = Vector2(8, 8)
+
+[node name="NPCs" type="Node" parent="." unique_id=1930867017]
+
+[node name="NPC" type="Node2D" parent="NPCs" unique_id=1832444830]
+z_index = -1
+position = Vector2(-105, 552)
+script = ExtResource("12_5g3cw")
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCs/NPC" unique_id=1949266358]
+texture = ExtResource("12_6yf3a")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="Eyes" type="Node2D" parent="NPCs/NPC" unique_id=1117169636]
+
+[node name="EyeSprite" type="Sprite2D" parent="NPCs/NPC/Eyes" unique_id=157038093]
+texture = ExtResource("12_6yf3a")
+region_enabled = true
+region_rect = Rect2(38, 23, 7, 4)
+
+[node name="TalkArea" type="Area2D" parent="NPCs/NPC" unique_id=1318137890]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC/TalkArea" unique_id=1099088166]
+shape = SubResource("RectangleShape2D_r6qut")
+debug_color = Color(0, 0.52790433, 0.998395, 0.41960785)
+
+[node name="Exclaim" type="Sprite2D" parent="NPCs/NPC" unique_id=686136180]
+position = Vector2(0, -17)
+texture = ExtResource("14_1atgb")
+
+[node name="SpeechBubble" type="Node2D" parent="NPCs/NPC" unique_id=1707550348]
+position = Vector2(0, -11)
+script = ExtResource("15_wx42t")
+
+[node name="Label" type="Label" parent="NPCs/NPC/SpeechBubble" unique_id=432027450]
+offset_left = -20.0
+offset_top = -21.0
+offset_right = 20.0
+offset_bottom = 2.0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseButtonPadding/PauseButton" to="CanvasLayer/Playing UI" method="_on_pause_button_pressed"]
