@@ -2,6 +2,7 @@ extends Node
 
 var MovementDirection: int = -1
 var current_time_scale: float = 1.0
+var is_frozen: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
