@@ -1700,6 +1700,7 @@ offset = Vector2(8, 8)
 z_index = -1
 position = Vector2(-105, 552)
 script = ExtResource("12_5g3cw")
+lines = Array[String](["Hey there!", "Theres an Infection Upwards.", "Sort it Out."])
 
 [node name="Sprite2D" type="Sprite2D" parent="NPCs/NPC" unique_id=1949266358]
 texture = ExtResource("12_6yf3a")
