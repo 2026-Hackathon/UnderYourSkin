@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://baw1axa3xd4oj" path="res://Sprites/TileMaps/BoneTiles.png" id="1_usju5"]
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_wjk0x"]
-[ext_resource type="Script" uid="uid://bow0jl5m863xs" path="res://Scripts/organs.gd" id="3_5g3cw"]
+[ext_resource type="Script" uid="uid://bwancjn5u0k5k" path="res://Scripts/organs.gd" id="3_5g3cw"]
 [ext_resource type="Texture2D" uid="uid://tpwgdhxaktjt" path="res://Sprites/TileMaps/TilesetInfection.png" id="3_u5xdt"]
 [ext_resource type="Texture2D" uid="uid://dlt283a5xm1co" path="res://Sprites/Player/PlayerSpriteSheet.png" id="3_yc8q5"]
 [ext_resource type="Texture2D" uid="uid://gnvuq8r8tb4j" path="res://Sprites/TileMaps/Houses.png" id="4_kh015"]
