@@ -209,8 +209,12 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 		if bounce_value != null:
 			var speed_into_surface = -pre_move_velocity.dot(normal)
 			if abs(speed_into_surface) > 50.0:  # Moving INTO surface
-				velocity = pre_move_velocity.bounce(normal) * bounce_value
+				velocity.y = pre_move_velocity.bounce(normal).y * bounce_value
 				
+				if get_data_val_at(collision.get_position(), "GroundType") == "Slippery":
+					velocity.x = pre_move_velocity.x
+				else:
+					velocity.x = pre_move_velocity.bounce(normal).x * bounce_value
 				collided = true
 				#Uncomment for Debug
 				#print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface, "Bounce:", bounce_value)
