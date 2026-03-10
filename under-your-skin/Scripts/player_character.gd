@@ -202,30 +202,37 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 	var collided := false
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
-		var normal := collision.get_normal()
+		var normal : Vector2 = collision.get_normal()
 		
 		# Get bounce value for where we hit
 		var bounce_value : Variant = get_data_val_at(collision.get_position(), "BounceValue")	
 		if bounce_value != null:
 			var speed_into_surface = -pre_move_velocity.dot(normal)
 			if abs(speed_into_surface) > 50.0:  # Moving INTO surface
+				
+				#Bounce for slippery surface are diff
+				#Fucked if statment to get it to work
 				if get_data_val_at(collision.get_position(), "GroundType") != "Slippery":
 					velocity = pre_move_velocity.bounce(normal) * bounce_value
-				elif (is_on_floor() or is_on_ceiling()):
-					velocity.y = pre_move_velocity.bounce(normal).y * bounce_value
-					velocity.x = pre_move_velocity.x
-				elif is_on_wall():
-					velocity.x = pre_move_velocity.bounce(normal).x * bounce_value
-					velocity.y = pre_move_velocity.y
-				if get_data_val_at(collision.get_position(), "GroundType") == "Slippery" \
-				and (is_on_floor() or is_on_ceiling()):
-					velocity.x = pre_move_velocity.x
+				elif not(is_slope_floor(normal)):
+					if(is_on_floor() or is_on_ceiling()):
+						velocity.y = pre_move_velocity.bounce(normal).y * bounce_value
+						velocity.x = pre_move_velocity.x
+					elif is_on_wall():
+						velocity.x = pre_move_velocity.bounce(normal).x * bounce_value
+						velocity.y = pre_move_velocity.y
 				else:
-					velocity.x = pre_move_velocity.bounce(normal).x * bounce_value
+					if abs(pre_move_velocity.y) > 20:
+						velocity.y = pre_move_velocity.bounce(normal).y * bounce_value
+						velocity.x = pre_move_velocity.bounce(normal).x
+					else:
+						return
 				collided = true
+				
 				#Uncomment for Debug
-				#print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface, "Bounce:", bounce_value)
+				print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface, "Bounce:", bounce_value)
 	# If should Bounce, applies second move
+	
 	if collided:
 		move_and_slide()
 #Gets friction value using the below abstract function
@@ -256,3 +263,8 @@ func get_data_val_at(coll_pos: Vector2, data_to_get):
 				return custom_data_value
 	
 	return null
+func is_slope_floor(normal: Vector2) -> bool:
+	# 0 = flat floor, 90° = wall
+	var angle_deg := rad_to_deg(acos(normal.dot(Vector2.UP)))
+	# tweak 0–45 to match what you consider a walkable slope
+	return angle_deg <= 45.0
