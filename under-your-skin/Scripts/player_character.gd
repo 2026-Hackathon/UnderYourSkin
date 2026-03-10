@@ -62,7 +62,7 @@ func _input(event: InputEvent):
 		if event.button_index == MOUSE_BUTTON_LEFT:	
 			#On Press Get Starting Position
 			if event.pressed  and jump_count > 0 and not Globals.is_frozen:
-				drag_start = get_global_mouse_position()
+				drag_start = get_viewport().get_mouse_position()
 				is_dragging = true
 				
 				#Bullet Time Active
@@ -78,7 +78,7 @@ func _input(event: InputEvent):
 				#If Dragging should always true here
 				#but here for Validation otherwise
 				if is_dragging:
-					var drag_end = get_global_mouse_position()
+					var drag_end = get_viewport().get_mouse_position()
 					var drag_vec = (drag_end - drag_start).limit_length(max_drag_distance) * -Globals.MovementDirection
 					
 					velocity = (velocity*momentum_conserve)-drag_vec.normalized() * drag_vec.length() / 10.0 * fling_power
