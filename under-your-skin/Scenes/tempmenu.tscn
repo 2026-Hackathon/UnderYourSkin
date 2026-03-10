@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_j1yrb")
 
 [node name="bgimage" type="TextureRect" parent="." unique_id=2026089450]
@@ -22,6 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
+mouse_filter = 2
 texture = ExtResource("2_j1yrb")
 expand_mode = 1
 stretch_mode = 2
@@ -30,6 +32,7 @@ stretch_mode = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 10
 
@@ -42,15 +45,18 @@ text = "Under Your Skin"
 layout_mode = 1
 offset_right = 400.0
 offset_bottom = 370.0
+mouse_filter = 2
 
 [node name="MainMenuPadding" type="MarginContainer" parent="MainMenu" unique_id=584979113]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 230
 theme_override_constants/margin_top = 150
 
 [node name="MainMenuList" type="VBoxContainer" parent="MainMenu/MainMenuPadding" unique_id=255515792]
 custom_minimum_size = Vector2(100, 360)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="PlayButton" type="Button" parent="MainMenu/MainMenuPadding/MainMenuList" unique_id=1151890302]
@@ -69,15 +75,18 @@ text = "Option "
 layout_mode = 1
 offset_right = 833.0
 offset_bottom = 360.0
+mouse_filter = 2
 
 [node name="OptionMenuPadding" type="MarginContainer" parent="OptionMenu" unique_id=1002535357]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_top = 150
 
 [node name="OptionList" type="VBoxContainer" parent="OptionMenu/OptionMenuPadding" unique_id=1181670064]
 custom_minimum_size = Vector2(100, 360)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 60
 
 [node name="MovementControlButton" type="Button" parent="OptionMenu/OptionMenuPadding/OptionList" unique_id=846897533]
@@ -89,7 +98,8 @@ alignment = 0
 
 [node name="ZoomControlContainer" type="VBoxContainer" parent="OptionMenu/OptionMenuPadding/OptionList" unique_id=1496545290]
 layout_mode = 2
-theme_override_constants/separation = 1
+mouse_filter = 2
+theme_override_constants/separation = 5
 
 [node name="ZoomTxt" type="Label" parent="OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer" unique_id=459809340]
 layout_mode = 2
@@ -109,6 +119,7 @@ anchor_bottom = 1.0
 offset_top = -200.0
 offset_right = 873.0
 grow_vertical = 0
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_bottom = 20
 
