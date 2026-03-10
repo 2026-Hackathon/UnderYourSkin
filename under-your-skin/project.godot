@@ -23,6 +23,7 @@ Globals="*uid://dq4h6l1rhuevo"
 
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/handheld/orientation=4
 
 [dotnet]
 

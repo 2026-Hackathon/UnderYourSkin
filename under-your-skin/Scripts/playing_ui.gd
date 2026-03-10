@@ -4,8 +4,7 @@ var pausesprite = preload("res://Sprites/Menu/PauseSpriteWithShading.png")
 var playsprite = preload("res://Sprites/Menu/play button.png")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -20,11 +19,26 @@ func _on_pause_button_pressed() -> void:
 	var organnode = get_node("/root/Node2D/PlayerCharacter/PlayerSprite/Organs")    
 	var pausebuttonspritenode = get_node("PauseButtonPadding/PauseButton/PauseSprite")
 	var pausescreenbgnode = get_node("PauseMenu/PauseScreenBgContainer/PauseScreenBg")
+	var movementcontrolbuttonnode = get_node("PauseMenuList/MovementControlPadding/MovementControlButton2")
 	if Globals.is_frozen:
 		organnode.pause_explosion()
 		pausebuttonspritenode.texture = playsprite
 		pausescreenbgnode.show()
+		movementcontrolbuttonnode.show()
 	else:
 		organnode.resume_explosion()
 		pausebuttonspritenode.texture = pausesprite
 		pausescreenbgnode.hide()
+		movementcontrolbuttonnode.hide()
+func _on_movement_control_button_2_pressed() -> void:
+			#-1 = Drag back, 1 = Drag Forward
+	Globals.MovementDirection = Globals.MovementDirection*-1
+	var movementcontrolbuttonnode = get_node("PauseMenuList/MovementControlPadding/MovementControlButton2")
+	
+	#update text
+	if Globals.MovementDirection == 1:
+		movementcontrolbuttonnode.text = "Movement Control:
+			Drag Forward"
+	else:
+		movementcontrolbuttonnode.text = "Movement Control:
+			Drag Back"

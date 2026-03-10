@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://osbvn7lonyr7"]
+[gd_scene format=4 uid="uid://rgddcoetqvsb"]
 
 [ext_resource type="Texture2D" uid="uid://baw1axa3xd4oj" path="res://Sprites/TileMaps/BoneTiles.png" id="1_usju5"]
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_wjk0x"]
@@ -16,8 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://b3obs7ky2tqse" path="res://Sprites/NPC/NPCSprites.png" id="12_6yf3a"]
 [ext_resource type="Texture2D" uid="uid://5p2iff7sgtqs" path="res://Sprites/BG/black.png" id="12_wx42t"]
 [ext_resource type="Texture2D" uid="uid://bi823xeglxma1" path="res://Sprites/NPC/NPCCanTalk.png" id="14_1atgb"]
-[ext_resource type="Script" uid="uid://ds101cmk7pi4i" path="res://Scripts/exclaim.gd" id="15_1atgb"]
-[ext_resource type="Script" uid="uid://dafm3cdq3lyux" path="res://Scripts/speech_bubble.gd" id="15_wx42t"]
+[ext_resource type="Script" path="res://Scripts/exclaim.gd" id="15_1atgb"]
+[ext_resource type="Script" path="res://Scripts/speech_bubble.gd" id="15_wx42t"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -2345,7 +2345,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("10_7oryk")
+
+[node name="PauseMenuList" type="VBoxContainer" parent="CanvasLayer/Playing UI" unique_id=1845571922]
+custom_minimum_size = Vector2(700, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -200.0
+offset_right = 350.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MovementControlPadding" type="MarginContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=1820590543]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MovementControlButton2" type="Button" parent="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding" unique_id=1969122114]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "Movement Control:
+Drag Back"
+alignment = 0
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/Playing UI" unique_id=1365906693]
 layout_mode = 1
@@ -2354,6 +2383,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="PauseScreenBgContainer" type="MarginContainer" parent="CanvasLayer/Playing UI/PauseMenu" unique_id=885135759]
 layout_mode = 1
@@ -2368,18 +2398,20 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="PauseScreenBg" type="Sprite2D" parent="CanvasLayer/Playing UI/PauseMenu/PauseScreenBgContainer" unique_id=492864557]
 visible = false
 modulate = Color(1, 1, 1, 0.49803922)
 z_index = -9
-scale = Vector2(6, 6)
+scale = Vector2(7, 7)
 texture = ExtResource("12_wx42t")
 
 [node name="PauseButtonPadding" type="MarginContainer" parent="CanvasLayer/Playing UI" unique_id=816323565]
 layout_mode = 1
 offset_right = 100.0
 offset_bottom = 100.0
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
@@ -2443,4 +2475,5 @@ metadata/_edit_use_anchors_ = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/NPC" unique_id=1961614127]
 libraries/ = SubResource("AnimationLibrary_wx42t")
 
+[connection signal="pressed" from="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding/MovementControlButton2" to="CanvasLayer/Playing UI" method="_on_movement_control_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseButtonPadding/PauseButton" to="CanvasLayer/Playing UI" method="_on_pause_button_pressed"]
