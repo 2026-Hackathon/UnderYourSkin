@@ -20,16 +20,23 @@ func _on_pause_button_pressed() -> void:
 	var pausebuttonspritenode = get_node("PauseButtonPadding/PauseButton/PauseSprite")
 	var pausescreenbgnode = get_node("PauseMenu/PauseScreenBgContainer/PauseScreenBg")
 	var movementcontrolbuttonnode = get_node("PauseMenuList/MovementControlPadding/MovementControlButton2")
+	var zoomtxtnode = get_node("PauseMenuList/ZoomControlContainer/ZoomTxt")
+	var zoomslidernode = get_node("PauseMenuList/ZoomControlContainer/Zoom Slider")
+	
 	if Globals.is_frozen:
 		organnode.pause_explosion()
 		pausebuttonspritenode.texture = playsprite
 		pausescreenbgnode.show()
 		movementcontrolbuttonnode.show()
+		zoomtxtnode.show()
+		zoomslidernode.show()
 	else:
 		organnode.resume_explosion()
 		pausebuttonspritenode.texture = pausesprite
 		pausescreenbgnode.hide()
 		movementcontrolbuttonnode.hide()
+		zoomtxtnode.hide()
+		zoomslidernode.hide()
 func _on_movement_control_button_2_pressed() -> void:
 			#-1 = Drag back, 1 = Drag Forward
 	Globals.MovementDirection = Globals.MovementDirection*-1
@@ -42,3 +49,12 @@ func _on_movement_control_button_2_pressed() -> void:
 	else:
 		movementcontrolbuttonnode.text = "Movement Control:
 			Drag Back"
+
+
+func _on_zoom_slider_drag_ended(value_changed: bool) -> void:
+	#change zoom and update cam
+	var zoomslidernode = get_node("PauseMenuList/ZoomControlContainer/Zoom Slider")
+	var camnode = get_node("/root/Node2D/PlayerCharacter/Eyes/Camera2D")
+	Globals.game_zoom = (zoomslidernode.value / 25) + 1
+	camnode.update_zoom()
+	

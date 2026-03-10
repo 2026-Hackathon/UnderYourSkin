@@ -78,7 +78,7 @@ theme_override_constants/margin_top = 150
 [node name="OptionList" type="VBoxContainer" parent="OptionMenu/OptionMenuPadding" unique_id=1181670064]
 custom_minimum_size = Vector2(100, 360)
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 60
 
 [node name="MovementControlButton" type="Button" parent="OptionMenu/OptionMenuPadding/OptionList" unique_id=846897533]
 layout_mode = 2
@@ -87,8 +87,21 @@ text = "Movement Control:
 Drag Back"
 alignment = 0
 
+[node name="ZoomControlContainer" type="VBoxContainer" parent="OptionMenu/OptionMenuPadding/OptionList" unique_id=1496545290]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="ZoomTxt" type="Label" parent="OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer" unique_id=459809340]
+layout_mode = 2
+theme_override_font_sizes/font_size = 55
+text = "Camera Zoom"
+
+[node name="Zoom Slider" type="HSlider" parent="OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer" unique_id=1101152721]
+layout_mode = 2
+value = 2.0
+
 [node name="BackButtonContainer" type="MarginContainer" parent="." unique_id=1413420514]
-custom_minimum_size = Vector2(400, 200)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -100,7 +113,7 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="BackButton" type="Button" parent="BackButtonContainer" unique_id=1085069793]
-custom_minimum_size = Vector2(400, 200)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -111,4 +124,5 @@ text = "Back
 [connection signal="pressed" from="MainMenu/MainMenuPadding/MainMenuList/PlayButton" to="." method="_on_playbutton_pressed"]
 [connection signal="pressed" from="MainMenu/MainMenuPadding/MainMenuList/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="pressed" from="OptionMenu/OptionMenuPadding/OptionList/MovementControlButton" to="." method="_on_movement_control_button_pressed"]
+[connection signal="drag_ended" from="OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer/Zoom Slider" to="." method="_on_zoom_slider_drag_ended"]
 [connection signal="pressed" from="BackButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
