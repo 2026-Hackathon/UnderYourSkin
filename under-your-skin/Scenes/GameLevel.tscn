@@ -2917,7 +2917,6 @@ texture = ExtResource("10_ow0hr")
 centered = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1761444049]
-visible = false
 
 [node name="Playing UI" type="Control" parent="CanvasLayer" unique_id=593635570]
 layout_mode = 3
@@ -2951,7 +2950,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PauseScreenBg" type="Sprite2D" parent="CanvasLayer/Playing UI/PauseMenu/PauseScreenBgContainer" unique_id=873652871]
-visible = false
 modulate = Color(1, 1, 1, 0.49803922)
 z_index = -9
 scale = Vector2(6, 6)

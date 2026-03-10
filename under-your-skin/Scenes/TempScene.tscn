@@ -2223,7 +2223,7 @@ _data = {
 &"idle": SubResource("Animation_1atgb")
 }
 
-[node name="Node2D2" type="Node2D" unique_id=1339972396]
+[node name="Node2D" type="Node2D" unique_id=1339972396]
 
 [node name="PlayerCharacter" type="CharacterBody2D" parent="." unique_id=1782905367 groups=["player"]]
 position = Vector2(-135, 552)
