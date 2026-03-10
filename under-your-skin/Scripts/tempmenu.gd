@@ -45,4 +45,5 @@ func _on_movement_control_button_pressed() -> void:
 
 
 func _on_zoom_slider_drag_ended(value_changed: bool) -> void:
-	Globals.game_zoom = ($"OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer/Zoom Slider".value / 25) + 1
+	var slidernode = get_node("OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer/Zoom Slider")
+	Globals.game_zoom = (slidernode.value / 25) + 1
