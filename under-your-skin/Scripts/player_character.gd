@@ -47,6 +47,9 @@ var original_scale: Vector2
 var eye_target_offset: Vector2 = Vector2.ZERO
 var eye_current_offset: Vector2 = Vector2.ZERO
 
+#For sticky platforms
+var is_on_sticky: bool = false
+
 #Initilaize some Vals
 #Initilaize Player Size Needed so when scale is changed player remains Visible
 func _ready():
@@ -114,9 +117,18 @@ func _physics_process(delta: float):
 		Engine.time_scale = Globals.current_time_scale
 	
 	
-	#Apply Gravity/Reset Jumps
-		if not is_on_floor():
-			velocity.y += gravity * delta
+	#Apply Gravity/Sticky Platform logic
+	#Bool changes if should bounce
+		if not is_on_sticky:  # do NOT fall if on sticky
+			if not is_on_floor():
+				velocity.y += gravity * delta
+		else:
+			#On sticky 
+			# Stick to surface: kill vertical speed
+			#if is_on_wall():
+				#velocity.y = 0.0    # slide‑lock on wall // Maybe turn off??
+			if is_on_ceiling():
+				velocity.y = 0.0    # hang from ceiling 
 	# Friction/ Air resistance
 		if is_on_floor():
 			current_friction = get_tile_friction()
@@ -158,6 +170,8 @@ func _physics_process(delta: float):
 			elif pre_move_velocity.x > 50:
 				animation_player.speed_scale = clamp(pre_move_velocity.length()/250, 1.5,8)
 				animation_player.play("hit_wall_right")
+		
+		
 		#Resets max Jumps, should prevent buggy jump behaviour causing an extra jump
 		if is_on_floor():
 		#If you touch the Floor Bullet Time turns off
@@ -165,10 +179,16 @@ func _physics_process(delta: float):
 			jump_count = max_jumps
 			var organnode = get_node("PlayerSprite/Organs")
 			organnode._restoreorgans()
-	#Applies Bounce
+		
+		#Applies Bounce
 		apply_bounce(pre_move_velocity)
-
-
+		if  is_on_sticky:
+			bullet_time_active = false
+			jump_count = max_jumps
+			var organnode = get_node("PlayerSprite/Organs")
+			organnode._restoreorgans()
+		
+			
 #This is entirely to make eyes worK
 func _process(delta: float) -> void:
 	#eyes stop moving when paused
@@ -196,23 +216,34 @@ func _process(delta: float) -> void:
 		eye_current_offset = eye_current_offset.lerp(eye_target_offset, eye_follow_speed * delta)
 		#apply offset, also changes camera pov cause childed
 		eyes.position = eye_current_offset
-	
-	
 func apply_bounce(pre_move_velocity: Vector2) -> void:
 	var collided := false
+	is_on_sticky = false
+	
+	
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
 		var normal : Vector2 = collision.get_normal()
 		
+		
+		var ground_type: Variant = get_data_val_at(collision.get_position(), "GroundType")
+		
 		# Get bounce value for where we hit
 		var bounce_value : Variant = get_data_val_at(collision.get_position(), "BounceValue")	
+		# If this tile is sticky, mark state and skip bounce
+		if ground_type == "Sticky":
+			is_on_sticky = true
+			# Optional: snap player *into* surface a bit
+			velocity = Vector2.ZERO
+			continue
+		
 		if bounce_value != null:
 			var speed_into_surface = -pre_move_velocity.dot(normal)
 			if abs(speed_into_surface) > 50.0:  # Moving INTO surface
 				
 				#Bounce for slippery surface are diff
 				#Fucked if statment to get it to work
-				if get_data_val_at(collision.get_position(), "GroundType") != "Slippery":
+				if ground_type != "Slippery":
 					velocity = pre_move_velocity.bounce(normal) * bounce_value
 				elif not(is_slope_floor(normal)):
 					if(is_on_floor() or is_on_ceiling()):
@@ -226,7 +257,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 						velocity.y = pre_move_velocity.bounce(normal).y * bounce_value
 						velocity.x = pre_move_velocity.bounce(normal).x
 					else:
-						return
+						continue
 				collided = true
 				
 				#Uncomment for Debug
