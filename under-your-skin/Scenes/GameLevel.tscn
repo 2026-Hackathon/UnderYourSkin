@@ -2804,7 +2804,7 @@ sources/3 = SubResource("TileSetAtlasSource_x4g3l")
 [node name="Node2D" type="Node2D" unique_id=1536282745]
 
 [node name="PlayerCharacter" type="CharacterBody2D" parent="." unique_id=1102883355 groups=["player"]]
-position = Vector2(-135, 552)
+position = Vector2(-69, -625)
 slide_on_ceiling = false
 floor_constant_speed = true
 platform_wall_layers = 1

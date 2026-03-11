@@ -57,7 +57,7 @@ var is_on_sticky: bool = false
 #Initilaize Player Size Needed so when scale is changed player remains Visible
 func _ready():
 	original_scale = scale  
-	jump_count = max_jumps
+	jump_count = 0
 
 #General Physics Functions Below
 # Key Input
