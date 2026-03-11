@@ -18,6 +18,14 @@
 [ext_resource type="Texture2D" uid="uid://bnnj8ygll7peo" path="res://Sprites/NPC/LargeNPCbody.png" id="12_1y6uj"]
 [ext_resource type="Texture2D" uid="uid://5p2iff7sgtqs" path="res://Sprites/BG/black.png" id="12_62hbe"]
 [ext_resource type="Texture2D" uid="uid://c5purthp7nsb1" path="res://Sprites/Menu/PauseSpriteWithShading.png" id="13_2m1y7"]
+[ext_resource type="Script" uid="uid://308ltx5i65p0" path="res://Scripts/npc.gd" id="19_5ddkv"]
+[ext_resource type="Texture2D" uid="uid://b3obs7ky2tqse" path="res://Sprites/NPC/NPCSprites.png" id="20_qtxl6"]
+[ext_resource type="Texture2D" uid="uid://bi823xeglxma1" path="res://Sprites/NPC/NPCCanTalk.png" id="21_rp1ko"]
+[ext_resource type="Script" path="res://Scripts/exclaim.gd" id="22_a7rsx"]
+[ext_resource type="Script" uid="uid://dafm3cdq3lyux" path="res://Scripts/speech_bubble.gd" id="23_ysfch"]
+[ext_resource type="FontFile" uid="uid://dq3x6wi5ad5v1" path="res://Sprites/Fonts/Poco.ttf" id="24_i33fa"]
+[ext_resource type="Texture2D" uid="uid://d0mblpv5r05kv" path="res://Sprites/NPC/Speechbubble9patch.png" id="25_wmwss"]
+[ext_resource type="Texture2D" uid="uid://cxcqtnv3h6dej" path="res://Sprites/NPC/SpeechbubblebottomBLACK.png" id="26_nw5cc"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -2805,6 +2813,52 @@ sources/2 = SubResource("TileSetAtlasSource_fh6sm")
 sources/1 = SubResource("TileSetAtlasSource_mq660")
 sources/3 = SubResource("TileSetAtlasSource_x4g3l")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vf3tl"]
+size = Vector2(54, 35)
+
+[sub_resource type="LabelSettings" id="LabelSettings_px2bc"]
+font = ExtResource("24_i33fa")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_5g3cw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPC sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.125, 0.9375)]
+}
+
+[sub_resource type="Animation" id="Animation_1atgb"]
+resource_name = "idle"
+length = 1.3666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NPC sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666667, 0.33333334, 0.52648896, 0.8398636),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.0326812, 1.0016662), Vector2(1.125, 0.9375), Vector2(0.87499994, 1.0625017), Vector2(1.037, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hutgc"]
+_data = {
+&"RESET": SubResource("Animation_5g3cw"),
+&"idle": SubResource("Animation_1atgb")
+}
+
 [node name="Node2D" type="Node2D" unique_id=1536282745]
 
 [node name="PlayerCharacter" type="CharacterBody2D" parent="." unique_id=1102883355 groups=["player"]]
@@ -3032,6 +3086,99 @@ texture = ExtResource("10_ow0hr")
 centered = false
 
 [node name="NPCs" type="Node" parent="." unique_id=1243160079]
+
+[node name="NPC" type="Node2D" parent="NPCs" unique_id=51472153]
+z_index = -1
+position = Vector2(5, 2440)
+script = ExtResource("19_5ddkv")
+lines = Array[String](["Hey there!", "Thanks for clicking to talk to me.", "You must be the one sent to help", "You're just in time", "None of the leukocytes in this village", "are strong enough to fight it...", "By it, of course, I mean the infection!", "Its UP, go and sort it out,  comrade."])
+
+[node name="NPC sprite" type="Sprite2D" parent="NPCs/NPC" unique_id=417335798]
+position = Vector2(-1.013279e-06, -1.335144e-05)
+scale = Vector2(1.125, 0.9375)
+texture = ExtResource("20_qtxl6")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="Eyes" type="Node2D" parent="NPCs/NPC" unique_id=119548981]
+
+[node name="EyeSprite" type="Sprite2D" parent="NPCs/NPC/Eyes" unique_id=847038547]
+texture = ExtResource("20_qtxl6")
+region_enabled = true
+region_rect = Rect2(38, 23, 7, 4)
+
+[node name="TalkArea" type="Area2D" parent="NPCs/NPC" unique_id=1869115796]
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC/TalkArea" unique_id=583650975]
+shape = SubResource("RectangleShape2D_vf3tl")
+debug_color = Color(0, 0.52790433, 0.998395, 0.41960785)
+
+[node name="Exclaim" type="Sprite2D" parent="NPCs/NPC" unique_id=1246993938]
+position = Vector2(0, -17)
+texture = ExtResource("21_rp1ko")
+script = ExtResource("22_a7rsx")
+
+[node name="SpeechBubble" type="Node2D" parent="NPCs/NPC" unique_id=2058337448]
+position = Vector2(0, -11)
+script = ExtResource("23_ysfch")
+offset = Vector2(0, -15)
+
+[node name="NPCspeechcontainer" type="MarginContainer" parent="NPCs/NPC/SpeechBubble" unique_id=1897663849]
+custom_minimum_size = Vector2(30, 30)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -30.0
+offset_right = 15.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NPCtxt" type="Label" parent="NPCs/NPC/SpeechBubble/NPCspeechcontainer" unique_id=1264717357]
+z_index = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+theme_override_fonts/font = ExtResource("24_i33fa")
+text = "temp"
+label_settings = SubResource("LabelSettings_px2bc")
+text_direction = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextBoxFitsText" type="MarginContainer" parent="NPCs/NPC/SpeechBubble/NPCspeechcontainer/NPCtxt" unique_id=1780728875]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_top = -3
+theme_override_constants/margin_right = -3
+theme_override_constants/margin_bottom = -3
+
+[node name="SpeechPortion" type="NinePatchRect" parent="NPCs/NPC/SpeechBubble/NPCspeechcontainer/NPCtxt/TextBoxFitsText" unique_id=958102002]
+z_index = -1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("25_wmwss")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="DashPortion" type="Sprite2D" parent="NPCs/NPC/SpeechBubble" unique_id=1073674570]
+position = Vector2(-20.5, -39.00003)
+scale = Vector2(1, 0.99999994)
+texture = ExtResource("26_nw5cc")
+offset = Vector2(20, 43)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/NPC" unique_id=178363535]
+libraries/ = SubResource("AnimationLibrary_hutgc")
 
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding/MovementControlButton2" to="CanvasLayer/Playing UI" method="_on_movement_control_button_2_pressed"]
 [connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer/Zoom Slider" to="CanvasLayer/Playing UI" method="_on_zoom_slider_drag_ended"]
