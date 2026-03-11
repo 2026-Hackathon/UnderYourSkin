@@ -94,7 +94,7 @@ func _input(event: InputEvent):
 				#get final pos of mouse
 				var drag_end = get_viewport().get_mouse_position()
 							#Checks if mouse over pause button
-				if drag_end.x >= 20 and drag_end.x <= 100 and drag_end.y >=20 and drag_end <=100:
+				if drag_end.x >= 20 and drag_end.x <= 100 and drag_end.y >=20 and drag_end.y <=100:
 					ends_on_pause = true
 					bullet_time_active = false
 				else:
