@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 
 func _on_playbutton_pressed() -> void:
 	#play button opens level scene
-	get_tree().change_scene_to_file("res://Scenes/TempScene.tscn")
+	get_tree().change_scene_to_file("res://Scenes/GameLevel.tscn")
 
 
 func _on_option_button_pressed() -> void:
