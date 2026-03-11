@@ -3,10 +3,15 @@
 [ext_resource type="Script" uid="uid://d5svlyrqymyl" path="res://Scripts/tempmenu.gd" id="1_8saeu"]
 [ext_resource type="Texture2D" uid="uid://k7pek1tap2rd" path="res://Sprites/Menu/menubg playerstaringwistfully full.png" id="2_ghw46"]
 [ext_resource type="FontFile" uid="uid://cixymyqw8o5em" path="res://Sprites/Fonts/KiriFont.otf" id="3_df05h"]
-[ext_resource type="FontFile" uid="uid://ctove3hqorgxy" path="res://Sprites/Fonts/ArchitectsDaughter.ttf" id="4_8um5k"]
 [ext_resource type="Texture2D" uid="uid://u1dlfds5hji6" path="res://Sprites/NPC/smallNPCbody.png" id="4_df05h"]
+[ext_resource type="FontFile" uid="uid://boqonhfoth18" path="res://Sprites/Fonts/ConnectionBold.otf" id="4_xim88"]
 [ext_resource type="Texture2D" uid="uid://bnnj8ygll7peo" path="res://Sprites/NPC/LargeNPCbody.png" id="5_8um5k"]
 [ext_resource type="Texture2D" uid="uid://clukj16ec7w5i" path="res://Sprites/Menu/BackRoundArrow.png" id="7_xim88"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xim88"]
+font = ExtResource("3_df05h")
+font_size = 70
+font_color = Color(0.77, 0.16940002, 0.16940002, 1)
 
 [node name="Control" type="Control" unique_id=2073366076]
 layout_mode = 3
@@ -46,6 +51,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_df05h")
 theme_override_font_sizes/font_size = 70
 text = "Under Your Skin"
+label_settings = SubResource("LabelSettings_xim88")
 
 [node name="MainMenu" type="CenterContainer" parent="." unique_id=1710377552]
 layout_mode = 1
@@ -68,14 +74,14 @@ theme_override_constants/separation = 20
 [node name="PlayButton" type="Button" parent="MainMenu/MainMenuPadding/MainMenuList" unique_id=1151890302]
 custom_minimum_size = Vector2(400, 175)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_8um5k")
+theme_override_fonts/font = ExtResource("4_xim88")
 theme_override_font_sizes/font_size = 100
 text = "Play "
 
 [node name="OptionButton" type="Button" parent="MainMenu/MainMenuPadding/MainMenuList" unique_id=1999114720]
 custom_minimum_size = Vector2(400, 175)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_8um5k")
+theme_override_fonts/font = ExtResource("4_xim88")
 theme_override_font_sizes/font_size = 100
 text = "Option "
 
@@ -99,7 +105,7 @@ theme_override_constants/separation = 60
 
 [node name="MovementControlButton" type="Button" parent="OptionMenu/OptionMenuPadding/OptionList" unique_id=846897533]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_8um5k")
+theme_override_fonts/font = ExtResource("4_xim88")
 theme_override_font_sizes/font_size = 55
 text = "Movement Control:
 Drag Back"
@@ -112,7 +118,7 @@ theme_override_constants/separation = 5
 
 [node name="ZoomTxt" type="Label" parent="OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer" unique_id=459809340]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_8um5k")
+theme_override_fonts/font = ExtResource("4_xim88")
 theme_override_font_sizes/font_size = 55
 text = "Camera Zoom"
 

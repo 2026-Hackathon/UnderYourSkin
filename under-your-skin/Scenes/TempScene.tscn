@@ -16,13 +16,14 @@
 [ext_resource type="Script" uid="uid://308ltx5i65p0" path="res://Scripts/npc.gd" id="12_5g3cw"]
 [ext_resource type="Texture2D" uid="uid://b3obs7ky2tqse" path="res://Sprites/NPC/NPCSprites.png" id="12_6yf3a"]
 [ext_resource type="Texture2D" uid="uid://5p2iff7sgtqs" path="res://Sprites/BG/black.png" id="12_wx42t"]
-[ext_resource type="FontFile" uid="uid://ctove3hqorgxy" path="res://Sprites/Fonts/ArchitectsDaughter.ttf" id="13_sqq3p"]
+[ext_resource type="FontFile" uid="uid://boqonhfoth18" path="res://Sprites/Fonts/ConnectionBold.otf" id="13_kxloq"]
 [ext_resource type="Texture2D" uid="uid://bi823xeglxma1" path="res://Sprites/NPC/NPCCanTalk.png" id="14_1atgb"]
 [ext_resource type="Texture2D" uid="uid://u1dlfds5hji6" path="res://Sprites/NPC/smallNPCbody.png" id="14_26rh0"]
 [ext_resource type="Script" path="res://Scripts/exclaim.gd" id="15_1atgb"]
 [ext_resource type="Texture2D" uid="uid://bnnj8ygll7peo" path="res://Sprites/NPC/LargeNPCbody.png" id="15_5jugq"]
 [ext_resource type="Script" uid="uid://dafm3cdq3lyux" path="res://Scripts/speech_bubble.gd" id="15_wx42t"]
 [ext_resource type="Texture2D" uid="uid://d0mblpv5r05kv" path="res://Sprites/NPC/Speechbubble9patch.png" id="23_ehip6"]
+[ext_resource type="FontFile" uid="uid://dq3x6wi5ad5v1" path="res://Sprites/Fonts/Poco.ttf" id="23_kxloq"]
 [ext_resource type="Texture2D" uid="uid://cxcqtnv3h6dej" path="res://Sprites/NPC/SpeechbubblebottomBLACK.png" id="24_kxloq"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
@@ -2185,26 +2186,9 @@ sources/1 = SubResource("TileSetAtlasSource_ipktv")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6qut"]
 size = Vector2(54, 35)
 
-[sub_resource type="FontFile" id="FontFile_ehip6"]
-cache/0/variation_coordinates = {}
-cache/0/face_index = 0
-cache/0/embolden = 0.0
-cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
-cache/0/spacing_top = 0
-cache/0/spacing_bottom = 0
-cache/0/spacing_space = 0
-cache/0/spacing_glyph = 0
-cache/0/baseline_offset = 0.0
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-
-[sub_resource type="SystemFont" id="SystemFont_5g3cw"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_1atgb"]
-font = SubResource("SystemFont_5g3cw")
+font = ExtResource("23_kxloq")
+font_size = 20
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_5g3cw"]
@@ -2387,6 +2371,7 @@ offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/separation = 25
 
 [node name="MovementControlPadding" type="MarginContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=1820590543]
 layout_mode = 2
@@ -2395,7 +2380,7 @@ mouse_filter = 2
 [node name="MovementControlButton2" type="Button" parent="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding" unique_id=1969122114]
 visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("13_sqq3p")
+theme_override_fonts/font = ExtResource("13_kxloq")
 theme_override_font_sizes/font_size = 55
 text = "Movement Control:
 Drag Back"
@@ -2408,7 +2393,7 @@ mouse_filter = 2
 [node name="ZoomTxt" type="Label" parent="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer" unique_id=1529401432]
 visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("13_sqq3p")
+theme_override_fonts/font = ExtResource("13_kxloq")
 theme_override_font_sizes/font_size = 55
 text = "Camera Zoom"
 
@@ -2475,7 +2460,7 @@ offset = Vector2(8, 8)
 z_index = -1
 position = Vector2(-105, 552)
 script = ExtResource("12_5g3cw")
-lines = Array[String](["Hey there!", "Theres an Infection Upwards.", "Sort it Out."])
+lines = Array[String](["Hey there!", "Theres an infection Upwards.", "Sort it out."])
 
 [node name="NPC sprite" type="Sprite2D" parent="NPCs/NPC" unique_id=1949266358]
 position = Vector2(-1.013279e-06, -1.335144e-05)
@@ -2527,7 +2512,7 @@ z_index = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
-theme_override_fonts/font = SubResource("FontFile_ehip6")
+theme_override_fonts/font = ExtResource("23_kxloq")
 text = "temp"
 label_settings = SubResource("LabelSettings_1atgb")
 text_direction = 1
@@ -2541,7 +2526,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = -3
-theme_override_constants/margin_top = -8
+theme_override_constants/margin_top = -3
 theme_override_constants/margin_right = -3
 theme_override_constants/margin_bottom = -3
 
