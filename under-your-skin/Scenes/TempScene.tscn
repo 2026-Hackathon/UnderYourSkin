@@ -1,11 +1,11 @@
-[gd_scene format=4 uid="uid://osbvn7lonyr7"]
+[gd_scene format=4 uid="uid://rgddcoetqvsb"]
 
 [ext_resource type="Texture2D" uid="uid://baw1axa3xd4oj" path="res://Sprites/TileMaps/BoneTiles.png" id="1_usju5"]
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_wjk0x"]
 [ext_resource type="Script" uid="uid://c6wlpuwr2s5d8" path="res://Scripts/organs.gd" id="3_5g3cw"]
 [ext_resource type="Texture2D" uid="uid://tpwgdhxaktjt" path="res://Sprites/TileMaps/TilesetInfection.png" id="3_u5xdt"]
 [ext_resource type="Texture2D" uid="uid://dlt283a5xm1co" path="res://Sprites/Player/PlayerSpriteSheet.png" id="3_yc8q5"]
-[ext_resource type="Script" path="res://Scenes/camera_2d.gd" id="4_ipktv"]
+[ext_resource type="Script" uid="uid://cp0h2umo4alrr" path="res://Scenes/camera_2d.gd" id="4_ipktv"]
 [ext_resource type="Texture2D" uid="uid://gnvuq8r8tb4j" path="res://Sprites/TileMaps/Houses.png" id="4_kh015"]
 [ext_resource type="Texture2D" uid="uid://ctdkmrjnck5cd" path="res://Sprites/BG/DitheredBoneBG.png" id="6_alasw"]
 [ext_resource type="Texture2D" uid="uid://cts7cfm7rdryk" path="res://Sprites/TileMaps/TileSetSlippery.png" id="6_r6qut"]
@@ -16,9 +16,12 @@
 [ext_resource type="Script" uid="uid://308ltx5i65p0" path="res://Scripts/npc.gd" id="12_5g3cw"]
 [ext_resource type="Texture2D" uid="uid://b3obs7ky2tqse" path="res://Sprites/NPC/NPCSprites.png" id="12_6yf3a"]
 [ext_resource type="Texture2D" uid="uid://5p2iff7sgtqs" path="res://Sprites/BG/black.png" id="12_wx42t"]
+[ext_resource type="FontFile" uid="uid://ctove3hqorgxy" path="res://Sprites/Fonts/ArchitectsDaughter.ttf" id="13_sqq3p"]
 [ext_resource type="Texture2D" uid="uid://bi823xeglxma1" path="res://Sprites/NPC/NPCCanTalk.png" id="14_1atgb"]
-[ext_resource type="Script" uid="uid://ds101cmk7pi4i" path="res://Scripts/exclaim.gd" id="15_1atgb"]
-[ext_resource type="Script" uid="uid://dafm3cdq3lyux" path="res://Scripts/speech_bubble.gd" id="15_wx42t"]
+[ext_resource type="Texture2D" uid="uid://u1dlfds5hji6" path="res://Sprites/NPC/smallNPCbody.png" id="14_26rh0"]
+[ext_resource type="Script" path="res://Scripts/exclaim.gd" id="15_1atgb"]
+[ext_resource type="Texture2D" uid="uid://bnnj8ygll7peo" path="res://Sprites/NPC/LargeNPCbody.png" id="15_5jugq"]
+[ext_resource type="Script" path="res://Scripts/speech_bubble.gd" id="15_wx42t"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -2373,6 +2376,7 @@ mouse_filter = 2
 [node name="MovementControlButton2" type="Button" parent="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding" unique_id=1969122114]
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("13_sqq3p")
 theme_override_font_sizes/font_size = 55
 text = "Movement Control:
 Drag Back"
@@ -2385,12 +2389,15 @@ mouse_filter = 2
 [node name="ZoomTxt" type="Label" parent="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer" unique_id=1529401432]
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("13_sqq3p")
 theme_override_font_sizes/font_size = 55
 text = "Camera Zoom"
 
 [node name="Zoom Slider" type="HSlider" parent="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer" unique_id=2069354006]
 visible = false
 layout_mode = 2
+theme_override_icons/grabber = ExtResource("14_26rh0")
+theme_override_icons/grabber_highlight = ExtResource("15_5jugq")
 min_value = 1.0
 value = 2.0
 
