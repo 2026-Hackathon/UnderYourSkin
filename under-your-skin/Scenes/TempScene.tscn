@@ -21,7 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://u1dlfds5hji6" path="res://Sprites/NPC/smallNPCbody.png" id="14_26rh0"]
 [ext_resource type="Script" path="res://Scripts/exclaim.gd" id="15_1atgb"]
 [ext_resource type="Texture2D" uid="uid://bnnj8ygll7peo" path="res://Sprites/NPC/LargeNPCbody.png" id="15_5jugq"]
-[ext_resource type="Script" path="res://Scripts/speech_bubble.gd" id="15_wx42t"]
+[ext_resource type="Script" uid="uid://dafm3cdq3lyux" path="res://Scripts/speech_bubble.gd" id="15_wx42t"]
+[ext_resource type="Texture2D" uid="uid://d0mblpv5r05kv" path="res://Sprites/NPC/Speechbubble9patch.png" id="23_ehip6"]
+[ext_resource type="Texture2D" uid="uid://cxcqtnv3h6dej" path="res://Sprites/NPC/SpeechbubblebottomBLACK.png" id="24_kxloq"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -2183,17 +2185,34 @@ sources/1 = SubResource("TileSetAtlasSource_ipktv")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6qut"]
 size = Vector2(54, 35)
 
+[sub_resource type="FontFile" id="FontFile_ehip6"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
 [sub_resource type="SystemFont" id="SystemFont_5g3cw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1atgb"]
 font = SubResource("SystemFont_5g3cw")
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_5g3cw"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("NPC sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -2210,7 +2229,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("NPC sprite:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -2458,7 +2477,7 @@ position = Vector2(-105, 552)
 script = ExtResource("12_5g3cw")
 lines = Array[String](["Hey there!", "Theres an Infection Upwards.", "Sort it Out."])
 
-[node name="Sprite2D" type="Sprite2D" parent="NPCs/NPC" unique_id=1949266358]
+[node name="NPC sprite" type="Sprite2D" parent="NPCs/NPC" unique_id=1949266358]
 position = Vector2(-1.013279e-06, -1.335144e-05)
 scale = Vector2(1.125, 0.9375)
 texture = ExtResource("12_6yf3a")
@@ -2487,15 +2506,60 @@ script = ExtResource("15_1atgb")
 [node name="SpeechBubble" type="Node2D" parent="NPCs/NPC" unique_id=1707550348]
 position = Vector2(0, -11)
 script = ExtResource("15_wx42t")
+offset = Vector2(0, -15)
 
-[node name="Label" type="Label" parent="NPCs/NPC/SpeechBubble" unique_id=432027450]
-offset_left = -20.0
-offset_top = -16.0
-offset_right = 20.0
-offset_bottom = 7.0
+[node name="NPCspeechcontainer" type="MarginContainer" parent="NPCs/NPC/SpeechBubble" unique_id=1651599488]
+custom_minimum_size = Vector2(30, 30)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -30.0
+offset_right = 15.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NPCtxt" type="Label" parent="NPCs/NPC/SpeechBubble/NPCspeechcontainer" unique_id=432027450]
+z_index = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+theme_override_fonts/font = SubResource("FontFile_ehip6")
+text = "temp"
 label_settings = SubResource("LabelSettings_1atgb")
 text_direction = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="TextBoxFitsText" type="MarginContainer" parent="NPCs/NPC/SpeechBubble/NPCspeechcontainer/NPCtxt" unique_id=563282247]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -3
+theme_override_constants/margin_top = -8
+theme_override_constants/margin_right = -3
+theme_override_constants/margin_bottom = -3
+
+[node name="SpeechPortion" type="NinePatchRect" parent="NPCs/NPC/SpeechBubble/NPCspeechcontainer/NPCtxt/TextBoxFitsText" unique_id=363320131]
+z_index = -1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("23_ehip6")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="DashPortion" type="Sprite2D" parent="NPCs/NPC/SpeechBubble" unique_id=399512405]
+position = Vector2(-20.5, -39.00003)
+scale = Vector2(1, 0.99999994)
+texture = ExtResource("24_kxloq")
+offset = Vector2(20, 43)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/NPC" unique_id=1961614127]
 libraries/ = SubResource("AnimationLibrary_wx42t")

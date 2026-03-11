@@ -9,7 +9,8 @@ func _ready() -> void:
 	visible = false
 
 func show_text(text: String) -> void:
-	label.text = text
+	var NPCtextnode = get_node("NPCspeechcontainer/NPCtxt")
+	NPCtextnode.text = text
 	is_showing = true
 	visible = true
 
