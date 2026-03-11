@@ -47,6 +47,9 @@ var original_scale: Vector2
 var eye_target_offset: Vector2 = Vector2.ZERO
 var eye_current_offset: Vector2 = Vector2.ZERO
 
+#to prevent pause button input eating
+var starts_on_pause: bool = false
+var ends_on_pause: bool = false
 #For sticky platforms
 var is_on_sticky: bool = false
 
@@ -63,25 +66,45 @@ func _input(event: InputEvent):
 	if event is InputEventMouseButton:
 		#LeftMouse Events
 		if event.button_index == MOUSE_BUTTON_LEFT:	
-			#On Press Get Starting Position
-			if event.pressed  and jump_count > 0 and not Globals.is_frozen:
+
+			#On Press Check if over pause
+			if event.pressed:
+							#gets starting pos
 				drag_start = get_viewport().get_mouse_position()
-				is_dragging = true
+			#Checks if mouse over pause button
+				if drag_start.x >= 20 and drag_start.x <= 100 and drag_start.y >=20 and drag_start.y <=100:
+					starts_on_pause = true
+				else:
+					starts_on_pause = false
+					
+				if jump_count > 0 and not Globals.is_frozen:
+
+					is_dragging = true
 				
-				#Bullet Time Active
-				bullet_time_active = true
-				Globals.current_time_scale = bullet_time_scale
-				Engine.time_scale = Globals.current_time_scale
+					#Bullet Time Active
+					bullet_time_active = true
+					Globals.current_time_scale = bullet_time_scale
+					Engine.time_scale = Globals.current_time_scale
 				
-				#Increase Player Size for Visual Cue
-				scale = original_scale * 1.1
-				animation_player.play("organs_On_Jump")
+					#Increase Player Size for Visual Cue
+					scale = original_scale * 1.1
+					animation_player.play("organs_On_Jump")
 			#On Release
 			else:
+				#get final pos of mouse
+				var drag_end = get_viewport().get_mouse_position()
+							#Checks if mouse over pause button
+				if drag_end.x >= 20 and drag_end.x <= 100 and drag_end.y >=20 and drag_end <=100:
+					ends_on_pause = true
+					bullet_time_active = false
+				else:
+					ends_on_pause = false
 				#If Dragging should always true here
 				#but here for Validation otherwise
-				if is_dragging:
-					var drag_end = get_viewport().get_mouse_position()
+				print(starts_on_pause)
+				print(ends_on_pause)
+				if is_dragging and not (ends_on_pause and starts_on_pause ) and not Globals.is_frozen:
+		
 					var drag_vec = (drag_end - drag_start).limit_length(max_drag_distance) * -Globals.MovementDirection
 					
 					velocity = (velocity*momentum_conserve)-drag_vec.normalized() * drag_vec.length() / 10.0 * fling_power
