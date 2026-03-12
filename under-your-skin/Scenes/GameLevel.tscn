@@ -3029,7 +3029,6 @@ texture = ExtResource("13_2m1y7")
 offset = Vector2(8, 8)
 
 [node name="BackGround" type="Node2D" parent="." unique_id=126745232]
-visible = false
 
 [node name="BoneBgLayer" type="Parallax2D" parent="BackGround" unique_id=311906046]
 scroll_scale = Vector2(0.05, 0.05)
