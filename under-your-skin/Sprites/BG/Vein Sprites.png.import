@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjdfu4ex2ejnm"
-path="res://.godot/imported/Veine bottom 2.png-2662e303f68277b4d43185de4679be50.ctex"
+uid="uid://djh0bkq2nebue"
+path="res://.godot/imported/Vein Sprites.png-4431108b77b0b20eba3def12dc18ad58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/BG/Veine bottom 2.png"
-dest_files=["res://.godot/imported/Veine bottom 2.png-2662e303f68277b4d43185de4679be50.ctex"]
+source_file="res://Sprites/BG/Vein Sprites.png"
+dest_files=["res://.godot/imported/Vein Sprites.png-4431108b77b0b20eba3def12dc18ad58.ctex"]
 
 [params]
 
