@@ -3111,10 +3111,12 @@ region_enabled = true
 region_rect = Rect2(38, 23, 7, 4)
 
 [node name="TalkArea" type="Area2D" parent="NPCs/NPC" unique_id=1869115796]
+visible = false
 rotation = -3.1415927
 priority = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC/TalkArea" unique_id=583650975]
+visible = false
 shape = SubResource("RectangleShape2D_vf3tl")
 debug_color = Color(0, 0.52790433, 0.998395, 0.41960785)
 
