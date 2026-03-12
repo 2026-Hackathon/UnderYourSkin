@@ -21,7 +21,7 @@
 [ext_resource type="Script" uid="uid://308ltx5i65p0" path="res://Scripts/npc.gd" id="19_5ddkv"]
 [ext_resource type="Texture2D" uid="uid://b3obs7ky2tqse" path="res://Sprites/NPC/NPCSprites.png" id="20_qtxl6"]
 [ext_resource type="Texture2D" uid="uid://bi823xeglxma1" path="res://Sprites/NPC/NPCCanTalk.png" id="21_rp1ko"]
-[ext_resource type="Script" path="res://Scripts/exclaim.gd" id="22_a7rsx"]
+[ext_resource type="Script" uid="uid://ds101cmk7pi4i" path="res://Scripts/exclaim.gd" id="22_a7rsx"]
 [ext_resource type="Script" uid="uid://dafm3cdq3lyux" path="res://Scripts/speech_bubble.gd" id="23_ysfch"]
 [ext_resource type="FontFile" uid="uid://dq3x6wi5ad5v1" path="res://Sprites/Fonts/Poco.ttf" id="24_i33fa"]
 [ext_resource type="Texture2D" uid="uid://d0mblpv5r05kv" path="res://Sprites/NPC/Speechbubble9patch.png" id="25_wmwss"]
@@ -2814,7 +2814,7 @@ sources/1 = SubResource("TileSetAtlasSource_mq660")
 sources/3 = SubResource("TileSetAtlasSource_x4g3l")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vf3tl"]
-size = Vector2(54, 35)
+size = Vector2(208, 35)
 
 [sub_resource type="LabelSettings" id="LabelSettings_px2bc"]
 font = ExtResource("24_i33fa")
@@ -2982,6 +2982,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -3027,6 +3029,7 @@ texture = ExtResource("13_2m1y7")
 offset = Vector2(8, 8)
 
 [node name="BackGround" type="Node2D" parent="." unique_id=126745232]
+visible = false
 
 [node name="BoneBgLayer" type="Parallax2D" parent="BackGround" unique_id=311906046]
 scroll_scale = Vector2(0.05, 0.05)
@@ -3108,7 +3111,8 @@ region_enabled = true
 region_rect = Rect2(38, 23, 7, 4)
 
 [node name="TalkArea" type="Area2D" parent="NPCs/NPC" unique_id=1869115796]
-scale = Vector2(4, 4)
+rotation = -3.1415927
+priority = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/NPC/TalkArea" unique_id=583650975]
 shape = SubResource("RectangleShape2D_vf3tl")
