@@ -48,3 +48,12 @@ func _on_movement_control_button_pressed() -> void:
 func _on_zoom_slider_drag_ended(value_changed: bool) -> void:
 	var slidernode = get_node("OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer/Zoom Slider")
 	Globals.game_zoom = (slidernode.value / 25) + 1
+
+
+func _on_lighting_button_pressed() -> void:
+	Globals.lights_on = not Globals.lights_on
+	#update text
+	if Globals.lights_on == false:
+		$OptionMenu/OptionMenuPadding/OptionList/LightingButton.text = "Lighting: Off"
+	else:
+		$OptionMenu/OptionMenuPadding/OptionList/LightingButton.text = "Lighting: On"

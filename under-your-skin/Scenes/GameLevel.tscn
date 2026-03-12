@@ -21,11 +21,25 @@
 [ext_resource type="Script" uid="uid://308ltx5i65p0" path="res://Scripts/npc.gd" id="19_5ddkv"]
 [ext_resource type="Texture2D" uid="uid://b3obs7ky2tqse" path="res://Sprites/NPC/NPCSprites.png" id="20_qtxl6"]
 [ext_resource type="Texture2D" uid="uid://bi823xeglxma1" path="res://Sprites/NPC/NPCCanTalk.png" id="21_rp1ko"]
-[ext_resource type="Script" uid="uid://ds101cmk7pi4i" path="res://Scripts/exclaim.gd" id="22_a7rsx"]
+[ext_resource type="Script" path="res://Scripts/exclaim.gd" id="22_a7rsx"]
 [ext_resource type="Script" uid="uid://dafm3cdq3lyux" path="res://Scripts/speech_bubble.gd" id="23_ysfch"]
 [ext_resource type="FontFile" uid="uid://dq3x6wi5ad5v1" path="res://Sprites/Fonts/Poco.ttf" id="24_i33fa"]
 [ext_resource type="Texture2D" uid="uid://d0mblpv5r05kv" path="res://Sprites/NPC/Speechbubble9patch.png" id="25_wmwss"]
 [ext_resource type="Texture2D" uid="uid://cxcqtnv3h6dej" path="res://Sprites/NPC/SpeechbubblebottomBLACK.png" id="26_nw5cc"]
+[ext_resource type="Script" uid="uid://bbtlo0p5i51g1" path="res://Scenes/lights.gd" id="27_qtxl6"]
+
+[sub_resource type="GDScript" id="GDScript_rp1ko"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -3318,6 +3332,7 @@ fill_from = Vector2(0.5641026, 0)
 fill_to = Vector2(0.5897436, 1)
 
 [node name="Node2D" type="Node2D" unique_id=1536282745]
+script = SubResource("GDScript_rp1ko")
 
 [node name="PlayerCharacter" type="CharacterBody2D" parent="." unique_id=1102883355 groups=["player"]]
 position = Vector2(-69, -625)
@@ -3375,7 +3390,6 @@ tile_set = SubResource("TileSet_8vsrr")
 navigation_enabled = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=471155604]
-visible = false
 
 [node name="Playing UI" type="Control" parent="CanvasLayer" unique_id=831658685]
 layout_mode = 3
@@ -3435,6 +3449,14 @@ theme_override_icons/grabber = ExtResource("11_e0o5i")
 theme_override_icons/grabber_highlight = ExtResource("12_1y6uj")
 min_value = 1.0
 value = 2.0
+
+[node name="LightingButton" type="Button" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=74763402]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_0qbk5")
+theme_override_font_sizes/font_size = 55
+text = "Lighting: On"
+alignment = 0
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/Playing UI" unique_id=1608871464]
 layout_mode = 1
@@ -3636,6 +3658,7 @@ libraries/ = SubResource("AnimationLibrary_hutgc")
 [node name="Lights" type="Node2D" parent="." unique_id=2131968259]
 position = Vector2(-149.00006, 2191)
 scale = Vector2(15.078127, 9.140627)
+script = ExtResource("27_qtxl6")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Lights" unique_id=816807156]
 position = Vector2(-5.769943, -238.27686)
@@ -3662,4 +3685,5 @@ texture = SubResource("GradientTexture2D_qtxl6")
 
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding/MovementControlButton2" to="CanvasLayer/Playing UI" method="_on_movement_control_button_2_pressed"]
 [connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer/Zoom Slider" to="CanvasLayer/Playing UI" method="_on_zoom_slider_drag_ended"]
+[connection signal="pressed" from="CanvasLayer/Playing UI/PauseMenuList/LightingButton" to="CanvasLayer/Playing UI" method="_on_lighting_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseButtonPadding/PauseButton" to="CanvasLayer/Playing UI" method="_on_pause_button_pressed"]
