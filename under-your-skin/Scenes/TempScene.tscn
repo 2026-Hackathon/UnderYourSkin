@@ -25,6 +25,8 @@
 [ext_resource type="Texture2D" uid="uid://d0mblpv5r05kv" path="res://Sprites/NPC/Speechbubble9patch.png" id="23_ehip6"]
 [ext_resource type="FontFile" uid="uid://dq3x6wi5ad5v1" path="res://Sprites/Fonts/Poco.ttf" id="23_kxloq"]
 [ext_resource type="Texture2D" uid="uid://cxcqtnv3h6dej" path="res://Sprites/NPC/SpeechbubblebottomBLACK.png" id="24_kxloq"]
+[ext_resource type="Texture2D" uid="uid://cn0d8r103g3qs" path="res://Sprites/BG/Bloodcirclereallayers.png" id="26_jcmjh"]
+[ext_resource type="Texture2D" uid="uid://blw32owwx4p0e" path="res://Sprites/BG/blooodeye.png" id="27_8c5po"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -2548,6 +2550,20 @@ offset = Vector2(20, 43)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/NPC" unique_id=1961614127]
 libraries/ = SubResource("AnimationLibrary_wx42t")
+
+[node name="TESTSHI" type="Node2D" parent="." unique_id=251306662]
+
+[node name="Sprite2D" type="Sprite2D" parent="TESTSHI" unique_id=1324450814]
+position = Vector2(966, -1047)
+texture = ExtResource("26_jcmjh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="TESTSHI" unique_id=1281295202]
+position = Vector2(942, -1007)
+texture = ExtResource("26_jcmjh")
+
+[node name="Sprite2D3" type="Sprite2D" parent="TESTSHI" unique_id=569663048]
+position = Vector2(969, -1000)
+texture = ExtResource("27_8c5po")
 
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding/MovementControlButton2" to="CanvasLayer/Playing UI" method="_on_movement_control_button_2_pressed"]
 [connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer/Zoom Slider" to="CanvasLayer/Playing UI" method="_on_zoom_slider_drag_ended"]

@@ -6,12 +6,19 @@ extends Node2D
 	"Be careful out there.",
 	"This place is dangerous."
 ]
+@export var lines2: Array[String] = [
+	"Listen to me now",
+	"Whatever happens...",
+	"Dont let it get UNDER YOUR SKIN",
+	"It'll be alright"
+]
 
 @onready var speech_bubble = $SpeechBubble
 @onready var exclaim = $Exclaim
 @onready var talk_area: Area2D = $TalkArea
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var eyes: Node2D = $Eyes
+
 
 @export var eye_max_offset: float = 3
 @export var eye_follow_speed: float = 10.0
@@ -20,6 +27,7 @@ extends Node2D
 var player: Node2D
 var player_in_range := false
 var current_line_index := 0
+var currentlines: int = 1
 
 var player_pos: Vector2 = Vector2.ZERO
 var eye_target_offset: Vector2 = Vector2.ZERO
@@ -95,12 +103,27 @@ func _input(event: InputEvent) -> void:
 				_show_next_line()
 
 func _show_next_line() -> void:
-	if lines.is_empty():
-		return
+	if currentlines == 1:
+		if lines.is_empty():
+			return
+			# Hide exclamation as soon as they start talking
+		exclaim.visible = false  # or exclaim.hide_with_fade() if you want fade
 	
-	# Hide exclamation as soon as they start talking
-	exclaim.visible = false  # or exclaim.hide_with_fade() if you want fade
+		var text := lines[current_line_index]
+		speech_bubble.show_text(text)
+		current_line_index = (current_line_index + 1) % lines.size()
+	else:
+		if lines2.is_empty():
+			return
+						# Hide exclamation as soon as they start talking
+		exclaim.visible = false  # or exclaim.hide_with_fade() if you want fade
+			
+		var text := lines2[current_line_index]
+		speech_bubble.show_text(text)
+		current_line_index = (current_line_index + 1) % lines2.size()
+			
+
+func switchlines():
+
+	currentlines = 2
 	
-	var text := lines[current_line_index]
-	speech_bubble.show_text(text)
-	current_line_index = (current_line_index + 1) % lines.size()
