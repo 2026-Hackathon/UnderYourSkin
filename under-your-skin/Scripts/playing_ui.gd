@@ -53,7 +53,7 @@ func _on_movement_control_button_2_pressed() -> void:
 			Drag Back"
 
 
-func _on_zoom_slider_drag_ended(value_changed: bool) -> void:
+func _on_zoom_slider_drag_ended(_value_changed: bool) -> void:
 	#change zoom and update cam
 	var zoomslidernode = get_node("PauseMenuList/ZoomControlContainer/Zoom Slider")
 	var camnode = get_node("/root/Node2D/PlayerCharacter/Eyes/Camera2D")

@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var label: Label = $Label
-
 @export var offset: Vector2 = Vector2(0, -24)
 var is_showing := false
 

@@ -53,6 +53,14 @@ var ends_on_pause: bool = false
 #For sticky platforms
 var is_on_sticky: bool = false
 
+
+
+#Sounds
+@onready var jump_sfx: AudioStreamPlayer2D = get_node("PlayerSounds/JumpSFX")
+@onready var air_jump_sfx: AudioStreamPlayer2D = get_node("PlayerSounds/AirJumpSFX")
+@onready var bounce_sfx: AudioStreamPlayer2D = get_node("PlayerSounds/BounceSFX")
+
+
 #Initilaize some Vals
 #Initilaize Player Size Needed so when scale is changed player remains Visible
 func _ready():
@@ -106,8 +114,17 @@ func _input(event: InputEvent):
 				if is_dragging and not (ends_on_pause and starts_on_pause ) and not Globals.is_frozen:
 		
 					var drag_vec = (drag_end - drag_start).limit_length(max_drag_distance) * -Globals.MovementDirection
-					
 					velocity = (velocity*momentum_conserve)-drag_vec.normalized() * drag_vec.length() / 10.0 * fling_power
+					
+					
+					#SOUNDS
+					if jump_count == max_jumps:           # first jump (from ground or sticky)
+						jump_sfx.play()
+					else:                                 # mid‑air jump
+						air_jump_sfx.play()
+					
+					
+					
 					if jump_count != max_jumps:
 						var organnode = get_node("PlayerSprite/Organs")
 						organnode.explosion()
@@ -282,6 +299,9 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 					else:
 						continue
 				collided = true
+				# PLAY BOUNCE SOUND (only for strong hits)
+				if abs(speed_into_surface) > 150.0:
+					bounce_sfx.play()
 				
 				#Uncomment for Debug
 				print("BOUNCE! Normal: ", normal, " Speed into surface: ", speed_into_surface, "Bounce:", bounce_value)

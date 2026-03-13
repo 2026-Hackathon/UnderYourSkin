@@ -7,7 +7,7 @@ var bounce_speed: float = 2.0
 var start_y
 func _ready() -> void:
 	start_y = position.y
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !visible:
 		return
 

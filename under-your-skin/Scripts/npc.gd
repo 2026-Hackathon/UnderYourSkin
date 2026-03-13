@@ -43,11 +43,11 @@ func _ready() -> void:
 	talk_area.body_entered.connect(_on_body_entered)
 	talk_area.body_exited.connect(_on_body_exited)
 
-func _on_body_entered(body: Node) -> void:
+func _on_body_entered(_body: Node) -> void:
 	# Area2D can be kept for visual feedback only
 	pass
 
-func _on_body_exited(body: Node) -> void:
+func _on_body_exited(_body: Node) -> void:
 	# Covered by distance check below
 	pass
 

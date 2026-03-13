@@ -39,9 +39,15 @@ func _ready() -> void:
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 "
+
+[sub_resource type="AudioStream" id="AudioStream_a7rsx"]
+
+[sub_resource type="AudioStream" id="AudioStream_ysfch"]
+
+[sub_resource type="AudioStream" id="AudioStream_i33fa"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -4524,12 +4530,27 @@ script = ExtResource("1_mrcb1")
 max_drag_distance = 101.0
 max_deform_scale = Vector2(0.98, 0.98)
 
+[node name="PlayerSounds" type="Node" parent="PlayerCharacter" unique_id=520324809]
+
+[node name="JumpSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=760347540]
+stream = SubResource("AudioStream_a7rsx")
+
+[node name="AirJumpSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=788382937]
+stream = SubResource("AudioStream_ysfch")
+
+[node name="BounceSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=1892062417]
+stream = SubResource("AudioStream_i33fa")
+
 [node name="PlayerSprite" type="Sprite2D" parent="PlayerCharacter" unique_id=2050584217]
 texture_filter = 3
 position = Vector2(7.6293945e-06, 0)
 texture = ExtResource("2_boklw")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="PlayerCharacter/PlayerSprite" unique_id=764523940]
+position = Vector2(-7.6293945e-06, 0)
+current = true
 
 [node name="Organs" type="Sprite2D" parent="PlayerCharacter/PlayerSprite" unique_id=1661951127]
 texture = ExtResource("2_boklw")

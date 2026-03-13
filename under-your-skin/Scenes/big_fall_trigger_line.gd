@@ -7,7 +7,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_body_entered(body):
@@ -24,5 +24,5 @@ func changenpctext():
 	var startnpcnode = get_node("../StartNPC")
 	startnpcnode.switchlines()
 	queue_free()
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	pass
