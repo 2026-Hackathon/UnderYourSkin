@@ -6,10 +6,6 @@ var playsprite = preload("res://Sprites/Menu/play button.png")
 func _ready() -> void:
 	$"PauseMenuList/ZoomControlContainer/Zoom Slider".value = (Globals.game_zoom -1) * 25
 		#update text
-	if Globals.lights_on == false:
-		$PauseMenuList/LightingButton.text = "Lighting: Off"
-	else:
-		$PauseMenuList/LightingButton.text = "Lighting: On"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
@@ -26,7 +22,7 @@ func _on_pause_button_pressed() -> void:
 	var movementcontrolbuttonnode = get_node("PauseMenuList/MovementControlPadding/MovementControlButton2")
 	var zoomtxtnode = get_node("PauseMenuList/ZoomControlContainer/ZoomTxt")
 	var zoomslidernode = get_node("PauseMenuList/ZoomControlContainer/Zoom Slider")
-	var lightingbuttonnode = get_node("PauseMenuList/LightingButton")
+	
 	
 	if Globals.is_frozen:
 		organnode.pause_explosion()
@@ -35,7 +31,7 @@ func _on_pause_button_pressed() -> void:
 		movementcontrolbuttonnode.show()
 		zoomtxtnode.show()
 		zoomslidernode.show()
-		lightingbuttonnode.show()
+
 	else:
 		organnode.resume_explosion()
 		pausebuttonspritenode.texture = pausesprite
@@ -43,7 +39,6 @@ func _on_pause_button_pressed() -> void:
 		movementcontrolbuttonnode.hide()
 		zoomtxtnode.hide()
 		zoomslidernode.hide()
-		lightingbuttonnode.hide()
 func _on_movement_control_button_2_pressed() -> void:
 			#-1 = Drag back, 1 = Drag Forward
 	Globals.MovementDirection = Globals.MovementDirection*-1
@@ -65,15 +60,3 @@ func _on_zoom_slider_drag_ended(value_changed: bool) -> void:
 	Globals.game_zoom = (zoomslidernode.value / 25) + 1
 	camnode.update_zoom()
 	
-
-
-func _on_lighting_button_pressed() -> void:
-	Globals.lights_on = not Globals.lights_on
-	#update text
-	if Globals.lights_on == false:
-		$PauseMenuList/LightingButton.text = "Lighting: Off"
-	else:
-		$PauseMenuList/LightingButton.text = "Lighting: On"
-	var scenenode = get_node("/root//Node2D/Lights")
-	print("try get func")
-	scenenode.update_lighting()
