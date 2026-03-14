@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cts7cfm7rdryk" path="res://Sprites/TileMaps/TileSetSlippery.png" id="6_e0o5i"]
 [ext_resource type="AudioStream" uid="uid://djg164nofhcbn" path="res://Sound Effects/Sounds/jump4.wav" id="6_ek61a"]
 [ext_resource type="Texture2D" uid="uid://tpwgdhxaktjt" path="res://Sprites/TileMaps/TilesetInfection.png" id="7_1y6uj"]
+[ext_resource type="AudioStream" uid="uid://bt2nwp34kvtph" path="res://Sound Effects/Sounds/explode.wav" id="7_hutgc"]
 [ext_resource type="Texture2D" uid="uid://d3gnxuyhdvn5v" path="res://Sprites/TileMaps/TilesetStciky.png" id="8_boklw"]
 [ext_resource type="Texture2D" uid="uid://ctdkmrjnck5cd" path="res://Sprites/BG/DitheredBoneBG.png" id="8_tmw4s"]
 [ext_resource type="Texture2D" uid="uid://c5xuq6ou16vjl" path="res://Sprites/BG/DitherFog2.jpg" id="9_188sh"]
@@ -4572,7 +4573,11 @@ stream = ExtResource("2_i33fa")
 volume_db = -0.2
 
 [node name="AirJumpSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=788382937]
-stream = ExtResource("2_i33fa")
+stream = ExtResource("7_hutgc")
+volume_db = -0.61
+pitch_scale = 1.4
+attenuation = 0.6155722
+panning_strength = 1.05
 
 [node name="BounceSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=1892062417]
 stream = ExtResource("3_i33fa")
