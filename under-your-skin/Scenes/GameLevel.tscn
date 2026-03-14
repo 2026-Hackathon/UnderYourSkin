@@ -5104,7 +5104,7 @@ libraries/ = SubResource("AnimationLibrary_hutgc")
 z_index = 1
 position = Vector2(-2900, 2392)
 script = ExtResource("19_5ddkv")
-lines = Array[String](["What am I doing?", "Well on this blue, slippery ground", "If you bounce horiontally", "You can build up some nice speed!", "I'm just.. building up my resolve to commit..."])
+lines = Array[String](["What am I doing?", "Well on this blue, slippery ground", "If you bounce horizontally", "You can build up some nice speed!", "I'm just.. building up my resolve to commit..."])
 
 [node name="NPC sprite" type="Sprite2D" parent="NPCs/IceNPC" unique_id=1724922262]
 scale = Vector2(1.125, 0.9375)
