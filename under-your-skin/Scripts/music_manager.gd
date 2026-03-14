@@ -64,9 +64,9 @@ func _fade_cross(from_player: AudioStreamPlayer2D, to_player: AudioStreamPlayer2
 	tween.set_parallel(true)
 	
 	# from: 0 dB → -40 dB (fade out)
-	tween.tween_property(from_player, "volume_db", -40.0, duration)
+	tween.tween_property(from_player, "volume_db", Globals.sound_volume -40.0, duration)
 	# to: -40 dB → 0 dB (fade in)
-	tween.tween_property(to_player, "volume_db", 0.0, duration)
+	tween.tween_property(to_player, "volume_db", Globals.sound_volume, duration)
 	
 	# stop old player when done
 	tween.set_parallel(false)
