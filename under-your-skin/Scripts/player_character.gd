@@ -276,6 +276,11 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 			is_on_sticky = true
 			# Optional: snap player *into* surface a bit
 			velocity = Vector2.ZERO
+			if bounce_value != null:
+				if pre_move_velocity.length() > 50.0:
+					var t : float = clamp(pre_move_velocity.length() / 1000.0, 0.0, 1.0)
+					bounce_sfx.volume_db = lerp(-10.0, 3.0, t)
+					bounce_sfx.play()
 			continue
 		
 		if bounce_value != null:
@@ -301,7 +306,9 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 						continue
 				collided = true
 				# PLAY BOUNCE SOUND (only for strong hits)
-				if abs(speed_into_surface) > 150.0:
+				if abs(speed_into_surface) > 50.0:
+					var t : float = clamp(speed_into_surface / 1000.0, 0.0, 1.0)
+					bounce_sfx.volume_db = lerp(-10.0, 3.0, t)
 					bounce_sfx.play()
 				
 				#Uncomment for Debug

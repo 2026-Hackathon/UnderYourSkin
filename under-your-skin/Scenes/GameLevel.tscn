@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_mrcb1"]
 [ext_resource type="Texture2D" uid="uid://dlt283a5xm1co" path="res://Sprites/Player/PlayerSpriteSheet.png" id="2_boklw"]
 [ext_resource type="AudioStream" uid="uid://c5i0fd7h21dvg" path="res://Sprites/Sounds/Jump.wav" id="2_i33fa"]
-[ext_resource type="AudioStream" uid="uid://c5oes3qx5ph8o" path="res://Sprites/Sounds/VariousTennisBall Bounces.wav" id="2_ysfch"]
+[ext_resource type="AudioStream" uid="uid://dbdm58agw3noc" path="res://Sprites/Sounds/bounce.wav" id="3_i33fa"]
 [ext_resource type="Script" uid="uid://c6wlpuwr2s5d8" path="res://Scripts/organs.gd" id="3_x4g3l"]
 [ext_resource type="Texture2D" uid="uid://gnvuq8r8tb4j" path="res://Sprites/TileMaps/Houses.png" id="4_1axds"]
 [ext_resource type="Script" uid="uid://cp0h2umo4alrr" path="res://Scripts/camera_2d.gd" id="4_e0o5i"]
@@ -4565,12 +4565,17 @@ max_deform_scale = Vector2(0.98, 0.98)
 
 [node name="JumpSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=760347540]
 stream = ExtResource("2_i33fa")
+volume_db = -0.2
 
 [node name="AirJumpSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=788382937]
 stream = ExtResource("2_i33fa")
 
 [node name="BounceSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=1892062417]
-stream = ExtResource("2_ysfch")
+stream = ExtResource("3_i33fa")
+volume_db = -0.874
+pitch_scale = 3.87
+attenuation = 2.462288
+max_polyphony = 2
 
 [node name="PlayerSprite" type="Sprite2D" parent="PlayerCharacter" unique_id=2050584217]
 texture_filter = 3
