@@ -122,11 +122,8 @@ func _input(event: InputEvent):
 					
 					#SOUNDS
 					if velocity.length() > 20 or not(is_on_floor()):
-						if jump_count > 1:           # jump (from ground or sticky)
 							play_random_jump_sound()
-						else:                                 # mid‑air jump
-							play_random_jump_sound()
-							air_jump_sfx.play()
+							
 					
 					
 					
