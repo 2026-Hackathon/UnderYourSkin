@@ -26,7 +26,9 @@ func _ready() -> void:
 	
 	# Connect finished signal (Godot 4: "finished")
 	current_player.finished.connect(_on_current_track_finished)
-
+func _process(_delta: float) -> void:
+	music_a.volume_db = Globals.sound_volume
+	music_b.volume_db = Globals.sound_volume
 func _pick_random_track() -> AudioStream:
 	if tracks.is_empty():
 		return null
