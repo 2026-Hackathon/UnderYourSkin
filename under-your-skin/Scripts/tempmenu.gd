@@ -8,7 +8,8 @@ func _ready() -> void:
 	$OptionMenu.hide()
 	$BackButtonContainer.hide()
 	$"OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer/Zoom Slider".value = 25
-
+	var volumeslidernode = get_node("OptionMenu/OptionMenuPadding/OptionList/VolumeControlContainer/Volume Slider") 
+	volumeslidernode.value = Globals.sound_volume
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -58,3 +59,8 @@ func _on_lighting_button_pressed() -> void:
 		$OptionMenu/OptionMenuPadding/OptionList/LightingButton.text = "Lighting: Off"
 	else:
 		$OptionMenu/OptionMenuPadding/OptionList/LightingButton.text = "Lighting: On"
+
+
+func _on_volume_slider_drag_ended(value_changed: bool) -> void:
+	var volumeslidernode = get_node("OptionMenu/OptionMenuPadding/OptionList/VolumeControlContainer/Volume Slider")
+	Globals.sound_volume = volumeslidernode.value

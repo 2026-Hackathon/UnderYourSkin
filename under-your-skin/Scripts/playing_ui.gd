@@ -5,6 +5,8 @@ var playsprite = preload("res://Sprites/Menu/play button.png")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"PauseMenuList/ZoomControlContainer/Zoom Slider".value = (Globals.game_zoom -1) * 25
+	var volumeslidernode = get_node("PauseMenuList/VolumeControlContainer/Volume Slider") 
+	volumeslidernode.value = Globals.sound_volume
 		#update text
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -22,7 +24,8 @@ func _on_pause_button_pressed() -> void:
 	var movementcontrolbuttonnode = get_node("PauseMenuList/MovementControlPadding/MovementControlButton2")
 	var zoomtxtnode = get_node("PauseMenuList/ZoomControlContainer/ZoomTxt")
 	var zoomslidernode = get_node("PauseMenuList/ZoomControlContainer/Zoom Slider")
-	
+	var volumetxtnode = get_node("PauseMenuList/VolumeControlContainer/VolumeTxt")
+	var volumeslidernode = get_node("PauseMenuList/VolumeControlContainer/Volume Slider")
 	
 	if Globals.is_frozen:
 		organnode.pause_explosion()
@@ -31,7 +34,8 @@ func _on_pause_button_pressed() -> void:
 		movementcontrolbuttonnode.show()
 		zoomtxtnode.show()
 		zoomslidernode.show()
-
+		volumetxtnode.show()
+		volumeslidernode.show()
 	else:
 		organnode.resume_explosion()
 		pausebuttonspritenode.texture = pausesprite
@@ -39,6 +43,8 @@ func _on_pause_button_pressed() -> void:
 		movementcontrolbuttonnode.hide()
 		zoomtxtnode.hide()
 		zoomslidernode.hide()
+		volumetxtnode.hide()
+		volumeslidernode.hide()
 func _on_movement_control_button_2_pressed() -> void:
 			#-1 = Drag back, 1 = Drag Forward
 	Globals.MovementDirection = Globals.MovementDirection*-1
@@ -52,6 +58,9 @@ func _on_movement_control_button_2_pressed() -> void:
 		movementcontrolbuttonnode.text = "Movement Control:
 			Drag Back"
 
+func _on_volume_slider_drag_ended(_value_changed: bool) -> void:
+	var volumeslidernode = get_node("PauseMenuList/VolumeControlContainer/Volume Slider")
+	Globals.sound_volume = volumeslidernode.value
 
 func _on_zoom_slider_drag_ended(_value_changed: bool) -> void:
 	#change zoom and update cam

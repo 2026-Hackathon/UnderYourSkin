@@ -4693,6 +4693,26 @@ theme_override_icons/grabber_highlight = ExtResource("12_1y6uj")
 min_value = 1.0
 value = 2.0
 
+[node name="VolumeControlContainer" type="VBoxContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=553796066]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VolumeTxt" type="Label" parent="CanvasLayer/Playing UI/PauseMenuList/VolumeControlContainer" unique_id=2007496350]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_0qbk5")
+theme_override_font_sizes/font_size = 55
+text = "Game Volume"
+
+[node name="Volume Slider" type="HSlider" parent="CanvasLayer/Playing UI/PauseMenuList/VolumeControlContainer" unique_id=1277094356]
+visible = false
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("11_e0o5i")
+theme_override_icons/grabber_highlight = ExtResource("12_1y6uj")
+min_value = -100.0
+max_value = 10.0
+value = 2.0
+
 [node name="PauseMenu" type="Control" parent="CanvasLayer/Playing UI" unique_id=1608871464]
 layout_mode = 1
 anchors_preset = 15
@@ -4723,7 +4743,8 @@ mouse_filter = 2
 visible = false
 modulate = Color(1, 1, 1, 0.49803922)
 z_index = -9
-scale = Vector2(7, 7)
+position = Vector2(-36.99994, -17.499878)
+scale = Vector2(16.48, 18.217777)
 texture = ExtResource("12_62hbe")
 
 [node name="PauseButtonPadding" type="MarginContainer" parent="CanvasLayer/Playing UI" unique_id=1890520547]
@@ -5700,6 +5721,7 @@ libraries/ = SubResource("AnimationLibrary_hutgc")
 
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding/MovementControlButton2" to="CanvasLayer/Playing UI" method="_on_movement_control_button_2_pressed"]
 [connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer/Zoom Slider" to="CanvasLayer/Playing UI" method="_on_zoom_slider_drag_ended"]
+[connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/VolumeControlContainer/Volume Slider" to="CanvasLayer/Playing UI" method="_on_volume_slider_drag_ended"]
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseButtonPadding/PauseButton" to="CanvasLayer/Playing UI" method="_on_pause_button_pressed"]
 [connection signal="area_entered" from="NPCs/BigFallTriggerLine" to="NPCs/BigFallTriggerLine" method="_on_area_entered"]
 [connection signal="body_entered" from="NPCs/BigFallTriggerLine" to="NPCs/BigFallTriggerLine" method="_on_body_entered"]

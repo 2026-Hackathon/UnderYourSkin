@@ -1859,6 +1859,24 @@ theme_override_icons/grabber = ExtResource("4_df05h")
 theme_override_icons/grabber_highlight = ExtResource("5_8um5k")
 value = 2.0
 
+[node name="VolumeControlContainer" type="VBoxContainer" parent="OptionMenu/OptionMenuPadding/OptionList" unique_id=527388129]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VolumeTxt" type="Label" parent="OptionMenu/OptionMenuPadding/OptionList/VolumeControlContainer" unique_id=1643405871]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xim88")
+theme_override_font_sizes/font_size = 55
+text = "Game Volume"
+
+[node name="Volume Slider" type="HSlider" parent="OptionMenu/OptionMenuPadding/OptionList/VolumeControlContainer" unique_id=2035065988]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("4_df05h")
+theme_override_icons/grabber_highlight = ExtResource("5_8um5k")
+min_value = -100.0
+max_value = 10.0
+value = 2.0
+
 [node name="BackButtonContainer" type="MarginContainer" parent="." unique_id=1413420514]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
@@ -1908,4 +1926,5 @@ texture = ExtResource("7_xim88")
 [connection signal="pressed" from="MainMenu/MainMenuPadding/MainMenuList/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="pressed" from="OptionMenu/OptionMenuPadding/OptionList/MovementControlButton" to="." method="_on_movement_control_button_pressed"]
 [connection signal="drag_ended" from="OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer/Zoom Slider" to="." method="_on_zoom_slider_drag_ended"]
+[connection signal="drag_ended" from="OptionMenu/OptionMenuPadding/OptionList/VolumeControlContainer/Volume Slider" to="." method="_on_volume_slider_drag_ended"]
 [connection signal="pressed" from="BackButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
