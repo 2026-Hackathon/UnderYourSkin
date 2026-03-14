@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://d0mblpv5r05kv" path="res://Sprites/NPC/Speechbubble9patch.png" id="25_wmwss"]
 [ext_resource type="Texture2D" uid="uid://cxcqtnv3h6dej" path="res://Sprites/NPC/SpeechbubblebottomBLACK.png" id="26_nw5cc"]
 [ext_resource type="Script" uid="uid://cgprgh5h1vehp" path="res://Scenes/big_fall_trigger_line.gd" id="29_ysfch"]
+[ext_resource type="PackedScene" uid="uid://duvl2rx3yf76a" path="res://Scenes/music_manager.tscn" id="37_ityy0"]
 
 [sub_resource type="GDScript" id="GDScript_rp1ko"]
 script/source = "extends Node2D
@@ -4621,6 +4622,9 @@ shape = SubResource("CircleShape2D_xhdm3")
 debug_color = Color(0.96465665, 0, 0.49433035, 0.41960785)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="PlayerCharacter" unique_id=1553542609]
+
+[node name="MusicManager" parent="PlayerCharacter" unique_id=432624810 instance=ExtResource("37_ityy0")]
+position = Vector2(69, 165)
 
 [node name="FloorTiles" type="TileMapLayer" parent="." unique_id=918070726 groups=["ground"]]
 z_index = 1
