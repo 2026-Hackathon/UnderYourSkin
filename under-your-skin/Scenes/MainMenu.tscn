@@ -1690,10 +1690,11 @@ tile_set = SubResource("TileSet_3u44c")
 
 [node name="BoneBgLayer" type="Parallax2D" parent="BackGround" unique_id=1131453221]
 scale = Vector2(3, 3)
-scroll_scale = Vector2(0.05, 0.05)
+scroll_scale = Vector2(0.01, 0.01)
 repeat_size = Vector2(320, 1532)
 autoscroll = Vector2(1, 1)
 repeat_times = 5
+follow_viewport = false
 
 [node name="BoneBg" type="Sprite2D" parent="BackGround/BoneBgLayer" unique_id=1155809669]
 modulate = Color(0.6351072, 0.5262541, 0.5670345, 1)
@@ -1708,10 +1709,11 @@ centered = false
 scale = Vector2(3, 3)
 
 [node name="Fog2" type="Parallax2D" parent="BackGround/FogLayers" unique_id=1828836372]
-scroll_scale = Vector2(0.4, 0.4)
+scroll_scale = Vector2(0.002, 0.002)
 repeat_size = Vector2(500, 500)
 autoscroll = Vector2(-0.8, -1.2)
 repeat_times = 2
+follow_viewport = false
 
 [node name="Fog Dither" type="Sprite2D" parent="BackGround/FogLayers/Fog2" unique_id=2118452139]
 modulate = Color(0.2, 0.11372549, 0.18039216, 0.72156864)
@@ -1722,10 +1724,12 @@ texture = ExtResource("11_h1v62")
 centered = false
 
 [node name="Fog" type="Parallax2D" parent="BackGround/FogLayers" unique_id=1607443527]
-scroll_scale = Vector2(0.3, 0.3)
+scroll_scale = Vector2(0.005, 0.005)
+scroll_offset = Vector2(7.5, 10)
 repeat_size = Vector2(500, 369)
 autoscroll = Vector2(1.3, -1)
 repeat_times = 5
+follow_viewport = false
 
 [node name="Fog Dither" type="Sprite2D" parent="BackGround/FogLayers/Fog" unique_id=1361701270]
 modulate = Color(0.40392157, 0.30588236, 0.25490198, 0.36078432)
@@ -1756,6 +1760,12 @@ region_rect = Rect2(6, 22, 4, 4)
 texture = ExtResource("1_2x1g0")
 region_enabled = true
 region_rect = Rect2(24, 4, 6, 4)
+
+[node name="Camera2D" type="Camera2D" parent="FakePlayer/Eyes" unique_id=212012753]
+position = Vector2(-63.83335, -20.000008)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+drag_horizontal_enabled = true
 
 [node name="TitlePadding" type="MarginContainer" parent="." unique_id=2090473612]
 layout_mode = 0
