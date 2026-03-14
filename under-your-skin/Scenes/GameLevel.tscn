@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://djh0bkq2nebue" path="res://Sprites/BG/Vein Sprites.png" id="1_5ddkv"]
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_mrcb1"]
 [ext_resource type="Texture2D" uid="uid://dlt283a5xm1co" path="res://Sprites/Player/PlayerSpriteSheet.png" id="2_boklw"]
-[ext_resource type="AudioStream" uid="uid://bnn4bi7cwo41g" path="res://Sprites/Sounds/Jump.wav" id="2_i33fa"]
-[ext_resource type="AudioStream" uid="uid://dbdm58agw3noc" path="res://Sprites/Sounds/bounce.wav" id="3_i33fa"]
+[ext_resource type="AudioStream" uid="uid://bnn4bi7cwo41g" path="res://Sound Effects/Sounds/jump.wav" id="2_i33fa"]
+[ext_resource type="AudioStream" uid="uid://dbdm58agw3noc" path="res://Sound Effects/Sounds/bounce.wav" id="3_i33fa"]
 [ext_resource type="Script" uid="uid://c6wlpuwr2s5d8" path="res://Scripts/organs.gd" id="3_x4g3l"]
 [ext_resource type="Texture2D" uid="uid://gnvuq8r8tb4j" path="res://Sprites/TileMaps/Houses.png" id="4_1axds"]
 [ext_resource type="Script" uid="uid://cp0h2umo4alrr" path="res://Scripts/camera_2d.gd" id="4_e0o5i"]
@@ -229,10 +229,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_xhdm3"]
 radius = 6.0
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_alasw"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i33fa"]
 bounce = 0.65
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtkg5"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nw5cc"]
 texture = ExtResource("5_0qbk5")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -908,7 +908,7 @@ texture = ExtResource("5_0qbk5")
 7:7/0/custom_data_1 = 0.65
 7:7/0/custom_data_2 = 1.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mq660"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j84pb"]
 texture = ExtResource("6_e0o5i")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -1535,7 +1535,7 @@ texture = ExtResource("6_e0o5i")
 7:7/0/custom_data_1 = 0.5
 7:7/0/custom_data_2 = 0.05
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fh6sm"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xkiy0"]
 texture = ExtResource("7_1y6uj")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -2170,7 +2170,7 @@ texture = ExtResource("7_1y6uj")
 7:7/0/custom_data_1 = 0.3
 7:7/0/custom_data_2 = 1.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x4g3l"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnoxv"]
 texture = ExtResource("8_boklw")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -2796,7 +2796,7 @@ texture = ExtResource("8_boklw")
 7:7/0/custom_data_1 = 0.2
 7:7/0/custom_data_2 = 1.5
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nw5cc"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2gtf3"]
 texture = ExtResource("9_a7rsx")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -2860,7 +2860,7 @@ texture = ExtResource("9_a7rsx")
 
 [sub_resource type="TileSet" id="TileSet_8vsrr"]
 physics_layer_0/collision_layer = 1
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_alasw")
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_i33fa")
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Bone"
 terrain_set_0/terrain_0/color = Color(6.256998e-07, 0.2839698, 0.37766367, 1)
@@ -2876,11 +2876,11 @@ custom_data_layer_1/name = "BounceValue"
 custom_data_layer_1/type = 3
 custom_data_layer_2/name = "Friction"
 custom_data_layer_2/type = 3
-sources/0 = SubResource("TileSetAtlasSource_mtkg5")
-sources/2 = SubResource("TileSetAtlasSource_fh6sm")
-sources/1 = SubResource("TileSetAtlasSource_mq660")
-sources/3 = SubResource("TileSetAtlasSource_x4g3l")
-sources/5 = SubResource("TileSetAtlasSource_nw5cc")
+sources/0 = SubResource("TileSetAtlasSource_nw5cc")
+sources/2 = SubResource("TileSetAtlasSource_xkiy0")
+sources/1 = SubResource("TileSetAtlasSource_j84pb")
+sources/3 = SubResource("TileSetAtlasSource_nnoxv")
+sources/5 = SubResource("TileSetAtlasSource_2gtf3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i33fa"]
 texture = ExtResource("1_5ddkv")
