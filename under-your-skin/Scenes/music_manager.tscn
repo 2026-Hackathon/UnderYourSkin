@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://duvl2rx3yf76a"]
+
+[ext_resource type="Script" uid="uid://cyqlv2rspxasx" path="res://Scripts/music_manager.gd" id="1_760hw"]
+[ext_resource type="AudioStream" uid="uid://ch56qdnv7pdp0" path="res://Sound Effects/AmbientBGM/Ambient 1.wav" id="2_57cfc"]
+[ext_resource type="AudioStream" uid="uid://blxlrylkvvqxw" path="res://Sound Effects/AmbientBGM/Ambient 2.wav" id="3_wjxqf"]
+[ext_resource type="AudioStream" uid="uid://bsqb5j6bxqxcr" path="res://Sound Effects/AmbientBGM/Ambient 3.wav" id="4_42d86"]
+[ext_resource type="AudioStream" uid="uid://tvgtllbsbqt5" path="res://Sound Effects/AmbientBGM/Ambient 4.wav" id="5_21e4c"]
+[ext_resource type="AudioStream" uid="uid://b78wosvf3s65s" path="res://Sound Effects/AmbientBGM/Ambient 5.wav" id="6_4ebib"]
+[ext_resource type="AudioStream" uid="uid://cyj1jbqjv4m2d" path="res://Sound Effects/AmbientBGM/Ambient 6.wav" id="7_5lhga"]
+[ext_resource type="AudioStream" uid="uid://dxw1x2nl5mq68" path="res://Sound Effects/AmbientBGM/Ambient 7 .wav" id="8_b5y6m"]
+[ext_resource type="AudioStream" uid="uid://nwhcl21ueh6e" path="res://Sound Effects/AmbientBGM/Ambient 8.wav" id="9_wnqgx"]
+[ext_resource type="AudioStream" uid="uid://dcdq0dbxgfdy7" path="res://Sound Effects/AmbientBGM/Ambient 9.wav" id="10_dgddm"]
+[ext_resource type="AudioStream" uid="uid://b5cgfpybnrd7i" path="res://Sound Effects/AmbientBGM/Ambient 10.wav" id="11_p0fn4"]
+
+[sub_resource type="AudioStream" id="AudioStream_57cfc"]
+
+[node name="MusicManager" type="Node2D" unique_id=432624810]
+script = ExtResource("1_760hw")
+tracks = Array[AudioStream]([ExtResource("2_57cfc"), ExtResource("3_wjxqf"), ExtResource("4_42d86"), ExtResource("5_21e4c"), ExtResource("6_4ebib"), ExtResource("7_5lhga"), ExtResource("8_b5y6m"), ExtResource("9_wnqgx"), ExtResource("10_dgddm"), ExtResource("11_p0fn4")])
+
+[node name="MusicA" type="AudioStreamPlayer2D" parent="." unique_id=367899446]
+stream = SubResource("AudioStream_57cfc")
+volume_db = -25.0
+max_polyphony = 5
+
+[node name="MusicB" type="AudioStreamPlayer2D" parent="." unique_id=653722191]
+volume_db = -25.0
+max_polyphony = 5

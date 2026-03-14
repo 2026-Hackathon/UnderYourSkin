@@ -3,14 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://djh0bkq2nebue" path="res://Sprites/BG/Vein Sprites.png" id="1_5ddkv"]
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_mrcb1"]
 [ext_resource type="Texture2D" uid="uid://dlt283a5xm1co" path="res://Sprites/Player/PlayerSpriteSheet.png" id="2_boklw"]
-[ext_resource type="AudioStream" uid="uid://bnn4bi7cwo41g" path="res://Sprites/Sounds/Jump.wav" id="2_i33fa"]
-[ext_resource type="AudioStream" uid="uid://dbdm58agw3noc" path="res://Sprites/Sounds/bounce.wav" id="3_i33fa"]
+[ext_resource type="AudioStream" uid="uid://bnn4bi7cwo41g" path="res://Sound Effects/Sounds/jump.wav" id="2_i33fa"]
+[ext_resource type="AudioStream" uid="uid://dbdm58agw3noc" path="res://Sound Effects/Sounds/bounce.wav" id="3_i33fa"]
+[ext_resource type="AudioStream" uid="uid://dc4bp2aqpwuiy" path="res://Sound Effects/Sounds/jump1.wav" id="3_px2bc"]
 [ext_resource type="Script" uid="uid://c6wlpuwr2s5d8" path="res://Scripts/organs.gd" id="3_x4g3l"]
 [ext_resource type="Texture2D" uid="uid://gnvuq8r8tb4j" path="res://Sprites/TileMaps/Houses.png" id="4_1axds"]
 [ext_resource type="Script" uid="uid://cp0h2umo4alrr" path="res://Scripts/camera_2d.gd" id="4_e0o5i"]
+[ext_resource type="AudioStream" uid="uid://s6h75ff4127a" path="res://Sound Effects/Sounds/jump2.wav" id="4_hutgc"]
 [ext_resource type="Texture2D" uid="uid://baw1axa3xd4oj" path="res://Sprites/TileMaps/BoneTiles.png" id="5_0qbk5"]
+[ext_resource type="AudioStream" uid="uid://012d037xuyts" path="res://Sound Effects/Sounds/jump3.wav" id="5_ityy0"]
 [ext_resource type="Texture2D" uid="uid://cts7cfm7rdryk" path="res://Sprites/TileMaps/TileSetSlippery.png" id="6_e0o5i"]
+[ext_resource type="AudioStream" uid="uid://djg164nofhcbn" path="res://Sound Effects/Sounds/jump4.wav" id="6_ek61a"]
 [ext_resource type="Texture2D" uid="uid://tpwgdhxaktjt" path="res://Sprites/TileMaps/TilesetInfection.png" id="7_1y6uj"]
+[ext_resource type="AudioStream" uid="uid://bt2nwp34kvtph" path="res://Sound Effects/Sounds/explode.wav" id="7_hutgc"]
 [ext_resource type="Texture2D" uid="uid://d3gnxuyhdvn5v" path="res://Sprites/TileMaps/TilesetStciky.png" id="8_boklw"]
 [ext_resource type="Texture2D" uid="uid://ctdkmrjnck5cd" path="res://Sprites/BG/DitheredBoneBG.png" id="8_tmw4s"]
 [ext_resource type="Texture2D" uid="uid://c5xuq6ou16vjl" path="res://Sprites/BG/DitherFog2.jpg" id="9_188sh"]
@@ -31,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://d0mblpv5r05kv" path="res://Sprites/NPC/Speechbubble9patch.png" id="25_wmwss"]
 [ext_resource type="Texture2D" uid="uid://cxcqtnv3h6dej" path="res://Sprites/NPC/SpeechbubblebottomBLACK.png" id="26_nw5cc"]
 [ext_resource type="Script" uid="uid://cgprgh5h1vehp" path="res://Scenes/big_fall_trigger_line.gd" id="29_ysfch"]
+[ext_resource type="PackedScene" uid="uid://duvl2rx3yf76a" path="res://Scenes/music_manager.tscn" id="37_ityy0"]
 
 [sub_resource type="GDScript" id="GDScript_rp1ko"]
 script/source = "extends Node2D
@@ -229,10 +235,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_xhdm3"]
 radius = 6.0
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_alasw"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i33fa"]
 bounce = 0.65
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtkg5"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nw5cc"]
 texture = ExtResource("5_0qbk5")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -908,7 +914,7 @@ texture = ExtResource("5_0qbk5")
 7:7/0/custom_data_1 = 0.65
 7:7/0/custom_data_2 = 1.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mq660"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j84pb"]
 texture = ExtResource("6_e0o5i")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -1535,7 +1541,7 @@ texture = ExtResource("6_e0o5i")
 7:7/0/custom_data_1 = 0.5
 7:7/0/custom_data_2 = 0.05
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fh6sm"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xkiy0"]
 texture = ExtResource("7_1y6uj")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -2170,7 +2176,7 @@ texture = ExtResource("7_1y6uj")
 7:7/0/custom_data_1 = 0.3
 7:7/0/custom_data_2 = 1.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x4g3l"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnoxv"]
 texture = ExtResource("8_boklw")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -2796,7 +2802,7 @@ texture = ExtResource("8_boklw")
 7:7/0/custom_data_1 = 0.2
 7:7/0/custom_data_2 = 1.5
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nw5cc"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2gtf3"]
 texture = ExtResource("9_a7rsx")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -2860,7 +2866,7 @@ texture = ExtResource("9_a7rsx")
 
 [sub_resource type="TileSet" id="TileSet_8vsrr"]
 physics_layer_0/collision_layer = 1
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_alasw")
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_i33fa")
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Bone"
 terrain_set_0/terrain_0/color = Color(6.256998e-07, 0.2839698, 0.37766367, 1)
@@ -2876,11 +2882,11 @@ custom_data_layer_1/name = "BounceValue"
 custom_data_layer_1/type = 3
 custom_data_layer_2/name = "Friction"
 custom_data_layer_2/type = 3
-sources/0 = SubResource("TileSetAtlasSource_mtkg5")
-sources/2 = SubResource("TileSetAtlasSource_fh6sm")
-sources/1 = SubResource("TileSetAtlasSource_mq660")
-sources/3 = SubResource("TileSetAtlasSource_x4g3l")
-sources/5 = SubResource("TileSetAtlasSource_nw5cc")
+sources/0 = SubResource("TileSetAtlasSource_nw5cc")
+sources/2 = SubResource("TileSetAtlasSource_xkiy0")
+sources/1 = SubResource("TileSetAtlasSource_j84pb")
+sources/3 = SubResource("TileSetAtlasSource_nnoxv")
+sources/5 = SubResource("TileSetAtlasSource_2gtf3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i33fa"]
 texture = ExtResource("1_5ddkv")
@@ -4558,8 +4564,8 @@ slide_on_ceiling = false
 floor_constant_speed = true
 platform_wall_layers = 1
 script = ExtResource("1_mrcb1")
-max_drag_distance = 101.0
 max_deform_scale = Vector2(0.98, 0.98)
+jump_sounds = Array[AudioStream]([ExtResource("3_px2bc"), ExtResource("4_hutgc"), ExtResource("5_ityy0"), ExtResource("6_ek61a")])
 
 [node name="PlayerSounds" type="Node2D" parent="PlayerCharacter" unique_id=1513849137]
 
@@ -4568,7 +4574,11 @@ stream = ExtResource("2_i33fa")
 volume_db = -0.2
 
 [node name="AirJumpSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=788382937]
-stream = ExtResource("2_i33fa")
+stream = ExtResource("7_hutgc")
+volume_db = -0.61
+pitch_scale = 1.4
+attenuation = 0.6155722
+panning_strength = 1.05
 
 [node name="BounceSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=1892062417]
 stream = ExtResource("3_i33fa")
@@ -4612,6 +4622,9 @@ shape = SubResource("CircleShape2D_xhdm3")
 debug_color = Color(0.96465665, 0, 0.49433035, 0.41960785)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="PlayerCharacter" unique_id=1553542609]
+
+[node name="MusicManager" parent="PlayerCharacter" unique_id=432624810 instance=ExtResource("37_ityy0")]
+position = Vector2(69, 165)
 
 [node name="FloorTiles" type="TileMapLayer" parent="." unique_id=918070726 groups=["ground"]]
 z_index = 1

@@ -1,6 +1,6 @@
 extends Control
 
-var game_scene = preload("res://Scenes/boss_fight.tscn")
+var game_scene = preload("res://Scenes/GameLevel.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
