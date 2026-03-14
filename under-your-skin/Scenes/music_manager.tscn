@@ -14,6 +14,8 @@
 
 [sub_resource type="AudioStream" id="AudioStream_57cfc"]
 
+[sub_resource type="AudioStream" id="AudioStream_wjxqf"]
+
 [node name="MusicManager" type="Node2D" unique_id=432624810]
 script = ExtResource("1_760hw")
 tracks = Array[AudioStream]([ExtResource("2_57cfc"), ExtResource("3_wjxqf"), ExtResource("4_42d86"), ExtResource("5_21e4c"), ExtResource("6_4ebib"), ExtResource("7_5lhga"), ExtResource("8_b5y6m"), ExtResource("9_wnqgx"), ExtResource("10_dgddm"), ExtResource("11_p0fn4")])
@@ -24,5 +26,6 @@ volume_db = -25.0
 max_polyphony = 5
 
 [node name="MusicB" type="AudioStreamPlayer2D" parent="." unique_id=653722191]
+stream = SubResource("AudioStream_wjxqf")
 volume_db = -25.0
 max_polyphony = 5

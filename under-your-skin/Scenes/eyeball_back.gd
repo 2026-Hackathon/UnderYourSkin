@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@onready var eye: Node2D = $Iris
+@onready var eye: Node2D = $iris
 
 @export var eye_max_offset: float = 8   # how far eyes can move from center (pixels)
 @export var eye_follow_speed: float = 20.0  # how fast eyes catch up to target
@@ -27,6 +27,7 @@ func _process(delta: float) -> void:
 	else:
 			
 		var dir = to_player.normalized() 
+		dir = dir.rotated(PI/2)
 			#off set around player
 		eye_target_offset = dir * eye_max_offset  # stays in a circle around center
 		

@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://ecilh7hy0m3x"]
 
 [ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_7q7fe"]
-[ext_resource type="AudioStream" uid="uid://bnn4bi7cwo41g" path="res://Sprites/Sounds/Jump.wav" id="2_0esrn"]
-[ext_resource type="AudioStream" uid="uid://dbdm58agw3noc" path="res://Sprites/Sounds/bounce.wav" id="3_lg0wv"]
+[ext_resource type="AudioStream" uid="uid://bnn4bi7cwo41g" path="res://Sound Effects/Sounds/jump.wav" id="2_0esrn"]
+[ext_resource type="AudioStream" uid="uid://dbdm58agw3noc" path="res://Sound Effects/Sounds/bounce.wav" id="3_lg0wv"]
 [ext_resource type="Texture2D" uid="uid://dlt283a5xm1co" path="res://Sprites/Player/PlayerSpriteSheet.png" id="4_rd3xp"]
 [ext_resource type="Script" uid="uid://c6wlpuwr2s5d8" path="res://Scripts/organs.gd" id="5_lg0wv"]
 [ext_resource type="Script" uid="uid://cp0h2umo4alrr" path="res://Scripts/camera_2d.gd" id="6_q4c76"]
@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://c5purthp7nsb1" path="res://Sprites/Menu/PauseSpriteWithShading.png" id="18_7shtl"]
 [ext_resource type="Texture2D" uid="uid://gnvuq8r8tb4j" path="res://Sprites/TileMaps/Houses.png" id="18_wjl64"]
 [ext_resource type="Texture2D" uid="uid://co272ykbfql7w" path="res://Sprites/TileMaps/Carpet.png" id="19_7a7ct"]
-[ext_resource type="Script" uid="uid://cervs6gu4hd5j" path="res://Scenes/path_boss.gd" id="23_8mjkw"]
+[ext_resource type="Script" path="res://Scenes/path_boss.gd" id="23_8mjkw"]
 [ext_resource type="Texture2D" uid="uid://bnclijjwl6yfq" path="res://Sprites/Enemy/eyeballback.png" id="23_wjl64"]
 [ext_resource type="Texture2D" uid="uid://688ofklml1rc" path="res://Sprites/Enemy/eyeballpupul.png" id="24_7a7ct"]
 [ext_resource type="Script" uid="uid://cu1ew4g6jrbyg" path="res://Scenes/eyeball_back.gd" id="24_8mjkw"]
@@ -4769,16 +4769,18 @@ region_enabled = true
 region_rect = Rect2(7, 7, 50, 50)
 script = ExtResource("24_8mjkw")
 
-[node name="Iris" type="Sprite2D" parent="PathBoss/Follow Path/CharacterBody2D/Eyeball Back" unique_id=374922193]
-position = Vector2(-0.60181075, 10.621137)
+[node name="iris" type="Node2D" parent="PathBoss/Follow Path/CharacterBody2D/Eyeball Back" unique_id=95416393]
+
+[node name="Iris" type="Sprite2D" parent="PathBoss/Follow Path/CharacterBody2D/Eyeball Back/iris" unique_id=374922193]
+position = Vector2(0.08464861, 0.117058754)
 rotation = -1.5707964
 texture = ExtResource("24_7a7ct")
-offset = Vector2(11, 1)
 region_enabled = true
 region_rect = Rect2(19, 19, 28, 27)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathBoss/Follow Path/CharacterBody2D" unique_id=1250128195]
-position = Vector2(10.956009, 5.722046e-06)
+visible = false
+position = Vector2(11.410401, 0.4682417)
 scale = Vector2(5.368, 4)
 shape = SubResource("CircleShape2D_8mjkw")
 
