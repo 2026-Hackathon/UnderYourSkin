@@ -60,6 +60,7 @@ var is_on_sticky: bool = false
 @onready var air_jump_sfx: AudioStreamPlayer2D = get_node("PlayerSounds/AirJumpSFX")
 @onready var bounce_sfx: AudioStreamPlayer2D = get_node("PlayerSounds/BounceSFX")
 
+@export var jump_sounds: Array[AudioStream] = []
 
 #Initilaize some Vals
 #Initilaize Player Size Needed so when scale is changed player remains Visible
@@ -119,10 +120,7 @@ func _input(event: InputEvent):
 					
 					#SOUNDS
 					if velocity.length() > 20 or not(is_on_floor()):
-						if is_on_floor():           # jump (from ground or sticky)
-							jump_sfx.play()
-						else:                                 # mid‑air jump
-							air_jump_sfx.play()
+						play_random_jump_sound()
 					
 					
 					
@@ -279,7 +277,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 			if bounce_value != null:
 				if pre_move_velocity.length() > 50.0:
 					var t : float = clamp(pre_move_velocity.length() / 1000.0, 0.0, 1.0)
-					bounce_sfx.volume_db = lerp(-10.0, 3.0, t)
+					bounce_sfx.volume_db = lerp(-10.0, 0.0, t) + Globals.sound_volume
 					bounce_sfx.play()
 			continue
 		
@@ -308,7 +306,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 				# PLAY BOUNCE SOUND (only for strong hits)
 				if abs(speed_into_surface) > 50.0:
 					var t : float = clamp(speed_into_surface / 1000.0, 0.0, 1.0)
-					bounce_sfx.volume_db = lerp(-10.0, 3.0, t)
+					bounce_sfx.volume_db = lerp(-10.0, 0.0, t) + Globals.sound_volume
 					bounce_sfx.play()
 				
 				#Uncomment for Debug
@@ -350,3 +348,10 @@ func is_slope_floor(normal: Vector2) -> bool:
 	var angle_deg := rad_to_deg(acos(normal.dot(Vector2.UP)))
 	# tweak 0–45 to match what you consider a walkable slope
 	return angle_deg <= 45.0
+func play_random_jump_sound() -> void:
+	if jump_sounds.is_empty():
+		return
+	var idx := randi() % jump_sounds.size()
+	jump_sfx.volume_db = Globals.sound_volume - 2
+	jump_sfx.stream = jump_sounds[idx]
+	jump_sfx.play()
