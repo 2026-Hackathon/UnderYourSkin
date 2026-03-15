@@ -7,6 +7,8 @@ func _ready() -> void:
 	$"PauseMenuList/ZoomControlContainer/Zoom Slider".value = (Globals.game_zoom -1) * 25
 	var volumeslidernode = get_node("PauseMenuList/VolumeControlContainer/Volume Slider") 
 	volumeslidernode.value = Globals.sound_volume
+	var SFXslidernode = get_node("PauseMenuList/SFXControlContainer/SFX Slider") 
+	SFXslidernode.value = Globals.sfx_volume
 		#update text
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -26,6 +28,8 @@ func _on_pause_button_pressed() -> void:
 	var zoomslidernode = get_node("PauseMenuList/ZoomControlContainer/Zoom Slider")
 	var volumetxtnode = get_node("PauseMenuList/VolumeControlContainer/VolumeTxt")
 	var volumeslidernode = get_node("PauseMenuList/VolumeControlContainer/Volume Slider")
+	var SFXtxtnode = get_node("PauseMenuList/SFXControlContainer/SFXTxt")
+	var SFXslidernode = get_node("PauseMenuList/SFXControlContainer/SFX Slider") 
 	
 	if Globals.is_frozen:
 		organnode.pause_explosion()
@@ -36,6 +40,8 @@ func _on_pause_button_pressed() -> void:
 		zoomslidernode.show()
 		volumetxtnode.show()
 		volumeslidernode.show()
+		SFXtxtnode.show()
+		SFXslidernode.show()
 	else:
 		organnode.resume_explosion()
 		pausebuttonspritenode.texture = pausesprite
@@ -45,6 +51,8 @@ func _on_pause_button_pressed() -> void:
 		zoomslidernode.hide()
 		volumetxtnode.hide()
 		volumeslidernode.hide()
+		SFXtxtnode.hide()
+		SFXslidernode.hide()
 func _on_movement_control_button_2_pressed() -> void:
 			#-1 = Drag back, 1 = Drag Forward
 	Globals.MovementDirection = Globals.MovementDirection*-1
@@ -69,3 +77,8 @@ func _on_zoom_slider_drag_ended(_value_changed: bool) -> void:
 	Globals.game_zoom = (zoomslidernode.value / 25) + 1
 	camnode.update_zoom()
 	
+
+
+func _on_sfx_slider_drag_ended(_value_changed: bool) -> void:
+	var volumeslidernode = get_node("PauseMenuList/SFXControlContainer/SFX Slider")
+	Globals.sfx_volume = volumeslidernode.value

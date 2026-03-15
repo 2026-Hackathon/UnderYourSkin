@@ -4660,6 +4660,7 @@ mouse_filter = 2
 theme_override_constants/separation = 25
 
 [node name="MovementControlPadding" type="MarginContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=899983530]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 
@@ -4700,15 +4701,35 @@ visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("10_0qbk5")
 theme_override_font_sizes/font_size = 55
-text = "Game Volume"
+text = "BGM Volume"
 
 [node name="Volume Slider" type="HSlider" parent="CanvasLayer/Playing UI/PauseMenuList/VolumeControlContainer" unique_id=1277094356]
 visible = false
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("11_e0o5i")
 theme_override_icons/grabber_highlight = ExtResource("12_1y6uj")
-min_value = -100.0
-max_value = 10.0
+min_value = -80.0
+max_value = 20.0
+value = 2.0
+
+[node name="SFXControlContainer" type="VBoxContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=1639506336]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SFXTxt" type="Label" parent="CanvasLayer/Playing UI/PauseMenuList/SFXControlContainer" unique_id=172911520]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_0qbk5")
+theme_override_font_sizes/font_size = 55
+text = "SFX Volume"
+
+[node name="SFX Slider" type="HSlider" parent="CanvasLayer/Playing UI/PauseMenuList/SFXControlContainer" unique_id=721288170]
+visible = false
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("11_e0o5i")
+theme_override_icons/grabber_highlight = ExtResource("12_1y6uj")
+min_value = -80.0
+max_value = 20.0
 value = 2.0
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/Playing UI" unique_id=1608871464]
@@ -5720,6 +5741,7 @@ libraries/ = SubResource("AnimationLibrary_hutgc")
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding/MovementControlButton2" to="CanvasLayer/Playing UI" method="_on_movement_control_button_2_pressed"]
 [connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer/Zoom Slider" to="CanvasLayer/Playing UI" method="_on_zoom_slider_drag_ended"]
 [connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/VolumeControlContainer/Volume Slider" to="CanvasLayer/Playing UI" method="_on_volume_slider_drag_ended"]
+[connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/SFXControlContainer/SFX Slider" to="CanvasLayer/Playing UI" method="_on_sfx_slider_drag_ended"]
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseButtonPadding/PauseButton" to="CanvasLayer/Playing UI" method="_on_pause_button_pressed"]
 [connection signal="area_entered" from="NPCs/BigFallTriggerLine" to="NPCs/BigFallTriggerLine" method="_on_area_entered"]
 [connection signal="body_entered" from="NPCs/BigFallTriggerLine" to="NPCs/BigFallTriggerLine" method="_on_body_entered"]

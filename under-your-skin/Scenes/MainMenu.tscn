@@ -1867,7 +1867,7 @@ mouse_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_xim88")
 theme_override_font_sizes/font_size = 55
-text = "Game Volume"
+text = "BGM Volume"
 
 [node name="Volume Slider" type="HSlider" parent="OptionMenu/OptionMenuPadding/OptionList/VolumeControlContainer" unique_id=2035065988]
 layout_mode = 2
@@ -1875,6 +1875,24 @@ theme_override_icons/grabber = ExtResource("4_df05h")
 theme_override_icons/grabber_highlight = ExtResource("5_8um5k")
 min_value = -100.0
 max_value = 10.0
+value = 2.0
+
+[node name="SFXControlContainer" type="VBoxContainer" parent="OptionMenu/OptionMenuPadding/OptionList" unique_id=396310333]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SFXTxt" type="Label" parent="OptionMenu/OptionMenuPadding/OptionList/SFXControlContainer" unique_id=492718456]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xim88")
+theme_override_font_sizes/font_size = 55
+text = "SFX Volume"
+
+[node name="SFX Slider" type="HSlider" parent="OptionMenu/OptionMenuPadding/OptionList/SFXControlContainer" unique_id=763417934]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("4_df05h")
+theme_override_icons/grabber_highlight = ExtResource("5_8um5k")
+min_value = -80.0
+max_value = 20.0
 value = 2.0
 
 [node name="BackButtonContainer" type="MarginContainer" parent="." unique_id=1413420514]
@@ -1927,4 +1945,5 @@ texture = ExtResource("7_xim88")
 [connection signal="pressed" from="OptionMenu/OptionMenuPadding/OptionList/MovementControlButton" to="." method="_on_movement_control_button_pressed"]
 [connection signal="drag_ended" from="OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer/Zoom Slider" to="." method="_on_zoom_slider_drag_ended"]
 [connection signal="drag_ended" from="OptionMenu/OptionMenuPadding/OptionList/VolumeControlContainer/Volume Slider" to="." method="_on_volume_slider_drag_ended"]
+[connection signal="drag_ended" from="OptionMenu/OptionMenuPadding/OptionList/SFXControlContainer/SFX Slider" to="." method="_on_sfx_slider_drag_ended"]
 [connection signal="pressed" from="BackButtonContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -277,7 +277,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 			if bounce_value != null:
 				if pre_move_velocity.length() > 50.0:
 					var t : float = clamp(pre_move_velocity.length() / 1000.0, 0.0, 1.0)
-					bounce_sfx.volume_db = lerp(-10.0, 0.0, t) + Globals.sound_volume
+					bounce_sfx.volume_db = lerp(-10.0, 0.0, t) + Globals.sfx_volume
 					bounce_sfx.play()
 			continue
 		
@@ -306,7 +306,7 @@ func apply_bounce(pre_move_velocity: Vector2) -> void:
 				# PLAY BOUNCE SOUND (only for strong hits)
 				if abs(speed_into_surface) > 50.0:
 					var t : float = clamp(speed_into_surface / 1000.0, 0.0, 1.0)
-					bounce_sfx.volume_db = lerp(-10.0, 0.0, t) + Globals.sound_volume
+					bounce_sfx.volume_db = lerp(-10.0, 0.0, t) + Globals.sfx_volume
 					bounce_sfx.play()
 				
 				#Uncomment for Debug
@@ -352,6 +352,6 @@ func play_random_jump_sound() -> void:
 	if jump_sounds.is_empty():
 		return
 	var idx := randi() % jump_sounds.size()
-	jump_sfx.volume_db = Globals.sound_volume - 2
+	jump_sfx.volume_db = Globals.sfx_volume - 2
 	jump_sfx.stream = jump_sounds[idx]
 	jump_sfx.play()

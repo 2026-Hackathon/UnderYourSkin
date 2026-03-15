@@ -10,7 +10,8 @@ func _ready() -> void:
 	$"OptionMenu/OptionMenuPadding/OptionList/ZoomControlContainer/Zoom Slider".value = 25
 	var volumeslidernode = get_node("OptionMenu/OptionMenuPadding/OptionList/VolumeControlContainer/Volume Slider") 
 	volumeslidernode.value = Globals.sound_volume
-
+	var sfxslidernode = get_node("OptionMenu/OptionMenuPadding/OptionList/SFXControlContainer/SFX Slider")
+	sfxslidernode.value = Globals.sfx_volume
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
@@ -64,3 +65,8 @@ func _on_lighting_button_pressed() -> void:
 func _on_volume_slider_drag_ended(value_changed: bool) -> void:
 	var volumeslidernode = get_node("OptionMenu/OptionMenuPadding/OptionList/VolumeControlContainer/Volume Slider")
 	Globals.sound_volume = volumeslidernode.value
+
+
+func _on_sfx_slider_drag_ended(value_changed: bool) -> void:
+	var volumeslidernode = get_node("OptionMenu/OptionMenuPadding/OptionList/SFXControlContainer/SFX Slider")
+	Globals.sfx_volume = volumeslidernode.value
