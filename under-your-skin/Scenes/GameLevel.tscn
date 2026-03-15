@@ -1,11 +1,21 @@
 [gd_scene format=4 uid="uid://bt1m355eve7k"]
 
 [ext_resource type="Texture2D" uid="uid://djh0bkq2nebue" path="res://Sprites/BG/Vein Sprites.png" id="1_5ddkv"]
-[ext_resource type="PackedScene" uid="uid://dd2br7mjkxcbp" path="res://Scenes/player.tscn" id="1_qtxl6"]
+[ext_resource type="Script" uid="uid://h0ynlfudvyu6" path="res://Scripts/player_character.gd" id="1_mrcb1"]
+[ext_resource type="Texture2D" uid="uid://dlt283a5xm1co" path="res://Sprites/Player/PlayerSpriteSheet.png" id="2_boklw"]
+[ext_resource type="AudioStream" uid="uid://bnn4bi7cwo41g" path="res://Sound Effects/Sounds/jump.wav" id="2_i33fa"]
+[ext_resource type="AudioStream" uid="uid://dbdm58agw3noc" path="res://Sound Effects/Sounds/bounce.wav" id="3_i33fa"]
+[ext_resource type="AudioStream" uid="uid://dc4bp2aqpwuiy" path="res://Sound Effects/Sounds/jump1.wav" id="3_px2bc"]
+[ext_resource type="Script" uid="uid://c6wlpuwr2s5d8" path="res://Scripts/organs.gd" id="3_x4g3l"]
 [ext_resource type="Texture2D" uid="uid://gnvuq8r8tb4j" path="res://Sprites/TileMaps/Houses.png" id="4_1axds"]
+[ext_resource type="Script" uid="uid://cp0h2umo4alrr" path="res://Scripts/camera_2d.gd" id="4_e0o5i"]
+[ext_resource type="AudioStream" uid="uid://s6h75ff4127a" path="res://Sound Effects/Sounds/jump2.wav" id="4_hutgc"]
 [ext_resource type="Texture2D" uid="uid://baw1axa3xd4oj" path="res://Sprites/TileMaps/BoneTiles.png" id="5_0qbk5"]
+[ext_resource type="AudioStream" uid="uid://012d037xuyts" path="res://Sound Effects/Sounds/jump3.wav" id="5_ityy0"]
 [ext_resource type="Texture2D" uid="uid://cts7cfm7rdryk" path="res://Sprites/TileMaps/TileSetSlippery.png" id="6_e0o5i"]
+[ext_resource type="AudioStream" uid="uid://djg164nofhcbn" path="res://Sound Effects/Sounds/jump4.wav" id="6_ek61a"]
 [ext_resource type="Texture2D" uid="uid://tpwgdhxaktjt" path="res://Sprites/TileMaps/TilesetInfection.png" id="7_1y6uj"]
+[ext_resource type="AudioStream" uid="uid://bt2nwp34kvtph" path="res://Sound Effects/Sounds/explode.wav" id="7_hutgc"]
 [ext_resource type="Texture2D" uid="uid://d3gnxuyhdvn5v" path="res://Sprites/TileMaps/TilesetStciky.png" id="8_boklw"]
 [ext_resource type="Texture2D" uid="uid://ctdkmrjnck5cd" path="res://Sprites/BG/DitheredBoneBG.png" id="8_tmw4s"]
 [ext_resource type="Texture2D" uid="uid://c5xuq6ou16vjl" path="res://Sprites/BG/DitherFog2.jpg" id="9_188sh"]
@@ -26,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://d0mblpv5r05kv" path="res://Sprites/NPC/Speechbubble9patch.png" id="25_wmwss"]
 [ext_resource type="Texture2D" uid="uid://cxcqtnv3h6dej" path="res://Sprites/NPC/SpeechbubblebottomBLACK.png" id="26_nw5cc"]
 [ext_resource type="Script" uid="uid://cgprgh5h1vehp" path="res://Scenes/big_fall_trigger_line.gd" id="29_ysfch"]
+[ext_resource type="PackedScene" uid="uid://duvl2rx3yf76a" path="res://Scenes/music_manager.tscn" id="37_ityy0"]
 
 [sub_resource type="GDScript" id="GDScript_rp1ko"]
 script/source = "extends Node2D
@@ -39,6 +50,190 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 "
+
+[sub_resource type="Animation" id="Animation_u5sq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCharacter/PlayerSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCharacter/PlayerSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7.6293945e-06, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerCharacter/PlayerSprite/Organs:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_swl0q"]
+resource_name = "hit_cieling"
+length = 0.2
+step = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCharacter/PlayerSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1012, 0.13, 0.15080898),
+"transitions": PackedFloat32Array(1, 0.99999845, 0.22531268, 2.297397, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.7499983, 0.3125), Vector2(1, 1), Vector2(0.62499917, 1.2499995), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCharacter/PlayerSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1036),
+"transitions": PackedFloat32Array(1, 2.639016, 0.21763767),
+"update": 0,
+"values": [Vector2(7.6293945e-06, 0), Vector2(2.0980833e-05, -9), Vector2(7.6293945e-06, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rxen8"]
+resource_name = "hit_floor"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCharacter/PlayerSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.13333334, 0.2, 0.23333333),
+"transitions": PackedFloat32Array(1, 2.3784142, 0.4665165, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4375, 0.25), Vector2(1, 1), Vector2(0.5625, 1.2499995), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCharacter/PlayerSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666666, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 5.8563437),
+"update": 0,
+"values": [Vector2(7.6293945e-06, 0), Vector2(7.6293945e-06, 6), Vector2(7.6293945e-06, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8vk26"]
+resource_name = "hit_wall_left"
+length = 0.2
+step = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCharacter/PlayerSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(9.999983e-05, 0.09140924, 0.13287745, 0.1914609),
+"transitions": PackedFloat32Array(1, 1.0717734, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.375, 1.5625), Vector2(1.125, 0.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCharacter/PlayerSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.094847016, 0.17289302),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(7.6293945e-06, 0), Vector2(-6.9999924, 0), Vector2(7.6293945e-06, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_alasw"]
+resource_name = "hit_wall_right"
+length = 0.2
+step = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCharacter/PlayerSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0001, 0.04941002, 0.124624774, 0.18087019, 0.19786),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.35984802, 1.750001), Vector2(1, 1), Vector2(1.0625, 0.62499976), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerCharacter/PlayerSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.0052280687, 0, 0.054353718, 0.12050612),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(7.6293945e-06, 0), Vector2(7.6293945e-06, 0), Vector2(5.9999723, 0), Vector2(7.6293945e-06, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u5xdt"]
+resource_name = "organs_On_Jump"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCharacter/PlayerSprite/Organs:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04264368, 0.07527498, 0.08568939, 0.11545219, 0.1373469, 0.163151, 0.18133697),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, -1), Vector2(0.9999994, 0.9999994), Vector2(1.0728836e-05, 1.0669231e-05), Vector2(-0.9999903, 1.0000097), Vector2(9.715557e-06, 9.655952e-06), Vector2(1.0000098, -0.99999034), Vector2(9.775162e-06, 9.655952e-06)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ityy0"]
+_data = {
+&"RESET": SubResource("Animation_u5sq5"),
+&"hit_cieling": SubResource("Animation_swl0q"),
+&"hit_floor": SubResource("Animation_rxen8"),
+&"hit_wall_left": SubResource("Animation_8vk26"),
+&"hit_wall_right": SubResource("Animation_alasw"),
+&"organs_On_Jump": SubResource("Animation_u5xdt")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ek61a"]
+radius = 6.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i33fa"]
 bounce = 0.65
@@ -4363,7 +4558,71 @@ size = Vector2(200, 100)
 [node name="Node2D" type="Node2D" unique_id=1536282745]
 script = SubResource("GDScript_rp1ko")
 
-[node name="Player" parent="." unique_id=1913967710 instance=ExtResource("1_qtxl6")]
+[node name="PlayerCharacter" type="CharacterBody2D" parent="." unique_id=1297132920 groups=["player"]]
+position = Vector2(-69, -165)
+slide_on_ceiling = false
+floor_constant_speed = true
+platform_wall_layers = 1
+script = ExtResource("1_mrcb1")
+max_deform_scale = Vector2(0.98, 0.98)
+jump_sounds = Array[AudioStream]([ExtResource("3_px2bc"), ExtResource("4_hutgc"), ExtResource("5_ityy0"), ExtResource("6_ek61a")])
+
+[node name="PlayerSounds" type="Node2D" parent="PlayerCharacter" unique_id=1747316139]
+
+[node name="JumpSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=828071748]
+stream = ExtResource("2_i33fa")
+volume_db = -0.2
+
+[node name="AirJumpSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=1244944715]
+stream = ExtResource("7_hutgc")
+attenuation = 0.6155722
+panning_strength = 1.05
+
+[node name="BounceSFX" type="AudioStreamPlayer2D" parent="PlayerCharacter/PlayerSounds" unique_id=440524808]
+stream = ExtResource("3_i33fa")
+volume_db = -0.874
+pitch_scale = 3.87
+attenuation = 2.462288
+max_polyphony = 2
+
+[node name="PlayerSprite" type="Sprite2D" parent="PlayerCharacter" unique_id=1255368222]
+texture_filter = 3
+position = Vector2(7.6293945e-06, 0)
+texture = ExtResource("2_boklw")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Organs" type="Sprite2D" parent="PlayerCharacter/PlayerSprite" unique_id=962326798]
+texture = ExtResource("2_boklw")
+region_enabled = true
+region_rect = Rect2(6, 22, 4, 4)
+script = ExtResource("3_x4g3l")
+
+[node name="Eyes" type="Node2D" parent="PlayerCharacter" unique_id=1367487816]
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter/Eyes" unique_id=1716150455]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 30.0
+script = ExtResource("4_e0o5i")
+
+[node name="EyeSprite" type="Sprite2D" parent="PlayerCharacter/Eyes/Camera2D" unique_id=505308619]
+texture = ExtResource("2_boklw")
+region_enabled = true
+region_rect = Rect2(24, 4, 6, 4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacter" unique_id=419227739]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_ityy0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacter" unique_id=1707953100]
+shape = SubResource("CircleShape2D_ek61a")
+debug_color = Color(0.96465665, 0, 0.49433035, 0.41960785)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="PlayerCharacter" unique_id=692529452]
+
+[node name="MusicManager" parent="PlayerCharacter" unique_id=432624810 instance=ExtResource("37_ityy0")]
+position = Vector2(69, 165)
 
 [node name="FloorTiles" type="TileMapLayer" parent="." unique_id=918070726 groups=["ground"]]
 z_index = 1
