@@ -77,4 +77,5 @@ func damageanimaton():
 func death():
 	#play animation
 	$PathBoss.hide()
-	$DeathPath.show()
+	$Deathnodes.show()
+	$Deathnodes.died()

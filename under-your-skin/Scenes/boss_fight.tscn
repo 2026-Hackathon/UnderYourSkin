@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://688ofklml1rc" path="res://Sprites/Enemy/eyeballpupul.png" id="24_7a7ct"]
 [ext_resource type="Script" uid="uid://cu1ew4g6jrbyg" path="res://Scenes/eyeball_back_boss.gd" id="24_8mjkw"]
 [ext_resource type="Texture2D" uid="uid://buv26t0ae4pc" path="res://Scenes/laser.png" id="28_ob2ei"]
-[ext_resource type="Script" uid="uid://csyhkku631wsg" path="res://Scenes/death_pathboss.gd" id="29_vux56"]
+[ext_resource type="Script" uid="uid://d3mqb0dfxi1bb" path="res://Scenes/death_eyeball boss.gd" id="29_vux56"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -4499,8 +4499,6 @@ size = Vector2(1000, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_8mjkw"]
 radius = 26.0
 
-[sub_resource type="Curve2D" id="Curve2D_ob2ei"]
-
 [node name="Node2D" type="Node2D" unique_id=1075884327]
 metadata/_edit_horizontal_guides_ = [-740.0]
 
@@ -4848,53 +4846,46 @@ position = Vector2(11.410401, 0.4682417)
 scale = Vector2(5.368, 4)
 shape = SubResource("CircleShape2D_8mjkw")
 
-[node name="DeathPath" type="Path2D" parent="Boss" unique_id=1567775037]
+[node name="Deathnodes" type="Node2D" parent="Boss" unique_id=1067858589]
 visible = false
-curve = SubResource("Curve2D_ob2ei")
 script = ExtResource("29_vux56")
 
-[node name="Follow Path" type="PathFollow2D" parent="Boss/DeathPath" unique_id=1734791022]
-rotation = 1.5707964
-rotates = false
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Boss/DeathPath/Follow Path" unique_id=585568038]
-
-[node name="Eyeball Back Boss" type="Sprite2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D" unique_id=1992135460]
+[node name="Death Eyeball" type="Sprite2D" parent="Boss/Deathnodes" unique_id=542941828]
 position = Vector2(60.007732, 5.722046e-06)
 scale = Vector2(5.571, 4)
 texture = ExtResource("23_wjl64")
 region_enabled = true
 region_rect = Rect2(7, 7, 50, 50)
 
-[node name="iris" type="Node2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss" unique_id=2036533469]
+[node name="iris" type="Node2D" parent="Boss/Deathnodes/Death Eyeball" unique_id=2041204788]
 
-[node name="Iris" type="Sprite2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/iris" unique_id=1620417810]
+[node name="Iris" type="Sprite2D" parent="Boss/Deathnodes/Death Eyeball/iris" unique_id=485281806]
 position = Vector2(0.08464861, 0.117058754)
 rotation = -1.5707964
 texture = ExtResource("24_7a7ct")
 region_enabled = true
 region_rect = Rect2(19, 19, 28, 27)
 
-[node name="WeakPointArea" type="Area2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/iris" unique_id=1338405134]
+[node name="WeakPointArea" type="Area2D" parent="Boss/Deathnodes/Death Eyeball/iris" unique_id=123096733]
 position = Vector2(0.08464861, 0.117058754)
 rotation = -1.5707964
 scale = Vector2(2, 2)
 
-[node name="WeakPointCollision" type="CollisionShape2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/iris/WeakPointArea" unique_id=1052164642]
+[node name="WeakPointCollision" type="CollisionShape2D" parent="Boss/Deathnodes/Death Eyeball/iris/WeakPointArea" unique_id=1350182848]
 shape = SubResource("CircleShape2D_ob2ei")
 
-[node name="laser" type="Node2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss" unique_id=1136995601]
+[node name="laser" type="Node2D" parent="Boss/Deathnodes/Death Eyeball" unique_id=2052135477]
 visible = false
 
-[node name="Laser AREA" type="Area2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/laser" unique_id=822492166]
+[node name="Laser AREA" type="Area2D" parent="Boss/Deathnodes/Death Eyeball/laser" unique_id=217681525]
 priority = 1
 
-[node name="laser collision" type="CollisionShape2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/laser/Laser AREA" unique_id=1749035907]
+[node name="laser collision" type="CollisionShape2D" parent="Boss/Deathnodes/Death Eyeball/laser/Laser AREA" unique_id=850867431]
 position = Vector2(520.00006, 4.7683716e-07)
 scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_lt17g")
 
-[node name="laser sprite" type="NinePatchRect" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/laser/Laser AREA/laser collision" unique_id=375373171]
+[node name="laser sprite" type="NinePatchRect" parent="Boss/Deathnodes/Death Eyeball/laser/Laser AREA/laser collision" unique_id=979436292]
 custom_minimum_size = Vector2(1000, 20)
 anchors_preset = 15
 anchor_right = 1.0
@@ -4904,12 +4895,6 @@ grow_vertical = 2
 texture = ExtResource("28_ob2ei")
 patch_margin_left = 2
 patch_margin_right = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D" unique_id=2133374960]
-visible = false
-position = Vector2(11.410401, 0.4682417)
-scale = Vector2(5.368, 4)
-shape = SubResource("CircleShape2D_8mjkw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=62238647]
 
