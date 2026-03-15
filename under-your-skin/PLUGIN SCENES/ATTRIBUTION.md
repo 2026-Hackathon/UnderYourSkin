@@ -1,17 +1,30 @@
+
+
+Good Job, You finished what there is of the game right now
+Hope you had fun, here's some credits as a reward
+
+
+
+
 # Attribution
 ## Collaborators
 
-### Role
-Person 1  
-Person 2  
-[Person w/ Link]()  
+### Devolopers & Artists 
+GeoGeov
+Jake Burger
 
 ## Sourced
-### Asset Type
-#### Use Case
-Author: [Name]()  
-Source: [Domain : webpage.html]()  
-License: [License]()
+### Audio
+#### Bounce SFX
+Author: [jdminny]()  
+Source: [Domain : https://freesound.org/people/jdminny/sounds/655001/]()  
+#### Jump SFX
+Author: [Garuda1982]()  
+Source: [Domain : https://freesound.org/people/Garuda1982/sounds/538912/]()  
+
+#### BGM Music
+Author: [Alkakrab]()  
+Source: [Domain : https://freesound.org/people/jdminny/sounds/655001/ml]()  
 
 ## Tools
 #### Godot
@@ -31,3 +44,10 @@ License: [MIT License](LICENSE.txt)
 Author: [Linus Torvalds](https://github.com/torvalds)  
 Source: [git-scm.com](https://git-scm.com/downloads)  
 License: [GNU General Public License version 2](https://opensource.org/licenses/GPL-2.0)
+
+
+
+
+
+
+this doesn't stop scrolling so you should probably leave now

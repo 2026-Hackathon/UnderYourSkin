@@ -38,7 +38,7 @@
 [ext_resource type="Script" uid="uid://cgprgh5h1vehp" path="res://Scenes/big_fall_trigger_line.gd" id="29_ysfch"]
 [ext_resource type="PackedScene" uid="uid://duvl2rx3yf76a" path="res://Scenes/music_manager.tscn" id="37_ityy0"]
 [ext_resource type="Script" uid="uid://b5unsgm8xi8ga" path="res://Scripts/portal.gd" id="38_j84pb"]
-[ext_resource type="PackedScene" uid="uid://ecilh7hy0m3x" path="res://Scenes/boss_fight.tscn" id="39_nnoxv"]
+[ext_resource type="PackedScene" uid="uid://cnpawkk36whc" path="res://PLUGIN SCENES/scenes/credits/scrolling_credits.tscn" id="39_nnoxv"]
 [ext_resource type="Texture2D" uid="uid://688ofklml1rc" path="res://Sprites/Enemy/eyeballpupul.png" id="39_xkiy0"]
 
 [sub_resource type="GDScript" id="GDScript_rp1ko"]

@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://cnpawkk36whc"]
 
-[ext_resource type="Script" path="res://PLUGIN SCENES/scenes/credits/scrolling_credits.gd" id="1_kcb8b"]
-[ext_resource type="PackedScene" path="res://PLUGIN SCENES/scenes/credits/credits_label.tscn" id="2_x3grf"]
+[ext_resource type="Script" uid="uid://c6rlao0pt0g8e" path="res://PLUGIN SCENES/scenes/credits/scrolling_credits.gd" id="1_kcb8b"]
+[ext_resource type="Texture2D" uid="uid://bspaoa2imoidb" path="res://Sprites/TempJumpUIbg.png" id="2_0pggu"]
+[ext_resource type="PackedScene" uid="uid://d3niv7h8ryseg" path="res://PLUGIN SCENES/scenes/credits/credits_label.tscn" id="2_x3grf"]
 
-[node name="ScrollingCredits" type="Control"]
+[node name="ScrollingCredits" type="Control" unique_id=663316236]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,29 +12,91 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kcb8b")
+scroll_paused = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="BG" type="Sprite2D" parent="." unique_id=1104803057]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(610.5, 316)
+scale = Vector2(13.21, 7.32)
+texture = ExtResource("2_0pggu")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1545037568]
 unique_name_in_owner = true
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+scroll_vertical = 2287
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=2137073445]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+[node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer" unique_id=1794365288]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 720)
+custom_minimum_size = Vector2(0, 648)
 layout_mode = 2
 
-[node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_x3grf")]
+[node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" unique_id=1935068401 instance=ExtResource("2_x3grf")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(1152, 0)
 layout_mode = 2
+text = "
+Good Job, You finished what there is of the game right now
+Hope you had fun, here's some credits as a reward
 
-[node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
+
+
+
+[font_size=64]Attribution[/font_size]
+[font_size=48]Collaborators[/font_size]
+
+[font_size=32]Devolopers & Artists [/font_size]
+GeoGeov
+Jake Burger
+
+[font_size=48]Sourced[/font_size]
+[font_size=32]Audio[/font_size]
+[font_size=24]Bounce SFX[/font_size]
+Author: [url=]jdminny[/url]  
+Source: [url=]Domain : https://freesound.org/people/jdminny/sounds/655001/[/url]  
+[font_size=24]Jump SFX[/font_size]
+Author: [url=]Garuda1982[/url]  
+Source: [url=]Domain : https://freesound.org/people/Garuda1982/sounds/538912/[/url]  
+
+[font_size=24]BGM Music[/font_size]
+Author: [url=]Alkakrab[/url]  
+Source: [url=]Domain : https://freesound.org/people/jdminny/sounds/655001/ml[/url]  
+
+[font_size=48]Tools[/font_size]
+[font_size=24]Godot[/font_size]
+[img=80]res:///PLUGIN SCENES/assets/godot_engine_logo/logo_vertical_color_dark.png[/img]  
+Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
+Source: [url=https://godotengine.org/]godotengine.org[/url]  
+License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
+
+[font_size=24]Godot Credits Scene[/font_size]
+[img=80]res:///PLUGIN SCENES/assets/plugin_logo/logo.png[/img]  
+Author: [url=https://github.com/Maaack/Godot-Credits-Scene/graphs/contributors]Marek Belski and contributors[/url]  
+Source: [url=https://github.com/Maaack/Godot-Credits-Scene]github: Godot-Credits-Scene[/url]  
+License: [url=LICENSE.txt]MIT License[/url]  
+
+[font_size=24]Git[/font_size]
+[img=80]res:///PLUGIN SCENES/assets/git_logo/Git-Logo-2Color.png[/img]  
+Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
+Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
+License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
+
+
+
+
+
+
+this doesn't stop scrolling so you should probably leave now
+"
+
+[node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer" unique_id=1711826115]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 720)
+custom_minimum_size = Vector2(0, 648)
 layout_mode = 2
