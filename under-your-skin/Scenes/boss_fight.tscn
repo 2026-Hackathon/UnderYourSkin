@@ -4610,10 +4610,12 @@ mouse_filter = 2
 theme_override_constants/separation = 25
 
 [node name="MovementControlPadding" type="MarginContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=1086916673]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 
 [node name="MovementControlButton2" type="Button" parent="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding" unique_id=22195395]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_trwj2")
 theme_override_font_sizes/font_size = 55
@@ -4626,12 +4628,14 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="ZoomTxt" type="Label" parent="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer" unique_id=1461839934]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_trwj2")
 theme_override_font_sizes/font_size = 55
 text = "Camera Zoom"
 
 [node name="Zoom Slider" type="HSlider" parent="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer" unique_id=2087938108]
+visible = false
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("15_n521i")
 theme_override_icons/grabber_highlight = ExtResource("16_5r67t")
@@ -4643,12 +4647,14 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="VolumeTxt" type="Label" parent="CanvasLayer/Playing UI/PauseMenuList/VolumeControlContainer" unique_id=1250707102]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_trwj2")
 theme_override_font_sizes/font_size = 55
 text = "BGM Volume"
 
 [node name="Volume Slider" type="HSlider" parent="CanvasLayer/Playing UI/PauseMenuList/VolumeControlContainer" unique_id=325618827]
+visible = false
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("15_n521i")
 theme_override_icons/grabber_highlight = ExtResource("16_5r67t")
@@ -4661,12 +4667,14 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SFXTxt" type="Label" parent="CanvasLayer/Playing UI/PauseMenuList/SFXControlContainer" unique_id=463221753]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_trwj2")
 theme_override_font_sizes/font_size = 55
 text = "SFX Volume"
 
 [node name="SFX Slider" type="HSlider" parent="CanvasLayer/Playing UI/PauseMenuList/SFXControlContainer" unique_id=1397063392]
+visible = false
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("15_n521i")
 theme_override_icons/grabber_highlight = ExtResource("16_5r67t")

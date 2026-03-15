@@ -37,6 +37,9 @@
 [ext_resource type="Texture2D" uid="uid://cxcqtnv3h6dej" path="res://Sprites/NPC/SpeechbubblebottomBLACK.png" id="26_nw5cc"]
 [ext_resource type="Script" uid="uid://cgprgh5h1vehp" path="res://Scenes/big_fall_trigger_line.gd" id="29_ysfch"]
 [ext_resource type="PackedScene" uid="uid://duvl2rx3yf76a" path="res://Scenes/music_manager.tscn" id="37_ityy0"]
+[ext_resource type="Script" uid="uid://b5unsgm8xi8ga" path="res://Scripts/portal.gd" id="38_j84pb"]
+[ext_resource type="PackedScene" uid="uid://ecilh7hy0m3x" path="res://Scenes/boss_fight.tscn" id="39_nnoxv"]
+[ext_resource type="Texture2D" uid="uid://688ofklml1rc" path="res://Sprites/Enemy/eyeballpupul.png" id="39_xkiy0"]
 
 [sub_resource type="GDScript" id="GDScript_rp1ko"]
 script/source = "extends Node2D
@@ -4555,6 +4558,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i33fa"]
 size = Vector2(200, 100)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnoxv"]
+radius = 37.054016
+
 [node name="Node2D" type="Node2D" unique_id=1536282745]
 script = SubResource("GDScript_rp1ko")
 
@@ -5737,6 +5743,19 @@ offset = Vector2(20, 43)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NPCs/ObliviousNPC" unique_id=471179930]
 libraries/ = SubResource("AnimationLibrary_hutgc")
+
+[node name="Portal" type="Area2D" parent="." unique_id=650824884]
+position = Vector2(-111, -3323)
+script = ExtResource("38_j84pb")
+target_scene = ExtResource("39_nnoxv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Portal" unique_id=1727351948]
+position = Vector2(-2, 0)
+texture = ExtResource("39_xkiy0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal" unique_id=1997912998]
+position = Vector2(-1, 2)
+shape = SubResource("CircleShape2D_nnoxv")
 
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding/MovementControlButton2" to="CanvasLayer/Playing UI" method="_on_movement_control_button_2_pressed"]
 [connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer/Zoom Slider" to="CanvasLayer/Playing UI" method="_on_zoom_slider_drag_ended"]
