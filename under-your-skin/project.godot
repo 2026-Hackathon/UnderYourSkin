@@ -29,10 +29,20 @@ window/handheld/orientation=4
 
 project/assembly_name="UnderYourSkin"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/maaacks_credits_scene/plugin.cfg")
+
 [global_group]
 
 ground="All Colliding Tiles In this Group"
 player="Player Group"
+
+[maaacks_credits_scene]
+
+disable_update_check=false
+disable_install_wizard=true
+copy_path="res://PLUGIN SCENES/"
 
 [physics]
 
