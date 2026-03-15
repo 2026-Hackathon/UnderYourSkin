@@ -1,25 +1,38 @@
 extends Sprite2D
-var inrem: bool = true	
+
+#base eye movement vars
 @onready var eye: Node2D = $iris
-var eyeangle: float
-var in_attack: bool = false
 @export var eye_max_offset: float = 8   # how far eyes can move from center (pixels)
 @export var eye_follow_speed: float = 20.0  # how fast eyes catch up to target
 @export var eye_player_lag: float = 5.0
-
 @onready var playernode = get_node("/root/Node2D/PlayerCharacter")
 var eye_target_offset: Vector2 = Vector2.ZERO
 var eye_current_offset: Vector2 = Vector2.ZERO
 
+
+
+var eyeangle: float
+
+#check vars
+var in_attack: bool = false
+#should eyes move?
+var inrem: bool = true	
+
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#moves eyes to player if not attacking. if attacking then moves to the last player position so long as in rem	
 var playerpos
 var to_player
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if inrem:
+
+	if inrem and not Globals.is_frozen:
+		#if not in an attack, keep updating where to look
 		if not in_attack:
 			playerpos = playernode.global_position
 			to_player = playerpos - global_position
@@ -30,7 +43,7 @@ func _process(delta: float) -> void:
 		else:
 					
 			var dir = to_player.normalized() 
-			dir = dir.rotated(PI/2)
+			dir = dir.rotated(-PI/2)
 			eyeangle = dir.angle()
 			
 				#off set around player

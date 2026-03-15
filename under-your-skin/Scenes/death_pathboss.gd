@@ -1,30 +1,24 @@
 extends Path2D
-@export var eye_ball_speed: float = 100.0
-var in_attack: bool = false
-var timer: float = 0.0
+@export var eye_ball_speed: float = 25.0
+var deathanimon: bool = false
+var timer: float = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-var rannum: int = 0
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#only moves when not attacking and not paused
-	if not in_attack and not Globals.is_frozen:
+	if deathanimon and not Globals.is_frozen:
 		#increments timer by delta
 		timer += (delta * Globals.current_time_scale)
-		
-		#every second chance for an attack
-		if timer >= 1:
-			rannum = (randi() % 10) + 1
-			print(rannum)
-			timer -=1
-			if rannum == 10:
-				var bossnode = get_node("../")
-				bossnode.attack()
-		
 		moveacrosspath(delta)
-
+	
 func moveacrosspath(delta: float):
 
 	$"Follow Path".progress += eye_ball_speed * Globals.current_time_scale
+
+func died():
+	var BossNode = get_node("/root/Node2D/Boss/PathBoss/Follow Path/CharacterBody2D")
+	curve.add_point(BossNode.global_position)
+	curve.add_point(Vector2(0,0))
+	deathanimon = true

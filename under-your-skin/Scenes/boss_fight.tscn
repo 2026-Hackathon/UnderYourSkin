@@ -22,10 +22,13 @@
 [ext_resource type="Texture2D" uid="uid://c5purthp7nsb1" path="res://Sprites/Menu/PauseSpriteWithShading.png" id="18_7shtl"]
 [ext_resource type="Texture2D" uid="uid://gnvuq8r8tb4j" path="res://Sprites/TileMaps/Houses.png" id="18_wjl64"]
 [ext_resource type="Texture2D" uid="uid://co272ykbfql7w" path="res://Sprites/TileMaps/Carpet.png" id="19_7a7ct"]
-[ext_resource type="Script" path="res://Scenes/path_boss.gd" id="23_8mjkw"]
+[ext_resource type="Script" uid="uid://cervs6gu4hd5j" path="res://Scenes/path_boss.gd" id="23_8mjkw"]
+[ext_resource type="Script" uid="uid://dot2runkeb58a" path="res://Scenes/boss.gd" id="23_lt17g"]
 [ext_resource type="Texture2D" uid="uid://bnclijjwl6yfq" path="res://Sprites/Enemy/eyeballback.png" id="23_wjl64"]
 [ext_resource type="Texture2D" uid="uid://688ofklml1rc" path="res://Sprites/Enemy/eyeballpupul.png" id="24_7a7ct"]
-[ext_resource type="Script" uid="uid://cu1ew4g6jrbyg" path="res://Scenes/eyeball_back.gd" id="24_8mjkw"]
+[ext_resource type="Script" uid="uid://cu1ew4g6jrbyg" path="res://Scenes/eyeball_back_boss.gd" id="24_8mjkw"]
+[ext_resource type="Texture2D" uid="uid://buv26t0ae4pc" path="res://Scenes/laser.png" id="28_ob2ei"]
+[ext_resource type="Script" uid="uid://csyhkku631wsg" path="res://Scenes/death_pathboss.gd" id="29_vux56"]
 
 [sub_resource type="Animation" id="Animation_u5sq5"]
 length = 0.001
@@ -4488,8 +4491,15 @@ _data = {
 }
 point_count = 9
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ob2ei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lt17g"]
+size = Vector2(1000, 20)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_8mjkw"]
 radius = 26.0
+
+[sub_resource type="Curve2D" id="Curve2D_ob2ei"]
 
 [node name="Node2D" type="Node2D" unique_id=1075884327]
 metadata/_edit_horizontal_guides_ = [-740.0]
@@ -4550,9 +4560,9 @@ debug_color = Color(0.96465665, 0, 0.49433035, 0.41960785)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="PlayerCharacter" unique_id=1364997627]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1139701560]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=471642925]
 
-[node name="Playing UI" type="Control" parent="CanvasLayer" unique_id=1405238673]
+[node name="Playing UI" type="Control" parent="CanvasLayer" unique_id=106939719]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -4562,7 +4572,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("13_8prgg")
 
-[node name="PauseMenuList" type="VBoxContainer" parent="CanvasLayer/Playing UI" unique_id=1410455292]
+[node name="PauseMenuList" type="VBoxContainer" parent="CanvasLayer/Playing UI" unique_id=743957161]
 custom_minimum_size = Vector2(700, 400)
 layout_mode = 1
 anchors_preset = 8
@@ -4579,11 +4589,11 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 25
 
-[node name="MovementControlPadding" type="MarginContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=667537377]
+[node name="MovementControlPadding" type="MarginContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=1367557338]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MovementControlButton2" type="Button" parent="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding" unique_id=1447780823]
+[node name="MovementControlButton2" type="Button" parent="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding" unique_id=605448420]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_trwj2")
@@ -4592,18 +4602,18 @@ text = "Movement Control:
 Drag Back"
 alignment = 0
 
-[node name="ZoomControlContainer" type="VBoxContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=1771929608]
+[node name="ZoomControlContainer" type="VBoxContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=607104920]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ZoomTxt" type="Label" parent="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer" unique_id=541721178]
+[node name="ZoomTxt" type="Label" parent="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer" unique_id=1421659894]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("14_trwj2")
 theme_override_font_sizes/font_size = 55
 text = "Camera Zoom"
 
-[node name="Zoom Slider" type="HSlider" parent="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer" unique_id=1750064190]
+[node name="Zoom Slider" type="HSlider" parent="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer" unique_id=870464299]
 visible = false
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("15_n521i")
@@ -4611,7 +4621,27 @@ theme_override_icons/grabber_highlight = ExtResource("16_5r67t")
 min_value = 1.0
 value = 2.0
 
-[node name="PauseMenu" type="Control" parent="CanvasLayer/Playing UI" unique_id=1026261723]
+[node name="VolumeControlContainer" type="VBoxContainer" parent="CanvasLayer/Playing UI/PauseMenuList" unique_id=904539141]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VolumeTxt" type="Label" parent="CanvasLayer/Playing UI/PauseMenuList/VolumeControlContainer" unique_id=1024881178]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("14_trwj2")
+theme_override_font_sizes/font_size = 55
+text = "Game Volume"
+
+[node name="Volume Slider" type="HSlider" parent="CanvasLayer/Playing UI/PauseMenuList/VolumeControlContainer" unique_id=198451685]
+visible = false
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("15_n521i")
+theme_override_icons/grabber_highlight = ExtResource("16_5r67t")
+min_value = -100.0
+max_value = 10.0
+value = 2.0
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer/Playing UI" unique_id=1546045627]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4622,7 +4652,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PauseScreenBgContainer" type="MarginContainer" parent="CanvasLayer/Playing UI/PauseMenu" unique_id=89050167]
+[node name="PauseScreenBgContainer" type="MarginContainer" parent="CanvasLayer/Playing UI/PauseMenu" unique_id=1711711970]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -4637,14 +4667,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PauseScreenBg" type="Sprite2D" parent="CanvasLayer/Playing UI/PauseMenu/PauseScreenBgContainer" unique_id=278859999]
+[node name="PauseScreenBg" type="Sprite2D" parent="CanvasLayer/Playing UI/PauseMenu/PauseScreenBgContainer" unique_id=999430339]
 visible = false
 modulate = Color(1, 1, 1, 0.49803922)
 z_index = -9
-scale = Vector2(7, 7)
+position = Vector2(-36.99994, -17.499878)
+scale = Vector2(16.48, 18.217777)
 texture = ExtResource("17_ik4uk")
 
-[node name="PauseButtonPadding" type="MarginContainer" parent="CanvasLayer/Playing UI" unique_id=1298482588]
+[node name="PauseButtonPadding" type="MarginContainer" parent="CanvasLayer/Playing UI" unique_id=1480935427]
 layout_mode = 1
 offset_right = 100.0
 offset_bottom = 100.0
@@ -4652,11 +4683,11 @@ mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="PauseButton" type="Button" parent="CanvasLayer/Playing UI/PauseButtonPadding" unique_id=5528490]
+[node name="PauseButton" type="Button" parent="CanvasLayer/Playing UI/PauseButtonPadding" unique_id=96822335]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 
-[node name="PauseSprite" type="Sprite2D" parent="CanvasLayer/Playing UI/PauseButtonPadding/PauseButton" unique_id=1371542629]
+[node name="PauseSprite" type="Sprite2D" parent="CanvasLayer/Playing UI/PauseButtonPadding/PauseButton" unique_id=439851274]
 z_index = 5
 scale = Vector2(5, 5)
 texture = ExtResource("18_7shtl")
@@ -4747,43 +4778,144 @@ position = Vector2(286, 350)
 texture = ExtResource("11_ob2ei")
 centered = false
 
-[node name="PathBoss" type="Path2D" parent="." unique_id=935006862]
+[node name="Boss" type="Node2D" parent="." unique_id=108073495]
+script = ExtResource("23_lt17g")
+
+[node name="PathBoss" type="Path2D" parent="Boss" unique_id=935006862]
 position = Vector2(25.585709, -38.620377)
 scale = Vector2(0.9025125, 0.65237254)
 curve = SubResource("Curve2D_8mjkw")
 script = ExtResource("23_8mjkw")
 eye_ball_speed = 10.0
 
-[node name="Follow Path" type="PathFollow2D" parent="PathBoss" unique_id=974809631]
-rotation = -1.4741547
+[node name="Follow Path" type="PathFollow2D" parent="Boss/PathBoss" unique_id=974809631]
+rotation = 1.5707964
 rotates = false
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="PathBoss/Follow Path" unique_id=2045818778]
-scale = Vector2(0.9999999, 1)
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Boss/PathBoss/Follow Path" unique_id=2045818778]
 
-[node name="Eyeball Back" type="Sprite2D" parent="PathBoss/Follow Path/CharacterBody2D" unique_id=323132658]
-position = Vector2(10.956009, 5.722046e-06)
-scale = Vector2(5.368, 3.9999995)
+[node name="Eyeball Back Boss" type="Sprite2D" parent="Boss/PathBoss/Follow Path/CharacterBody2D" unique_id=323132658]
+position = Vector2(60.007732, 5.722046e-06)
+scale = Vector2(5.571, 4)
 texture = ExtResource("23_wjl64")
 region_enabled = true
 region_rect = Rect2(7, 7, 50, 50)
 script = ExtResource("24_8mjkw")
+eye_max_offset = 13.0
 
-[node name="iris" type="Node2D" parent="PathBoss/Follow Path/CharacterBody2D/Eyeball Back" unique_id=95416393]
+[node name="iris" type="Node2D" parent="Boss/PathBoss/Follow Path/CharacterBody2D/Eyeball Back Boss" unique_id=95416393]
 
-[node name="Iris" type="Sprite2D" parent="PathBoss/Follow Path/CharacterBody2D/Eyeball Back/iris" unique_id=374922193]
+[node name="Iris" type="Sprite2D" parent="Boss/PathBoss/Follow Path/CharacterBody2D/Eyeball Back Boss/iris" unique_id=374922193]
 position = Vector2(0.08464861, 0.117058754)
 rotation = -1.5707964
 texture = ExtResource("24_7a7ct")
 region_enabled = true
 region_rect = Rect2(19, 19, 28, 27)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathBoss/Follow Path/CharacterBody2D" unique_id=1250128195]
+[node name="WeakPointArea" type="Area2D" parent="Boss/PathBoss/Follow Path/CharacterBody2D/Eyeball Back Boss/iris" unique_id=56873250]
+position = Vector2(0.08464861, 0.117058754)
+rotation = -1.5707964
+scale = Vector2(2, 2)
+
+[node name="WeakPointCollision" type="CollisionShape2D" parent="Boss/PathBoss/Follow Path/CharacterBody2D/Eyeball Back Boss/iris/WeakPointArea" unique_id=110117636]
+shape = SubResource("CircleShape2D_ob2ei")
+
+[node name="laser" type="Node2D" parent="Boss/PathBoss/Follow Path/CharacterBody2D/Eyeball Back Boss" unique_id=1948471778]
+visible = false
+
+[node name="Laser AREA" type="Area2D" parent="Boss/PathBoss/Follow Path/CharacterBody2D/Eyeball Back Boss/laser" unique_id=1361500849]
+priority = 1
+
+[node name="laser collision" type="CollisionShape2D" parent="Boss/PathBoss/Follow Path/CharacterBody2D/Eyeball Back Boss/laser/Laser AREA" unique_id=2136859544]
+position = Vector2(520.00006, 4.7683716e-07)
+scale = Vector2(1.0000001, 1.0000001)
+shape = SubResource("RectangleShape2D_lt17g")
+
+[node name="laser sprite" type="NinePatchRect" parent="Boss/PathBoss/Follow Path/CharacterBody2D/Eyeball Back Boss/laser/Laser AREA/laser collision" unique_id=1558120149]
+custom_minimum_size = Vector2(1000, 20)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("28_ob2ei")
+patch_margin_left = 2
+patch_margin_right = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/PathBoss/Follow Path/CharacterBody2D" unique_id=1250128195]
 visible = false
 position = Vector2(11.410401, 0.4682417)
 scale = Vector2(5.368, 4)
 shape = SubResource("CircleShape2D_8mjkw")
 
+[node name="DeathPath" type="Path2D" parent="Boss" unique_id=1567775037]
+visible = false
+curve = SubResource("Curve2D_ob2ei")
+script = ExtResource("29_vux56")
+
+[node name="Follow Path" type="PathFollow2D" parent="Boss/DeathPath" unique_id=1734791022]
+rotation = 1.5707964
+rotates = false
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Boss/DeathPath/Follow Path" unique_id=585568038]
+
+[node name="Eyeball Back Boss" type="Sprite2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D" unique_id=1992135460]
+position = Vector2(60.007732, 5.722046e-06)
+scale = Vector2(5.571, 4)
+texture = ExtResource("23_wjl64")
+region_enabled = true
+region_rect = Rect2(7, 7, 50, 50)
+
+[node name="iris" type="Node2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss" unique_id=2036533469]
+
+[node name="Iris" type="Sprite2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/iris" unique_id=1620417810]
+position = Vector2(0.08464861, 0.117058754)
+rotation = -1.5707964
+texture = ExtResource("24_7a7ct")
+region_enabled = true
+region_rect = Rect2(19, 19, 28, 27)
+
+[node name="WeakPointArea" type="Area2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/iris" unique_id=1338405134]
+position = Vector2(0.08464861, 0.117058754)
+rotation = -1.5707964
+scale = Vector2(2, 2)
+
+[node name="WeakPointCollision" type="CollisionShape2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/iris/WeakPointArea" unique_id=1052164642]
+shape = SubResource("CircleShape2D_ob2ei")
+
+[node name="laser" type="Node2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss" unique_id=1136995601]
+visible = false
+
+[node name="Laser AREA" type="Area2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/laser" unique_id=822492166]
+priority = 1
+
+[node name="laser collision" type="CollisionShape2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/laser/Laser AREA" unique_id=1749035907]
+position = Vector2(520.00006, 4.7683716e-07)
+scale = Vector2(1.0000001, 1.0000001)
+shape = SubResource("RectangleShape2D_lt17g")
+
+[node name="laser sprite" type="NinePatchRect" parent="Boss/DeathPath/Follow Path/CharacterBody2D/Eyeball Back Boss/laser/Laser AREA/laser collision" unique_id=375373171]
+custom_minimum_size = Vector2(1000, 20)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("28_ob2ei")
+patch_margin_left = 2
+patch_margin_right = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/DeathPath/Follow Path/CharacterBody2D" unique_id=2133374960]
+visible = false
+position = Vector2(11.410401, 0.4682417)
+scale = Vector2(5.368, 4)
+shape = SubResource("CircleShape2D_8mjkw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=62238647]
+
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseMenuList/MovementControlPadding/MovementControlButton2" to="CanvasLayer/Playing UI" method="_on_movement_control_button_2_pressed"]
 [connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/ZoomControlContainer/Zoom Slider" to="CanvasLayer/Playing UI" method="_on_zoom_slider_drag_ended"]
+[connection signal="drag_ended" from="CanvasLayer/Playing UI/PauseMenuList/VolumeControlContainer/Volume Slider" to="CanvasLayer/Playing UI" method="_on_volume_slider_drag_ended"]
 [connection signal="pressed" from="CanvasLayer/Playing UI/PauseButtonPadding/PauseButton" to="CanvasLayer/Playing UI" method="_on_pause_button_pressed"]
+[connection signal="body_entered" from="Boss/PathBoss/Follow Path/CharacterBody2D/Eyeball Back Boss/iris/WeakPointArea" to="Boss" method="_on_weak_point_area_body_entered"]
+[connection signal="body_entered" from="Boss/PathBoss/Follow Path/CharacterBody2D/Eyeball Back Boss/laser/Laser AREA" to="Boss" method="_on_laser_area_body_entered"]
